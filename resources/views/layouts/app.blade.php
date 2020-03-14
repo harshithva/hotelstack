@@ -21,10 +21,10 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
-    <link rel="stylesheet" href="./backend/assets/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="./backend/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('./backend/assets/vendor/nucleo/css/nucleo.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('./backend/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="./backend/assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="{{asset('./backend/assets/css/argon.css?v=1.2.0')}}" type="text/css">
 </head>
 <body>
     <div id="app">
@@ -81,7 +81,7 @@
         <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
             <div class="container">
               <a class="navbar-brand" href="/">
-                <img src="./frontend/assets/images/ui/logo-white.png">
+                <img src="{{asset('./frontend/assets/images/ui/logo-white.png')}}">
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -91,7 +91,7 @@
                   <div class="row">
                     <div class="col-6 collapse-brand">
                       <a href="dashboard.html">
-                        <img src="./backend/assets/img/brand/blue.png">
+                        <img src="{{asset('./backend/assets/img/brand/blue.png')}}">
                       </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -177,13 +177,13 @@
   </footer>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="{{asset('./assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{asset('./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('./assets/vendor/js-cookie/js.cookie.js')}}"></script>
+  <script src="{{asset('./assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
+  <script src="{{asset('./assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
   <!-- Argon JS -->
-  <script src="../assets/js/argon.js?v=1.2.0"></script>
+  <script src="{{asset('./assets/js/argon.js?v=1.2.0')}}"></script>
 </body>
 
 </html>
