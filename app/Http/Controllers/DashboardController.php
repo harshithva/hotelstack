@@ -27,7 +27,7 @@ class DashboardController extends Controller
         }
         else 
         {
-            return redirect('/');
+            return view('backend.user.dashboard');
         }
     }
 

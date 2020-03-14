@@ -141,12 +141,12 @@
                 @enderror
                 </div>
                 </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
+                {{-- <div class="custom-control custom-control-alternative custom-checkbox">
                   <input class="custom-control-input" id=" customCheckLogin" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                   <label class="custom-control-label" for=" customCheckLogin">
                     <span class="text-muted">Remember me</span>
                   </label>
-                </div>
+                </div> --}}
                 <div class="text-center">
                   <button type="SUBMIT" class="btn btn-primary my-4"> {{ __('Login') }}</button>
                 </div>
