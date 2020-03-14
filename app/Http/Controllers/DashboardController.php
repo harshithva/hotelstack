@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,14 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('backend.dashboard');
+        if(auth()->user()->usertype == 'admin')
+        {
+            return view('backend.admin.dashboard');
+        }
+        else 
+        {
+            return redirect('/');
+        }
     }
 
     /**

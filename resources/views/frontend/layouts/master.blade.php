@@ -72,7 +72,11 @@
 			    </ul>
 	        </div>
 		    <div class="navbar__btn">
-		        <a class="btn btn__medium" href="/login"><i class="btn-icon-left icon-bookmark"></i>Sign in</a>
+				@if(Auth::user())
+				<a class="btn btn__medium" href="/login"><i class="btn-icon-left icon-bookmark"></i>Hi, {{Auth::user()->name}}</a>
+				@else
+				<a class="btn btn__medium" href="/login"><i class="btn-icon-left icon-bookmark"></i>Sign in</a>
+				@endif
 		    </div>	
 	    </nav>
 	</header>
