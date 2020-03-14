@@ -8,7 +8,7 @@
         <!-- Intro -->
 		<section class="intro">
 		    <div class="intro__bg-wrap">
-		        <div class="overlay intro__bg js-image js-parallax" data-image="assets/images/image_header_04.jpg"></div>
+		        <div class="overlay intro__bg js-image js-parallax" data-image="./frontend/assets/images/image_header_04.jpg"></div>
 			</div>
 	        <div class="container intro__container">
 		        <div class="row h-100 align-items-center">
@@ -96,12 +96,12 @@
         <div class="col-12 col-lg-6">
             <figure class="about-image-wrap mr-0 mr-lg-4">
                 <a class="about-link" href="about.html">Explore More <i class="icon-arrow-special"></i></a>
-                <img class="cover about-image-portrait" src="assets/images/about_image_01.jpg" alt="about" />
+                <img class="cover about-image-portrait" src="./frontend/assets/images/about_image_01.jpg" alt="about" />
             </figure>	
         </div>
         <div class="col-12 col-lg-6">
             <figure class="about-image-wrap ml-0 ml-lg-4">
-                <img class="cover about-image-landscape" src="assets/images/about_image_02.jpg" alt="about" />
+                <img class="cover about-image-landscape" src="./frontend/assets/images/about_image_02.jpg" alt="about" />
             </figure>
         </div>
     </div>
@@ -127,7 +127,7 @@
 					    <span class="badge">Popular</span>
 					    <figure class="itemRoom__img-wrap">
 						    <a class="itemRoom__link" href="room_details.html">
-							    <img class="cover" src="assets/images/image_room_01.jpg" alt="room" />
+							    <img class="cover" src="./frontend/assets/images/image_room_01.jpg" alt="room" />
 							</a>
 						</figure>
 						<div class="itemRoom__details">
@@ -141,7 +141,7 @@
 				    <div class="itemRoom">
 					    <figure class="itemRoom__img-wrap">
 						    <a class="itemRoom__link" href="room_details.html">
-							    <img class="cover" src="assets/images/image_room_02.jpg" alt="room" />
+							    <img class="cover" src="./frontend/assets/images/image_room_02.jpg" alt="room" />
 							</a>
 						</figure>
 						<div class="itemRoom__details">
@@ -155,7 +155,7 @@
 				    <div class="itemRoom">
 					    <figure class="itemRoom__img-wrap">
 						    <a class="itemRoom__link" href="room_details.html">
-							    <img class="cover" src="assets/images/image_room_03.jpg" alt="room" />
+							    <img class="cover" src="./frontend/assets/images/image_room_03.jpg" alt="room" />
 							</a>
 						</figure>
 						<div class="itemRoom__details">
@@ -169,7 +169,7 @@
 				    <div class="itemRoom">
 					    <figure class="itemRoom__img-wrap">
 						    <a class="itemRoom__link" href="room_details.html">
-							    <img class="cover" src="assets/images/image_room_04.jpg" alt="room" />
+							    <img class="cover" src="./frontend/assets/images/image_room_04.jpg" alt="room" />
 							</a>
 						</figure>
 						<div class="itemRoom__details">
@@ -183,7 +183,7 @@
 				    <div class="itemRoom mb-0">
 					    <figure class="itemRoom__img-wrap">
 						    <a class="itemRoom__link" href="room_details.html">
-							    <img class="cover" src="assets/images/image_room_05.jpg" alt="room" />
+							    <img class="cover" src="./frontend/assets/images/image_room_05.jpg" alt="room" />
 							</a>
 						</figure>
 						<div class="itemRoom__details">
@@ -256,7 +256,7 @@
 								    <h4 class="title title--h4">Best hotel!</h4>
 									<p class="testimonials-item__caption">— The hotel has everything you need. On the ground floor there is a lobby bar, on the second floor there is a zone with an indoor pool and sauna, on the seventh floor there is a restaurant and spa-salon. The rooms are cleaned every day.</p>
 								    <div class="author-wrap">
-									    <div class="author-picture"><img class="cover" src="assets/images/person.jpg" alt="Jacob Lane" /></div>
+									    <div class="author-picture"><img class="cover" src="./frontend/assets/images/person.jpg" alt="Jacob Lane" /></div>
 										<div>
 										    <div class="author-name">Jacob Lane</div>
 										    <div class="author-country">from USA</div>
@@ -268,7 +268,7 @@
 								    <h4 class="title title--h4">Comfortable hotel.</h4>
 									<p class="testimonials-item__caption">— Well, what can I say, every year, day and hour, this place is being transformed for the better. The staff is completely competent and friendly, Everything around is blooming, pleasing, nourishing and making the holiday bright.</p>
 								    <div class="author-wrap">
-									    <div class="author-picture"><img class="cover" src="assets/images/person2.jpg" alt="Victoria Wilson" /></div>
+									    <div class="author-picture"><img class="cover" src="./frontend/assets/images/person2.jpg" alt="Victoria Wilson" /></div>
 										<div>
 										    <div class="author-name">Victoria Wilson</div>
 										    <div class="author-country">from France</div>
@@ -280,7 +280,7 @@
 								    <h4 class="title title--h4">The modern.</h4>
 									<p class="testimonials-item__caption">— The modern 5 * Hotel"HotelPlex Center is an ideal solution for combining business and leisure. Stylish design and exceptional service will satisfy the desires of any guest. 150 rooms with balcony (non-smoking), sea view, trendy restaurant.</p>
 								    <div class="author-wrap">
-									    <div class="author-picture"><img class="cover" src="assets/images/person3.jpg" alt="Max Edwards" /></div>
+									    <div class="author-picture"><img class="cover" src="./frontend/assets/images/person3.jpg" alt="Max Edwards" /></div>
 										<div>
 										    <div class="author-name">Max Edwards</div>
 										    <div class="author-country">from Germany</div>
@@ -292,7 +292,7 @@
 								    <h4 class="title title--h4">Best hotel!</h4>
 									<p class="testimonials-item__caption">— The hotel has everything you need. On the ground floor there is a lobby bar, on the second floor there is a zone with an indoor pool and sauna, on the seventh floor there is a restaurant and spa-salon. The rooms are cleaned every day.</p>
 								    <div class="author-wrap">
-									    <div class="author-picture"><img class="cover" src="assets/images/person.jpg" alt="Jacob Lane" /></div>
+									    <div class="author-picture"><img class="cover" src="./frontend/assets/images/person.jpg" alt="Jacob Lane" /></div>
 										<div>
 										    <div class="author-name">Jacob Lane</div>
 										    <div class="author-country">from USA</div>
@@ -304,7 +304,7 @@
 								    <h4 class="title title--h4">Comfortable hotel.</h4>
 									<p class="testimonials-item__caption">— Well, what can I say, every year, day and hour, this place is being transformed for the better. The staff is completely competent and friendly, Everything around is blooming, pleasing, nourishing and making the holiday bright.</p>
 								    <div class="author-wrap">
-									    <div class="author-picture"><img class="cover" src="assets/images/person2.jpg" alt="Victoria Wilson" /></div>
+									    <div class="author-picture"><img class="cover" src="./frontend/assets/images/person2.jpg" alt="Victoria Wilson" /></div>
 										<div>
 										    <div class="author-name">Victoria Wilson</div>
 										    <div class="author-country">from France</div>
@@ -316,7 +316,7 @@
 								    <h4 class="title title--h4">The modern.</h4>
 									<p class="testimonials-item__caption">— The modern 5 * Hotel"HotelPlex Center is an ideal solution for combining business and leisure. Stylish design and exceptional service will satisfy the desires of any guest. 150 rooms with balcony (non-smoking), sea view, trendy restaurant.</p>
 								    <div class="author-wrap">
-									    <div class="author-picture"><img class="cover" src="assets/images/person3.jpg" alt="Max Edwards" /></div>
+									    <div class="author-picture"><img class="cover" src="./frontend/assets/images/person3.jpg" alt="Max Edwards" /></div>
 										<div>
 										    <div class="author-name">Max Edwards</div>
 										    <div class="author-country">from Germany</div>

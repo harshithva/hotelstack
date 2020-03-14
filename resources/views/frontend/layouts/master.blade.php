@@ -33,14 +33,14 @@
     <meta property="og:site_name" content="HotelPlex" />
 
 	<!-- Favicons -->
-	<link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicons/favicon-16x16.png">
-<link rel="manifest" href="./assets/images/favicons/site.webmanifest">
+	<link rel="apple-touch-icon" sizes="180x180" href="./frontend/assets/images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./frontend/assets/images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./frontend/assets/images/favicons/favicon-16x16.png">
+<link rel="manifest" href="./frontend/assets/images/favicons/site.webmanifest">
 
     <!-- Styles -->
-	<link rel="stylesheet" type="text/css" href="assets/styles/style.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/demo/style-demo.css"/>
+	<link rel="stylesheet" type="text/css" href="./frontend/assets/styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./frontend/assets/demo/style-demo.css"/>
 
     </head>
     <body>
@@ -55,7 +55,7 @@
 	<header class="header">
 	    <nav class="navbar navbar-white navbar-overlay">
             <a class="logo-link" href="home.html">
-                <img class="logotype" src="assets/images/ui/logo-white.png" alt="HotelPlex">
+                <img class="logotype" src="./frontend/assets/images/ui/logo-white.png" alt="HotelPlex">
 		    </a>
 		    <div class="navbar__menu">
 		        <button class="hamburger" type="button">
@@ -108,11 +108,11 @@
 		{{-- <!-- Button Live Chat -->
 		<div class="btn-floating js-show-to-scroll"><i class="icon-bubble"></i></div> --}}
 	<!-- JavaScripts -->
-	<script src="assets/js/jquery-3.4.1.min.js"></script>
-	<script src="assets/js/plugins.min.js"></script>
-    <script src="assets/js/common.js"></script>
+	<script src="./frontend/assets/js/jquery-3.4.1.min.js"></script>
+	<script src="./frontend/assets/js/plugins.min.js"></script>
+    <script src="./frontend/assets/js/common.js"></script>
     
-	<script src="assets/demo/plugins-demo.js"></script> 
+	<script src="./frontend/assets/demo/plugins-demo.js"></script> 
 	
 	@yield('script')
     </body>
