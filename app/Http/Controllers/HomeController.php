@@ -114,9 +114,10 @@ class HomeController extends Controller
     $fileNameToStore= $filename.'_'.time().'.'.$extension;
     // Upload Image
     $path = $request->file('banner_image')->storeAs('public/cover_images', $fileNameToStore);
-} else {
-    $fileNameToStore = 'noimage.jpg';
-}
+} 
+// else {
+//     $fileNameToStore = 'noimage.jpg';
+// }
 
         $home->update([
             'hotel_name' => $request->hotel_name,

@@ -104,7 +104,7 @@
 			<div class="close-popup icon-x"></div>
 			<div class="lightbox-content">
 				<div class="video-foreground">
-					<div class="youtube-popup" data-yt-url="https://www.youtube.com/embed/HSsqzzuGTPo?autoplay=1&amp;"></div>
+				<div class="youtube-popup" data-yt-url="{{ $home->video_link }}"></div>
 				</div>
 			</div>
 		</div>

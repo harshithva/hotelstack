@@ -55,16 +55,19 @@
       <input type="text" value="{{ $home->video_link }}" class="form-control" name="video_link" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     </div>
 </div>
-            <h3 class="mt-3">Edit Banner Image</h3>
-                <div class="custom-file">
-                    <input value="{{ $home->banner_image }}" type="file" name="banner_image" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
-                    <label class="custom-file-label" for="customFileLang">Select file</label>
-                    <div class="row">
-                      <div class="col-md-4 col-sm-4 mb-5">
-                        <img src="/storage/cover_images/{{ $home->banner_image }}" class="img-fluid" alt="...">
-                      </div>
-                    </div>   
-                  </div>
+
+<div class="row">
+  <div class="col-md-4 col-sm-4 mb-5">
+    <img src="/storage/cover_images/{{ $home->banner_image }}" class="img-fluid" alt="...">
+  </div>        
+</div>   
+
+<h3>Edit Banner Image</h3>
+<div class="custom-file">
+  <input value="{{ $home->banner_image }}" type="file" name="banner_image" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
+  <label class="custom-file-label" for="customFileLang">Select file</label>
+</div>
+            
 
            <h3 class="mt-5 mb-3">About Section</h3>
                 <div class="form-group">
