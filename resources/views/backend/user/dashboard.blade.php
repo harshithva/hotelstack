@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('backend.user.master')
 
 @section('title',"Dashboard")
 

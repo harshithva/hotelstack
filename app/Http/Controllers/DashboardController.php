@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Home;
 
 use Illuminate\Http\Request;
 
@@ -21,13 +22,15 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $home= Home::first();
+
         if(auth()->user()->usertype == 'admin')
         {
-            return view('backend.admin.dashboard');
+            return view('backend.admin.dashboard', compact('home'));
         }
         else 
         {
-            return view('backend.user.dashboard');
+            return view('backend.user.dashboard', compact('home'));
         }
     }
 
