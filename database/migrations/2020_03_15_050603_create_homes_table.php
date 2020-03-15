@@ -17,7 +17,7 @@ class CreateHomesTable extends Migration
             $table->id();
             $table->string('hotel_name');
             $table->string('main_heading');
-            $table->string('sub_heading');
+            $table->string('sub_heading')->nullable();
             $table->string('video_link')->nullable();
             $table->string('banner_image')->nullable();
             $table->string('about_title');
