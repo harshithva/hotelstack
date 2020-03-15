@@ -8,7 +8,7 @@
         <div class="col">
             <h1 class="mt-2 mb-3 text-center">Customize your Homepage</h1>
           
-        <form method="POST" action="{{ route('homepageupdate', $home->id)}}">
+        <form method="POST" action="{{ route('homepageupdate', $home->id)}}" enctype="multipart/form-data">
             @csrf
 
             @if ($errors->any())
