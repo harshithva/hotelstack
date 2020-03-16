@@ -46,12 +46,29 @@
                     <span class="nav-link-text">Homepage Settings</span>
                   </a>
                 </li>
+
                 <li class="nav-item">
-                <a class="nav-link" href="{{ route('floors.index') }}">
-                    <i class="ni ni-pin-3 text-primary"></i>
-                    <span class="nav-link-text">Floors</span>
+                  <a href="#Hotel_configure" class="nav-link" data-toggle="collapse" aria-expanded="false" class="collapsed">
+                  <i class="ni ni-app"></i> 
+                  <span class="nav-link-text">Hotel Configuration</span>
                   </a>
-                </li>
+
+                  
+                  <ul id="Hotel_configure" class="list-unstyled collapse">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('floors.index') }}">
+                          <i class="ni ni-bold-up text-primary"></i>
+                          <span class="nav-link-text">Floors</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('floors.index') }}">
+                            <i class="ni ni-bold-up text-primary"></i>
+                            <span class="nav-link-text">Rooms</span>
+                          </a>
+                        </li>
+                  </ul>
+                  </li>
                 {{-- <li class="nav-item">
                   <a class="nav-link" href="profile.html">
                     <i class="ni ni-single-02 text-yellow"></i>
