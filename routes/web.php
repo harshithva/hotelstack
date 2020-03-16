@@ -21,6 +21,7 @@ Route::put('/admin/homepage/{id}', 'HomeController@update')->name('homepageupdat
 
 Route::resource('/admin', 'DashboardController');
 Route::resource('/admin/hotel/floors', 'FloorController');
+Route::resource('/admin/hotel/room_types', 'RoomTypeController');
 
 
 Auth::routes();

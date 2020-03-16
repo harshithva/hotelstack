@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class FloorController extends Controller
 {
+    public function __construct()
+        {
+            $this->middleware('auth', ['except' => ['index', 'show']]);
+        }
 
     /**
      * Display a listing of the resource.
@@ -17,7 +21,7 @@ class FloorController extends Controller
     public function index()
     {   $home = Home::first();
         $floors = Floor::all();
-        return view('backend.admin.floors.index', compact('home','floors'));
+        return view('backend.admin.hotel_config.floors.index', compact('home','floors'));
     }
 
     /**
@@ -28,7 +32,7 @@ class FloorController extends Controller
     public function create()
     {
         $home = Home::first();
-        return view('backend.admin.floors.create', compact('home'));
+        return view('backend.admin.hotel_config.floors.create', compact('home'));
     }
 
     /**
@@ -83,10 +87,10 @@ class FloorController extends Controller
     {
         $home = Home::first();
         // $floors = Floor::find($floor->id);
-        // return view('backend.admin.floors.edit', compact('home','floors'));
+        // return view('backend.admin.hotel_config.floors.edit', compact('home','floors'));
 
         // $floor = Floor::findorFail($floor);
-        // return view('backend.admin.floors.edit',compact('home','floor'));
+        // return view('backend.admin.hotel_config.floors.edit',compact('home','floor'));
 
         
         //Check if post exists before deleting
@@ -94,7 +98,7 @@ class FloorController extends Controller
             return redirect('/admin/hotel/floors')->with('error', 'No Post Found');
         }
 
-        return view('backend.admin.floors.edit',compact('home','floor'));
+        return view('backend.admin.hotel_config.floors.edit',compact('home','floor'));
     }
 
     /**
@@ -118,7 +122,7 @@ class FloorController extends Controller
         $home = Home::first();
         $floors = Floor::all();
 
-        return view('backend.admin.floors.index', compact('home','floors','message'));
+        return view('backend.admin.hotel_config.floors.index', compact('home','floors','message'));
       
     }
 
