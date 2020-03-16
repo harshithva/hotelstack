@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\Home;
+use App\Floor;
+use App\RoomType;
+use Session;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -14,7 +18,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::all();
+        $home = Home::first();
+        return view('backend.admin.hotel_config.rooms.index', compact('rooms','home'));
+
     }
 
     /**
@@ -24,7 +31,10 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        $home = Home::first();
+        $floors = Floor::all();
+        $room_types = RoomType::all();
+        return view('backend.admin.hotel_config.rooms.create', compact('home','floors','room_types'));
     }
 
     /**
@@ -35,7 +45,39 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'number'=>'required|integer|unique:rooms|min:1',
+            'room_type_id'=>'required|integer',
+            'floor_id'=>'required|integer',
+            'status'=>'required',
+            'image' => 'nullable'
+        ]);
+
+           // Handle File Upload
+   if($request->hasFile('image')){
+    // Get filename with the extension
+    $filenameWithExt = $request->file('image')->getClientOriginalName();
+    // Get just filename
+    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+    // Get just ext
+    $extension = $request->file('image')->getClientOriginalExtension();
+    // Filename to store
+    $fileNameToStore= $filename.'_'.time().'.'.$extension;
+    // Upload Image
+    $path = $request->file('image')->storeAs('public/rooms', $fileNameToStore);
+} 
+
+        $room = new Room;
+        $room->number = $request->number;
+        $room->room_type_id = $request->room_type_id;
+        $room->floor_id = $request->floor_id;
+        $room->image = $fileNameToStore;
+        $room->status = $request->has('status')?1:0;
+        $room->save();
+
+        Session::flash('message', "Added successfully");
+
+        return redirect('/admin/hotel/rooms');
     }
 
     /**
@@ -57,7 +99,11 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        //
+        
+        $home = Home::first();
+        $floors = Floor::all();
+        $room_types = RoomType::all();
+        return view('backend.admin.hotel_config.rooms.edit', compact('home','floors','room_types','room'));
     }
 
     /**
@@ -68,8 +114,40 @@ class RoomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Room $room)
-    {
-        //
+    {  
+        $this->validate($request,[
+        'number'=>'required|integer|min:1',
+        'room_type_id'=>'required|integer',
+        'floor_id'=>'required|integer',
+        'status'=>'required',
+        'image' => 'nullable'
+    ]);
+
+        // Handle File Upload
+    if($request->hasFile('image')){
+    // Get filename with the extension
+    $filenameWithExt = $request->file('image')->getClientOriginalName();
+    // Get just filename
+    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+    // Get just ext
+    $extension = $request->file('image')->getClientOriginalExtension();
+    // Filename to store
+    $fileNameToStore= $filename.'_'.time().'.'.$extension;
+    // Upload Image
+    $path = $request->file('image')->storeAs('public/rooms', $fileNameToStore);
+
+    $room->image = $fileNameToStore;
+    } 
+
+    $room->number = $request->number;
+    $room->room_type_id = $request->room_type_id;
+    $room->floor_id = $request->floor_id;
+    $room->status = $request->has('status')?1:0;
+    $room->save();
+
+    Session::flash('message', "Updated successfully");
+
+    return redirect('/admin/hotel/rooms');
     }
 
     /**
@@ -80,6 +158,10 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        $room->delete();
+
+        Session::flash('message', "Deleted successfully");
+
+    return redirect('/admin/hotel/rooms');
     }
 }

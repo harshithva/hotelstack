@@ -47,11 +47,11 @@
                     </tr>
                 </thead>
                 @if (count($room_types)>0)
-           @foreach ($room_types as $room_type)
+           @foreach ($room_types as $key => $room_type)
                     
            
                 <tr>
-                    <td>1</td>
+                <td>{{($key + 1)}}</td>
                     <td>{{$room_type->title}}</td>
                     <td>{{ Str::upper($room_type->short_code) }}</td>
                     <td>{{$room_type->base_price}}</td>

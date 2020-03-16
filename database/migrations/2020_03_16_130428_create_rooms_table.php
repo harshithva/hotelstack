@@ -20,6 +20,7 @@ class CreateRoomsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('number')->unique();
             $table->boolean('status')->default(1);
+            
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade');

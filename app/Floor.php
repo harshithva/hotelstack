@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Floor extends Model
 {
 
-    protected $fillable = [
-        'name','number','description','status'
-    ];
+    
+   
+    public function room(){
+        return $this->hasMany(Room::class,'floor_id');
+    }
 }
 

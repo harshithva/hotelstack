@@ -40,11 +40,11 @@
                     </tr>
                 </thead>
                 @if (count($floors)>0)
-                @foreach ($floors as $floor)
+                @foreach ($floors as $key => $floor)
                     
            
                 <tr>
-                    <td>1</td>
+                    <td>{{($key + 1)}}</td>
                     <td>{{$floor->name}}</td>
                     <td>{{$floor->number}}</td>
                     <td>{{$floor->description}}</td>

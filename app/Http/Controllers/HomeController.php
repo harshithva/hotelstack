@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Home;
+use Session;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -125,7 +126,6 @@ class HomeController extends Controller
 
             'sub_heading' => $request->sub_heading,
             'video_link' => $request->video_link,
-            'banner_image' => $fileNameToStore,
             'about_title' => $request->about_title,
             'about_description_1' => $request->about_description_1,
             'about_description_2' => $request->about_description_2

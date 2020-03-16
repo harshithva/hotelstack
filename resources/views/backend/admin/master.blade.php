@@ -68,7 +68,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{{ route('floors.index') }}">
+                          <a class="nav-link" href="{{ route('rooms.index') }}">
                               <i class="ni ni-bold-up text-primary"></i>
                               <span class="nav-link-text">Rooms</span>
                             </a>
