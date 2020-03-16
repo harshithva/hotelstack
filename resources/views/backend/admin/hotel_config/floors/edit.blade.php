@@ -2,8 +2,7 @@
 @section('title','Edit Floors')
 @section('main')
 
-
-<div class="container py-3">
+<div class="main-content p-4" id="panel">
     <div class="card">
         <div class="card-header bg-white">
         <h2>Create Floor

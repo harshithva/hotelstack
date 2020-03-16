@@ -1,15 +1,21 @@
 @extends('backend.admin.master')
 @section('title','Room types')
 @section('main')
-<div class="container py-4">
+<div class="main-content p-4" id="panel">
     <div class="table-responsive">
         <div>
             <div class="card-header bg-white">
                 <h2>Room Types
-                <a class="btn btn-success float-right" href="{{ route('floors.create') }}"><i class="fa fa-plus"></i>&nbsp;Add Room Type</a>
+                <a class="btn btn-success float-right" href="{{ route('room_types.create') }}"><i class="fa fa-plus"></i>&nbsp;Add Room Type</a>
                 </h2>
                 </div>
                 
+                @if (Session::has('message'))
+
+               <div class="alert alert-success mt-2">{{ Session::get('message') }}</div>
+
+                @endif
+
             @if ($errors->any())
             <div class="alert alert-danger mt-3">
                 <ul>

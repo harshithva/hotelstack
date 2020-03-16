@@ -3,7 +3,7 @@
 @section('title',"Edit Homepage")
 
 @section('main')
-<div class="container mt-5">
+<div class="main-content p-4" id="panel">
     <div class="row mt-5">
         <div class="col">
             <h1 class="mt-2 mb-3 text-center">Customize your Homepage</h1>

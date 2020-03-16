@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Floor;
 use App\Home;
+use Session;
 use Illuminate\Http\Request;
 
 class FloorController extends Controller
@@ -63,6 +64,8 @@ class FloorController extends Controller
         $floor->status = $request->has('status')?1:0;
         $floor->save();
 
+        Session::flash('message', "Added successfully");
+
         return redirect('/admin/hotel/floors');
     }
 
@@ -118,11 +121,12 @@ class FloorController extends Controller
         $floor->status = $request->has('status')?1:0;
         $floor->save();
 
-        $message = "Updation successful";
         $home = Home::first();
         $floors = Floor::all();
 
-        return view('backend.admin.hotel_config.floors.index', compact('home','floors','message'));
+        Session::flash('message', "Updation successful");
+
+        return view('backend.admin.hotel_config.floors.index', compact('home','floors'));
       
     }
 
@@ -139,6 +143,9 @@ class FloorController extends Controller
         $message = "Deletion successful";
         $home = Home::first();
         $floors = Floor::all();
+
+        
+        Session::flash('message', "Deleted successfully");
 
         return redirect('/admin/hotel/floors');
     }

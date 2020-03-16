@@ -1,7 +1,7 @@
 @extends('backend.admin.master')
 @section('title','Floors')
 @section('main')
-<div class="container py-4">
+<div class="main-content p-4" id="panel">
     <div class="table-responsive">
         <div>
             <div class="card-header bg-white">
@@ -9,7 +9,13 @@
                 <a class="btn btn-success float-right" href="{{ route('floors.create') }}"><i class="fa fa-plus"></i>&nbsp;Add Floor</a>
                 </h2>
                 </div>
-                
+              
+                @if (Session::has('message'))
+
+                <div class="alert alert-success mt-2">{{ Session::get('message') }}</div>
+ 
+                 @endif
+
             @if ($errors->any())
             <div class="alert alert-danger mt-3">
                 <ul>
@@ -20,13 +26,7 @@
               </div>
               @endif
 
-              @if ($message ?? '')
-              <div class="alert alert-success mt-3">
-                <ul>
-                <li>{{$message ?? ''}}</li>
-                </ul>
-              </div>
-          @endif
+          
 
             <table class="table align-items-center">
                 <thead class="thead-light">
@@ -79,7 +79,6 @@
         </div>
         
         </div>
-    
-</div>
+    </div>
 
 @endsection
