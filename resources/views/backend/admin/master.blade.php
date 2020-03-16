@@ -74,7 +74,7 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rooms.index') }}">
+                            <a class="nav-link" href="{{ route('paid_services.index') }}">
                                 <i class="ni ni-bold-up text-primary"></i>
                                 <span class="nav-link-text">Paid Service</span>
                               </a>

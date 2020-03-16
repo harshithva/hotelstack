@@ -24,6 +24,7 @@ Route::resource('/admin', 'DashboardController');
 Route::resource('/admin/hotel/floors', 'FloorController');
 Route::resource('/admin/hotel/room_types', 'RoomTypeController');
 Route::resource('/admin/hotel/rooms', 'RoomController');
+Route::resource('/admin/hotel/paid_services', 'PaidServiceController');
 
 
 Auth::routes();

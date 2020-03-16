@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HomePageSeeder::class);
         $this->call(FloorSeeder::class);
         $this->call(RoomTypeSeeder::class);
+        $this->call(RoomSeeder::class);
     }
 }
