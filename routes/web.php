@@ -20,6 +20,7 @@ Route::get('/admin/homepage/{id}/edit', 'HomeController@edit')->name('homepageed
 Route::put('/admin/homepage/{id}', 'HomeController@update')->name('homepageupdate')->middleware('auth');
 
 Route::resource('/admin', 'DashboardController');
+Route::resource('/admin/hotel/floors', 'FloorController');
 
 
 Auth::routes();

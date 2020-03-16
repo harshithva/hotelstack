@@ -47,12 +47,12 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="map.html">
+                <a class="nav-link" href="{{ route('floors.index') }}">
                     <i class="ni ni-pin-3 text-primary"></i>
-                    <span class="nav-link-text">Google</span>
+                    <span class="nav-link-text">Floors</span>
                   </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a class="nav-link" href="profile.html">
                     <i class="ni ni-single-02 text-yellow"></i>
                     <span class="nav-link-text">Profile</span>
@@ -81,7 +81,7 @@
                     <i class="ni ni-send text-dark"></i>
                     <span class="nav-link-text">Upgrade</span>
                   </a>
-                </li>
+                </li>--}}
               </ul>
               <!-- Divider -->
               <hr class="my-3">
