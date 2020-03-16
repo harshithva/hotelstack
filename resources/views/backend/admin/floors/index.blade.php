@@ -61,9 +61,16 @@
                                 <i class="fas fa-edit"></i>&nbsp;Edit
                             </a>  
                             <br>
-                        <a href="{{ route('floors.destroy', $floor->id) }}" class="text-danger">
-                                <i class="fas fa-trash-alt"></i>&nbsp;Delete
-                            </a>  
+                                
+                                <form action="{{ route('floors.destroy', $floor->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <span class="text-danger">
+                                        <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit" style="background:none!important;border:none;padding:0!important;">Delete</button>
+                                    </span>
+                                  </form>
+                       
+
                     </td>
                     </tr>
                     @endforeach

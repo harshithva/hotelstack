@@ -130,6 +130,12 @@ class FloorController extends Controller
      */
     public function destroy(Floor $floor)
     {
-        //
+        $floor->delete();
+
+        $message = "Deletion successful";
+        $home = Home::first();
+        $floors = Floor::all();
+
+        return redirect('/admin/hotel/floors');
     }
 }
