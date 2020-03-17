@@ -77,6 +77,10 @@
             </table>
         </div>
         
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">{{ $rooms->links() }}</div>
+            </div>
+
         </div>
     </div>
 

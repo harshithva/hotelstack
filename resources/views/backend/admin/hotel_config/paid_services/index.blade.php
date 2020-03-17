@@ -76,6 +76,10 @@
             </table>
         </div>
         
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">{{ $paid_services->links() }}</div>
+            </div>
+
         </div>
     </div>
 

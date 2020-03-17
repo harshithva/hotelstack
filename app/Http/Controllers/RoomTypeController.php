@@ -17,7 +17,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $room_types = RoomType::all();
+        $room_types = RoomType::paginate(10);
         $home = Home::first();
         return view('backend.admin.hotel_config.room_types.index', compact('room_types','home'));
     }

@@ -85,6 +85,10 @@
             </table>
         </div>
         
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">{{ $room_types->links() }}</div>
+            </div>
+
         </div>
     
 </div>

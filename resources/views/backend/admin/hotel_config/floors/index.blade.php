@@ -2,7 +2,7 @@
 @section('title','Floors')
 @section('main')
 <div class="main-content p-4" id="panel">
-    <div class="table-responsive">
+    <div class="table-responsive overflow-hidden">
         <div>
             <div class="card-header bg-white">
                 <h2>Floors
@@ -77,7 +77,9 @@
                 @endif
             </table>
         </div>
-        
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">{{ $floors->links() }}</div>
+            </div>
         </div>
     </div>
 

@@ -21,7 +21,7 @@ class FloorController extends Controller
      */
     public function index()
     {   $home = Home::first();
-        $floors = Floor::all();
+        $floors = Floor::paginate(10);
         return view('backend.admin.hotel_config.floors.index', compact('home','floors'));
     }
 
