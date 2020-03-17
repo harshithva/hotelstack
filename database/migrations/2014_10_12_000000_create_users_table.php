@@ -29,7 +29,10 @@ class CreateUsersTable extends Migration
             $table->string('picture')->nullable();
             $table->string('id_type')->nullable();
             $table->string('id_number')->nullable();
-            $table->string('id_card_image')->nullable();
+            $table->string('id_card_image_front')->nullable();
+            $table->string('id_card_image_back')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('gst_no')->nullable();
             $table->text('remarks')->nullable();
             $table->boolean('vip')->default(0);
             $table->boolean('status')->default(1);

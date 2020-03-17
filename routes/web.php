@@ -28,6 +28,6 @@ Route::resource('/admin/hotel/paid_services', 'PaidServiceController');
 Route::resource('/admin/hotel/tax', 'TaxController');
 
 Route::resource('/admin/hotel/guests', 'GuestController');
-
+Route::post('/admin/hotel/guests/search', 'GuestController@searchGuest')->name('guests.search');
 
 Auth::routes();

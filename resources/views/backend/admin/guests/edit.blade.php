@@ -38,20 +38,32 @@
 
         <div class="form-row justify-content-center">
             <div class="form-group col-md-4">
-            <label><strong>Password</strong> <small class="text-danger">*</small></label>
+            <label><strong>Password</strong></label>
             <input type="password" class="form-control form-control-lg" name="password" placeholder="Password">
             </div>
     
             <div class="form-group col-md-4">
-                <label><strong>Email</strong> <small class="text-danger">*</small></label>
-                <input value="{{ $guest->email }}" type="email" class="form-control form-control-lg" name="email" placeholder="Email" required>
+                <label><strong>Email</strong></label>
+                <input value="{{ $guest->email }}" type="email" class="form-control form-control-lg" name="email" placeholder="Email">
                 </div>
 
                 <div class="form-group col-md-4">
                     <label><strong>Phone</strong> <small class="text-danger">*</small></label>
-                    <input value="{{ $guest->phone }}" type="number" class="form-control form-control-lg" name="phone" placeholder="Phone" required>
+                    <input value="{{ $guest->phone }}" type="number" class="form-control form-control-lg" name="phone" placeholder="Phone">
                     </div>
             </div>
+
+            <div class="form-row justify-content-center">
+                <div class="form-group col-md-6">
+                <label><strong>Company Name</strong></label>
+                <input value="{{ $guest->company_name }}"  type="text" class="form-control form-control-lg" name="company_name" placeholder="Company Name" required>
+                </div>
+        
+                <div class="form-group col-md-6">
+                    <label><strong>GST No</strong></label>
+                    <input value="{{ $guest->gst_no }}"  type="text" class="form-control form-control-lg" name="gst_no" placeholder="GST No" required>
+                    </div>
+                </div>
         
             <div class="form-row justify-content-center">
                 <div class="form-group col-md-4">
@@ -85,9 +97,14 @@
                         <div class="form-group col-md-4">
                             <label>Upload ID Card<strong></strong> <small class="text-danger">*</small></label>
                             <div class="custom-file">
-                                <input value="{{ $guest->id_card_image }}" type="file" name="id_card_image" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
+                                <input value="{{ $guest->id_card_image_front }}" type="file" name="id_card_image_front" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
                                 <label class="custom-file-label" for="customFileLang">Select file</label>
                               </div>
+                               <label>Back side<strong></strong> <small class="text-danger">*</small></label>
+                            <div class="custom-file">
+                                <input value="{{ $guest->id_card_image_back }}" type="file" name="id_card_image_back" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
+                                <label class="custom-file-label" for="customFileLang">Select file</label>
+                    </div>
                     </div>
                 </div>
 

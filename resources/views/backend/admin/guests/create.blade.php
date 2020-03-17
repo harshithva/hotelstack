@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header bg-white">
         <h2>Create New Guest
-        <a class="btn btn-tsk float-right" href="{{ route('guests.index') }}"><i class="fa fa-list"></i> Floor List</a>
+        <a class="btn btn-tsk float-right" href="{{ route('guests.index') }}"><i class="fa fa-list"></i> Guest List</a>
         </h2>
         </div>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group col-md-6">
-            <label><strong>Last Name</strong> <small class="text-danger">*</small></label>
+            <label><strong>Last Name</strong></label>
             <input value="{{ old('last_name') }}"  type="text" class="form-control form-control-lg" name="last_name" placeholder="Last name">
             </div>
         </div>
@@ -39,19 +39,31 @@
         <div class="form-row justify-content-center">
             <div class="form-group col-md-4">
             <label><strong>Password</strong> <small class="text-danger">*</small></label>
-            <input value="{{ old('password') }}"  type="password" class="form-control form-control-lg" name="password" placeholder="Password" required>
+            <input value="{{ old('password') }}"  type="password" class="form-control form-control-lg" name="password" placeholder="Password">
             </div>
     
             <div class="form-group col-md-4">
                 <label><strong>Email</strong> <small class="text-danger">*</small></label>
-                <input value="{{ old('email') }}"  type="email" class="form-control form-control-lg" name="email" placeholder="Email" required>
+                <input value="{{ old('email') }}"  type="email" class="form-control form-control-lg" name="email" placeholder="Email">
                 </div>
 
                 <div class="form-group col-md-4">
                     <label><strong>Phone</strong> <small class="text-danger">*</small></label>
-                    <input value="{{ old('phone') }}"  type="number" class="form-control form-control-lg" name="phone" placeholder="Phone" required>
+                    <input value="{{ old('phone') }}"  type="number" class="form-control form-control-lg" name="phone" placeholder="Phone">
                     </div>
             </div>
+
+            <div class="form-row justify-content-center">
+                <div class="form-group col-md-6">
+                <label><strong>Company Name</strong> </label>
+                <input value="{{ old('company_name') }}"  type="text" class="form-control form-control-lg" name="company_name" placeholder="Company Name">
+                </div>
+        
+                <div class="form-group col-md-6">
+                    <label><strong>GST No</strong> </label>
+                    <input value="{{ old('gst_no') }}"  type="text" class="form-control form-control-lg" name="gst_no" placeholder="GST No">
+                    </div>
+                </div>
         
             <div class="form-row justify-content-center">
                 <div class="form-group col-md-4">
@@ -66,7 +78,7 @@
                 <div class="form-group col-md-8">
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Address</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address">value="{{ old('address') }}" </textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address">{{ old('address') }} </textarea>
                       </div>
                     </div>
                 </div>
@@ -85,7 +97,12 @@
                         <div class="form-group col-md-4">
                             <label>Upload ID Card<strong></strong> <small class="text-danger">*</small></label>
                             <div class="custom-file">
-                                <input value="{{ old('id_card_image') }}" type="file" name="id_card_image" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
+                                <input value="{{ old('id_card_image_front') }}" type="file" name="id_card_image_front" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
+                                <label class="custom-file-label" for="customFileLang">Select file</label>
+                              </div>
+                               <label>Back side<strong></strong> <small class="text-danger">*</small></label>
+                            <div class="custom-file">
+                                <input value="{{ old('id_card_image_back') }}" type="file" name="id_card_image_back" class="custom-file-input" id="customFileLang" lang="en" enctype="multipart/form-data">
                                 <label class="custom-file-label" for="customFileLang">Select file</label>
                               </div>
                     </div>

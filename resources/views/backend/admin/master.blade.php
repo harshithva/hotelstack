@@ -107,14 +107,13 @@
                     <span class="nav-link-text">Guests</span>
                   </a>
                 </li>
-                
-              {{--  <li class="nav-item">
-                  <a class="nav-link" href="tables.html">
+               <li class="nav-item">
+                  <a class="nav-link" href="{{ route('guests.index') }}">
                     <i class="ni ni-bullet-list-67 text-default"></i>
-                    <span class="nav-link-text">Tables</span>
+                    <span class="nav-link-text">Reservation</span>
                   </a>
                 </li>
-                <li class="nav-item">
+             {{--    <li class="nav-item">
                   <a class="nav-link" href="login.html">
                     <i class="ni ni-key-25 text-info"></i>
                     <span class="nav-link-text">Login</span>
