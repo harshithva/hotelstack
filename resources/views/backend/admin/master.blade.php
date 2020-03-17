@@ -102,7 +102,7 @@
                   </ul>
                   </li>
                  <li class="nav-item">
-                  <a class="nav-link" href="profile.html">
+                 <a class="nav-link" href="{{ route('guests.index') }}">
                     <i class="ni ni-single-02 text-yellow"></i>
                     <span class="nav-link-text">Guests</span>
                   </a>
@@ -192,6 +192,8 @@
 <script src="{{ asset('backend/assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
 <!-- Argon JS -->
 <script src="{{ asset('backend/assets/js/argon.js?v=1.2.0')}}"></script>
+<script src="{{ asset('backend/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}">
+</script>
 </body>
 
 </html>

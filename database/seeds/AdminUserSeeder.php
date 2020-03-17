@@ -18,5 +18,11 @@ class AdminUserSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'usertype' => 'admin'
         ]);
+        User::create([
+            'name' => 'Likith',
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('12345678'),
+            'usertype' => 'user'
+        ]);
     }
 }

@@ -27,5 +27,7 @@ Route::resource('/admin/hotel/rooms', 'RoomController');
 Route::resource('/admin/hotel/paid_services', 'PaidServiceController');
 Route::resource('/admin/hotel/tax', 'TaxController');
 
+Route::resource('/admin/hotel/guests', 'GuestController');
+
 
 Auth::routes();

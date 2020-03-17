@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             
             $table->string('usertype')->default('user');
-            $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('phone')->nullable();
             $table->date('dob')->nullable();
@@ -32,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('id_number')->nullable();
             $table->string('id_card_image')->nullable();
             $table->text('remarks')->nullable();
+            $table->boolean('vip')->default(0);
             $table->boolean('status')->default(1);
 
             $table->rememberToken();
