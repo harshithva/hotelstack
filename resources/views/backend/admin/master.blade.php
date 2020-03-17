@@ -25,7 +25,7 @@
         <div class="scrollbar-inner">
           <!-- Brand -->
           <div class="sidenav-header  align-items-center">
-            <a class="navbar-brand" href="javascript:void(0)">
+            <a class="navbar-brand" href="{{route('admin.index')}}">
               <img src="{{ asset('backend/assets/img/brand/blue.png') }}" class="navbar-brand-img" alt="HotelPlex Logo')}}">
             </a>
           </div>
@@ -92,33 +92,22 @@
                                 <span class="nav-link-text">Paid Service</span>
                               </a>
                             </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="{{ route('rooms.index') }}">
-                                  <i class="ni ni-bold-up text-primary"></i>
-                                  <span class="nav-link-text">Coupon Master</span>
-                                </a>
-                              </li>
                               <li class="nav-item">
                                 <a class="nav-link" href="{{ route('tax.index') }}">
                                     <i class="ni ni-bold-up text-primary"></i>
                                     <span class="nav-link-text">Tax</span>
                                   </a>
                                 </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="{{ route('rooms.index') }}">
-                                      <i class="ni ni-bold-up text-primary"></i>
-                                      <span class="nav-link-text">Amenities</span>
-                                    </a>
-                                  </li>
+                              
                   </ul>
                   </li>
-                {{-- <li class="nav-item">
+                 <li class="nav-item">
                   <a class="nav-link" href="profile.html">
                     <i class="ni ni-single-02 text-yellow"></i>
-                    <span class="nav-link-text">Profile</span>
+                    <span class="nav-link-text">Guests</span>
                   </a>
                 </li>
-                <li class="nav-item">
+              {{--  <li class="nav-item">
                   <a class="nav-link" href="tables.html">
                     <i class="ni ni-bullet-list-67 text-default"></i>
                     <span class="nav-link-text">Tables</span>
@@ -176,9 +165,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active active-pro" href="upgrade.html">
+                  <a class="nav-link active active-pro" href="{{route('home')}}" target="_blank">
                     <i class="ni ni-send text-dark"></i>
-                    <span class="nav-link-text">Upgrade to PRO</span>
+                    <span class="nav-link-text">Visit Homepage</span>
                   </a>
                 </li>
               </ul>

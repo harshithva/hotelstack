@@ -45,7 +45,7 @@
                 <tr>
                 <td>{{ ($key + 1) }}</td>
                     <td>{{ Str::upper($tax->name) }}</td>
-                    <td>Upto {{ $tax->amount_1 }} - {{ $tax->rate_1 }}% <br> Greater than or equal to {{ $tax->amount_2 }} - {{ $tax->rate_2 }}%</td>
+                    <td>Upto {{ $tax->amount_1 }} - {{ $tax->rate_1 }}% <br> Above {{ $tax->amount_2 }} - {{ $tax->rate_2 }}%</td>
                     
                     @if ($tax->status == 1)
                     <td><span class="badge badge-success">Active</span></td>
