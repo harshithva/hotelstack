@@ -40,18 +40,31 @@
                     <span class="nav-link-text">Dashboard</span>
                   </a>
                 </li>
+
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('homepageedit', $home->id)}}">
+                  <a class="nav-link" href="#homepage_settings" data-toggle="collapse" aria-expanded="false" class="collapsed">
                     <i class="ni ni-planet text-orange"></i>
                     <span class="nav-link-text">Homepage Settings</span>
                   </a>
-                </li>
+                  
+                  
+                  <ul id="homepage_settings" class="list-unstyled collapse">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('homepageedit', $home->id)}}">
+                          <i class="ni ni-bold-up text-primary"></i>
+                          <span class="nav-link-text">Banner Section</span>
+                        </a>
+                      </li>                           
+                  </ul>
+                  </li>
 
                 <li class="nav-item">
                   <a href="#Hotel_configure" class="nav-link" data-toggle="collapse" aria-expanded="false" class="collapsed">
                   <i class="ni ni-app"></i> 
                   <span class="nav-link-text">Hotel Configuration</span>
                   </a>
+
+                  
 
                   
                   <ul id="Hotel_configure" class="list-unstyled collapse">

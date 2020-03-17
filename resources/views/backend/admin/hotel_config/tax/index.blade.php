@@ -48,7 +48,7 @@
                     <td>Upto {{ $tax->amount_1 }} - {{ $tax->rate_1 }}% <br> Greater than or equal to {{ $tax->amount_2 }} - {{ $tax->rate_2 }}%</td>
                     
                     @if ($tax->status == 1)
-                    <td><span class="badge badge-danger">Active</span></td>
+                    <td><span class="badge badge-success">Active</span></td>
                     @else
                     <td><span class="badge badge-danger">Inactive</span></td>
                     @endif
