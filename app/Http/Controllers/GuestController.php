@@ -45,16 +45,32 @@ class GuestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {$this->validate($request,[
+    {
+        $this->validate($request,[
         'name'=>'required|max:50',
         'last_name'=>'min:1',
         'phone'=>'min:4',
         'email'=>'required|email|unique:users|max:50'
     ]);
 
-  
-
     $guest = new User;
+
+    // Handle File Upload
+   if($request->hasFile('id_card_image')){
+    // Get filename with the extension
+    $filenameWithExt = $request->file('id_card_image')->getClientOriginalName();
+    // Get just filename
+    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+    // Get just ext
+    $extension = $request->file('id_card_image')->getClientOriginalExtension();
+    // Filename to store
+    $fileNameToStore= $filename.'_'.time().'.'.$extension;
+    // Upload Image
+    $path = $request->file('id_card_image')->storeAs('public/users', $fileNameToStore);
+
+    $guest->id_card_image = $fileNameToStore;
+
+} 
     $guest->name = $request->name;
     $guest->last_name = $request->last_name;
     $guest->phone = $request->phone;
@@ -65,7 +81,6 @@ class GuestController extends Controller
     $guest->sex = $request->sex;
     $guest->id_type = $request->id_type;
     $guest->id_number = $request->id_number;
-    $guest->id_card_image = $request->id_card_image;
     $guest->remarks = $request->remarks;
     $guest->vip = $request->has('vip')?1:0;
     $guest->status = $request->has('status')?1:0;
@@ -95,7 +110,10 @@ class GuestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $guest = User::findOrFail($id);
+        $home = Home::first();
+        $guest->dob = Carbon::createFromFormat('Y-m-d', $guest->dob)->format('d/m/Y');
+        return view('backend.admin.guests.edit', compact('home','guest'));
     }
 
     /**
@@ -107,7 +125,56 @@ class GuestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request,[
+            'name'=>'required|max:50',
+            'last_name'=>'min:1',
+            'phone'=>'min:4',
+            'email'=>'required|email|max:50'
+        ]);
+    
+        $guest = User::findOrFail($id); 
+        $guest->name = $request->name;
+        $guest->last_name = $request->last_name;
+        $guest->phone = $request->phone;
+        $guest->email = $request->email;
+        
+        if($request->has('password'))
+        {
+            $guest->password = bcrypt($request->password);
+        }
+
+        $guest->dob =  Carbon::createFromFormat('d/m/Y', $request->dob);
+        $guest->address = $request->address;
+        $guest->sex = $request->sex;
+        $guest->id_type = $request->id_type;
+        $guest->id_number = $request->id_number;
+        
+                // Handle File Upload
+        if($request->hasFile('id_card_image')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('id_card_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('id_card_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('id_card_image')->storeAs('public/users', $fileNameToStore);
+
+            $guest->id_card_image = $fileNameToStore;
+
+        } 
+
+        $guest->remarks = $request->remarks;
+        $guest->vip = $request->has('vip')?1:0;
+        $guest->status = $request->has('status')?1:0;
+        $guest->save();
+    
+        Session::flash('message', "Updated successfully");
+    
+        return redirect('/admin/hotel/guests');
     }
 
     /**
