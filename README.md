@@ -1,7 +1,7 @@
 <p align="center">Hotel Management system</p>
 
-![](https://ibb.co/3YbNxVH)
-![](https://ibb.co/XXYyw8Z)
+![](https://i.ibb.co/KzgqtBH/hotel2.jpg)
+![]( https://i.ibb.co/rkdbWsG/hotel1.jpg)
 
 ## Project is Under Development
 
