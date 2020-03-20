@@ -1,9 +1,9 @@
-<p align="center">Hotel Management system</p>
-
+<p align="center">### Hotel Management system</p>
+------------------------------------------------------------------------------------------------------------------------------------------
+## Project is Under Development
+------------------------------------------------------------------------------------------------------------------------------------------
 ![](https://i.ibb.co/KzgqtBH/hotel2.jpg)
 ![]( https://i.ibb.co/rkdbWsG/hotel1.jpg)
-
-## Project is Under Development
 
 ## License
 
