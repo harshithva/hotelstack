@@ -30,4 +30,11 @@ Route::resource('/admin/hotel/tax', 'TaxController');
 Route::resource('/admin/hotel/guests', 'GuestController');
 Route::post('/admin/hotel/guests/search', 'GuestController@searchGuest')->name('guests.search');
 
+Route::resource('/admin/hotel/reservations', 'ReservationController');
+Route::get('/admin/hotel/reservations/make/select_guests', 'ReservationController@selectGuest')->name('reservations.guest');
+Route::get('/admin/hotel/reservations/make/{guest}/select_room_type', 'ReservationController@selectRoomType')->name('reservations.room_type');
+
+// API
+// Route::resource('/api/v1/guests', 'GuestApiController');
+
 Auth::routes();

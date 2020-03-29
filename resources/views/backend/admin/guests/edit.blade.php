@@ -56,12 +56,12 @@
             <div class="form-row justify-content-center">
                 <div class="form-group col-md-6">
                 <label><strong>Company Name</strong></label>
-                <input value="{{ $guest->company_name }}"  type="text" class="form-control form-control-lg" name="company_name" placeholder="Company Name" required>
+                <input value="{{ $guest->company_name }}"  type="text" class="form-control form-control-lg" name="company_name" placeholder="Company Name">
                 </div>
         
                 <div class="form-group col-md-6">
                     <label><strong>GST No</strong></label>
-                    <input value="{{ $guest->gst_no }}"  type="text" class="form-control form-control-lg" name="gst_no" placeholder="GST No" required>
+                    <input value="{{ $guest->gst_no }}"  type="text" class="form-control form-control-lg" name="gst_no" placeholder="GST No" >
                     </div>
                 </div>
         

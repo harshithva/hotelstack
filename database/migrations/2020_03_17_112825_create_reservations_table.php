@@ -15,7 +15,19 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->integer('uid')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('room_type_id');
+            $table->integer('adults')->default(1);
+            $table->integer('kids')->default(0);
+            $table->date('check_in');
+            $table->date('check_out');
+            $table->integer('number_of_room')->default(1);
+            $table->enum('status',['PENDING','CANCEL','SUCCESS'])->default('PENDING');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade');
         });
     }
 

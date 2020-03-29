@@ -271,6 +271,7 @@ class GuestController extends Controller
             ->orWhere ( 'email', 'LIKE', '%' . $q . '%' )
             ->orWhere ( 'phone', 'LIKE', '%' . $q . '%' )
             ->orWhere ( 'id_number', 'LIKE', '%' . $q . '%' )
+            ->orWhere ( 'id', 'LIKE', '%' . $q . '%' )
             ->paginate(10);
 
             if (count ( $guests ) > 0)

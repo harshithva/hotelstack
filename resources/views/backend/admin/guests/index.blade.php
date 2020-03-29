@@ -34,7 +34,7 @@
 
           
 
-            <table class="table align-items-center">
+            <table class="table align-items-center overflow-hidden">
                          <!-- Search form -->
             <form class="navbar-search navbar-search-light form-inline mr-sm-3 mt-3" id="navbar-search-main" method="POST" action="{{ route('guests.search')}}">
               @csrf
@@ -101,7 +101,11 @@
                                         <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit" style="background:none!important;border:none;padding:0!important;">Delete</button>
                                     </span>
                                   </form>
-                       
+                         
+                            <a href="{{ route('guests.edit', $guest->id) }}">
+                                <i class="fas fa-bookmark"></i>&nbsp;Reservation
+                            </a>  
+                            <br>
 
                     </td>
                     </tr>
