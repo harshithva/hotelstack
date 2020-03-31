@@ -32,7 +32,8 @@ Route::post('/admin/hotel/guests/search', 'GuestController@searchGuest')->name('
 
 Route::resource('/admin/hotel/reservations', 'ReservationController');
 Route::get('/admin/hotel/reservations/make/select_guests', 'ReservationController@selectGuest')->name('reservations.guest');
-Route::get('/admin/hotel/reservations/make/{guest}/select_room_type', 'ReservationController@selectRoomType')->name('reservations.room_type');
+Route::get('/admin/hotel/reservations/make/{guest}/select_room_type', 'ReservationController@selectRoomDetails')->name('reservations.room_details');
+Route::post('/admin/hotel/reservations/make/{guest}/select_room_type/room', 'ReservationController@getRooms')->name('reservations.rooms');
 
 // API
 // Route::resource('/api/v1/guests', 'GuestApiController');

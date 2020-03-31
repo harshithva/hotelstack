@@ -5,6 +5,7 @@ use App\User;
 
 use App\Reservation;
 use App\Home;
+use App\Tax;
 use App\RoomType;
 
 use Session;
@@ -37,13 +38,29 @@ class ReservationController extends Controller
         return view('backend.admin.reservations.select_guest', compact('home','guests'));
     }
 
-    public function  selectRoomType(Request $request) {
+    public function  selectRoomDetails(Request $request) {
     
         $guest = User::findOrFail($request->guest);
         $home = Home::first();
         $room_types = RoomType::all();
-        Session::flash('type', "Select Room Type");
-        return view('backend.admin.reservations.select_room_type', compact('home','guest','room_types'));
+        Session::flash('details', "Please Enter the details");
+        return view('backend.admin.reservations.select_room_details', compact('home','guest','room_types'));
+    }
+
+    public function getRooms(Request $request) {
+        // dd($request);
+        $home = Home::first();
+        
+        $guest = User::findOrFail($request->user_id);
+        $room_types = RoomType::all();
+        // $selected_type = RoomType::findOrFail($request->room_type_id);
+        $guest->adults = $request->adults;
+        $guest->kids = $request->kids;
+        $guest->check_in = $request->check_in;
+        $guest->check_out = $request->check_out;
+        $taxes = Tax::all();
+        Session::flash('room', "Select room");
+        return view('backend.admin.reservations.select_room',compact('home','guest','room_types','taxes'));
     }
     /**
      * Show the form for creating a new resource.
