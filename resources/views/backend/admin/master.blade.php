@@ -36,7 +36,8 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="{{route('admin.index')}}">
+              <a class="nav-link {{ Route::currentRouteNamed('admin.index') ? 'active' : '' }}"
+                href="{{route('admin.index')}}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
@@ -51,8 +52,9 @@
 
 
               <ul id="homepage_settings" class="list-unstyled collapse">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('homepageedit', $home->id)}}">
+                <li class="nav-item ">
+                  <a class="nav-link {{ Route::currentRouteNamed('homepageedit') ? 'active' : '' }}"
+                    href="{{ route('homepageedit', $home->id)}}">
                     <i class="ni ni-bold-up text-primary"></i>
                     <span class="nav-link-text">Banner Section</span>
                   </a>
@@ -71,32 +73,37 @@
 
 
               <ul id="Hotel_configure" class="list-unstyled collapse">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('floors.index') }}">
+                <li class="nav-item ">
+                  <a class="nav-link {{ Route::currentRouteNamed('floors.index') ? 'active' : '' }}"
+                    href="{{ route('floors.index') }}">
                     <i class="ni ni-bold-up text-primary"></i>
                     <span class="nav-link-text">Floors</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('room_types.index') }}">
+                <li class="nav-item ">
+                  <a class="nav-link {{ Route::currentRouteNamed('room_types.index') ? 'active' : '' }}"
+                    href="{{ route('room_types.index') }}">
                     <i class="ni ni-bold-up text-primary"></i>
                     <span class="nav-link-text">Room Types</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('rooms.index') }}">
+                <li class="nav-item ">
+                  <a class="nav-link {{ Route::currentRouteNamed('rooms.index') ? 'active' : '' }}"
+                    href="{{ route('rooms.index') }}">
                     <i class="ni ni-bold-up text-primary"></i>
                     <span class="nav-link-text">Rooms</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('paid_services.index') }}">
+                <li class="nav-item ">
+                  <a class="nav-link {{ Route::currentRouteNamed('paid_services.index') ? 'active' : '' }}"
+                    href="{{ route('paid_services.index') }}">
                     <i class="ni ni-bold-up text-primary"></i>
                     <span class="nav-link-text">Paid Service</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('tax.index') }}">
+                <li class="nav-item ">
+                  <a class="nav-link {{ Route::currentRouteNamed('tax.index') ? 'active' : '' }}"
+                    href="{{ route('tax.index') }}">
                     <i class="ni ni-bold-up text-primary"></i>
                     <span class="nav-link-text">Tax</span>
                   </a>
@@ -104,36 +111,38 @@
 
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('guests.index') }}">
+            <li class="nav-item ">
+              <a class="nav-link {{ Route::currentRouteNamed('guests.index') ? 'active' : '' }}"
+                href="{{ route('guests.index') }}">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Guests</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('reservations.index') }}">
+            <li class="nav-item ">
+              <a class="nav-link {{ Route::currentRouteNamed('reservations.index') ? 'active' : '' }}"
+                href="{{ route('reservations.index') }}">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text">Reservation</span>
               </a>
             </li>
-            {{--    <li class="nav-item">
-                  <a class="nav-link" href="login.html">
-                    <i class="ni ni-key-25 text-info"></i>
-                    <span class="nav-link-text">Login</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="register.html">
-                    <i class="ni ni-circle-08 text-pink"></i>
-                    <span class="nav-link-text">Register</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="upgrade.html">
-                    <i class="ni ni-send text-dark"></i>
-                    <span class="nav-link-text">Upgrade</span>
-                  </a>
-                </li>--}}
+            {{--    <li class="nav-item {{ Route::currentRouteNamed('rooms.index') ? 'active' : '' }}">
+            <a class="nav-link" href="login.html">
+              <i class="ni ni-key-25 text-info"></i>
+              <span class="nav-link-text">Login</span>
+            </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">
+                <i class="ni ni-circle-08 text-pink"></i>
+                <span class="nav-link-text">Register</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="upgrade.html">
+                <i class="ni ni-send text-dark"></i>
+                <span class="nav-link-text">Upgrade</span>
+              </a>
+            </li>--}}
           </ul>
           <!-- Divider -->
           <hr class="my-3">

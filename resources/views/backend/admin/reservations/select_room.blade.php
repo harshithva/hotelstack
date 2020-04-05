@@ -139,6 +139,7 @@
                     <td class="price-per-night p-0">
                         <table class="table table-sm borderless mb-0 ">
                             <thead class="font-weight-bold">
+
                                 <tr>
                                     <td class="sl">#</td>
                                     <td>Room type</td>
@@ -148,19 +149,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($roomTypes as $roomType)
                                 <tr>
                                     <td class="sl">1.</td>
-                                    <td class="text-muted">Superior Room</td>
+                                    <td class="text-muted">{{$roomType->title}}</td>
                                     <td>
-                                        <div><a class="btn btn-sm btn-tsk">
-                                                104
-                                            </a><a class="btn btn-sm btn-outline-secondary">
-                                                205
-                                            </a><a class="btn btn-sm btn-outline-secondary">
-                                                209
-                                            </a><a class="btn btn-sm btn-outline-secondary">
-                                                211
-                                            </a></div>
+                                        <div>
+                                            @if (count($roomType->rooms) > 0)
+                                            @foreach ($roomType->rooms as $rooms)
+                                            <a class="btn btn-sm btn-tsk">
+                                                {{ $rooms->number}}
+                                            </a>
+                                            @endforeach
+                                            @endif
+                                        </div>
                                     </td>
 
                                     <td>
@@ -169,9 +171,9 @@
                                             <option value="no_tax">No tax</option>
                                             @foreach ($taxes ?? '' as $tax)
 
-                                            @endforeach
-                                            <option value="{{$tax->id}}">{{$tax->name}}</option>
 
+                                            <option value="{{$tax->id}}">{{$tax->name}}</option>
+                                            @endforeach
                                         </select>
                                     </td>
                                     <td class="float-right">
@@ -180,10 +182,11 @@
                                         </div>
                                         <div class="col-md-5 float-right">
                                             <span class="d-inline h3">₹&nbsp;</span><input type="text" name="" id=""
-                                                class="form-control d-inline" value="999">
+                                                class="form-control d-inline" value="{{$roomType->base_price}}">
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
 
                             </tbody>
                         </table>

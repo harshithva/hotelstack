@@ -75,7 +75,10 @@ class RoomController extends Controller
         $room->number = $request->number;
         $room->room_type_id = $request->room_type_id;
         $room->floor_id = $request->floor_id;
-        $room->image = $fileNameToStore;
+        if(!empty($fileNameToStore)){
+            $room->image = $fileNameToStore;
+        }
+         
         $room->status = $request->has('status')?1:0;
         $room->save();
 

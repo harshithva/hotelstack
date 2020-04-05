@@ -7,6 +7,7 @@ use App\Reservation;
 use App\Home;
 use App\Tax;
 use App\RoomType;
+use App\Room;
 
 use Session;
 
@@ -48,7 +49,9 @@ class ReservationController extends Controller
     }
 
     public function getRooms(Request $request) {
-        // dd($request);
+
+        // $rooms = RoomType::rooms()->get();
+        $roomTypes = RoomType::all();
         $home = Home::first();
         
         $guest = User::findOrFail($request->user_id);
@@ -60,7 +63,7 @@ class ReservationController extends Controller
         $guest->check_out = $request->check_out;
         $taxes = Tax::all();
         Session::flash('room', "Select room");
-        return view('backend.admin.reservations.select_room',compact('home','guest','room_types','taxes'));
+        return view('backend.admin.reservations.select_room',compact('home','guest','room_types','taxes','roomTypes'));
     }
     /**
      * Show the form for creating a new resource.
