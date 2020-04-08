@@ -1,6 +1,6 @@
-<p align="center"># Hotel Management system</p>
+### Hotel Management system
 
-### Project is Under Development
+## Project is Under Development
 
 ## Contact 9148850331 for Setup
 
