@@ -1,4 +1,4 @@
-# Hotelstack Hotel Management system
+# Hotelstack - Hotel Management system
 
 ## Project is Under Development
 
