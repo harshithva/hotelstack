@@ -1,4 +1,4 @@
-### Hotel Management system
+# Hotel Management system
 
 ## Project is Under Development
 
