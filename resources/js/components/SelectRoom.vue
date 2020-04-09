@@ -10,14 +10,20 @@ export default {
   data() {
     return {
       message: "Hello world",
-      classname: "btn btn-outline-success btn-sm"
+      classname: "btn btn-outline-success btn-sm",
+      selected: 0
     };
   },
   methods: {
     selectRoom() {
-      if (this.classname == "btn btn-outline-success btn-sm") {
+      if (this.selected == 0) {
         this.classname = "btn btn-success btn-sm";
-      } else this.classname = "btn btn-outline-success btn-sm";
+        this.selected = 1;
+      } else {
+        this.classname = "btn btn-outline-success btn-sm";
+        this.selected = 0;
+      }
+      this.$emit("select-room", this.room);
     }
   }
 };

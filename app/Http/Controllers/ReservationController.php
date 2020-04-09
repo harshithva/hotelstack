@@ -65,6 +65,11 @@ class ReservationController extends Controller
         Session::flash('room', "Select room");
         return view('backend.admin.reservations.select_room',compact('home','guest','room_types','taxes','roomTypes'));
     }
+
+    public function calculateSum(Request $request) {
+dd($request);
+       
+    }
     /**
      * Show the form for creating a new resource.
      *

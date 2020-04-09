@@ -54,164 +54,135 @@
             </div>
         </div>
 
-        <form action="{{ route('reservations.rooms', $guest->id) }}" method="POST">
+        <form action="{{ route('reservations.rooms.select', $guest->id) }}" method="POST">
             @csrf
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <div class="input-group input-group-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Guest Name</span>
                     </div>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-lg" value="{{ $guest->name }}" name="guest">
-                    <input type="hidden" value="{{$guest->id}}" name="user_id" />
-                </div>
-            </div>
+            <input type="hidden" value="{{$guest->id}}" name="user_id" />
+    </div>
+</div> --}}
+<reservation guest-name="{{$guest->name}}" guest-id="{{$guest->id}}" guest-adults="{{$guest->adults}}"
+    guest-kids="{{$guest->kids}}" guest-check-in="{{$guest->check_in}}" guest-check-out="{{$guest->check_out}}">
+</reservation>
 
-            {{-- 
+{{-- 
             <select class="form-control form-control-lg">
                 <option>Select Room Type</option>
                 @foreach ($room_types as $room_type)
                 @if ($selected_type == $room_type)
                 <option value="{{$room_type->id}}" selected="true">{{$room_type->title}}</option>
-            @else
-            <option value="{{$room_type->id}}" disabled="disabled">{{$room_type->title}}</option>
-            @endif
+@else
+<option value="{{$room_type->id}}" disabled="disabled">{{$room_type->title}}</option>
+@endif
 
-            @endforeach
-            </select> --}}
+@endforeach
+</select> --}}
 
-            <div class="form-row justify-content-center mt-3">
 
-                <div class="form-group col-md-3">
-                    <div class="form-group">
-                        <label for="example-number-input" class="form-control-label">&nbsp;Adults</label>
-                        <input class="form-control" type="number" id="example-number-input" name="adults"
-                            value="{{$guest->adults}}">
-                    </div>
-                </div>
-
-                <div class="form-group col-md-3">
-                    <div class="form-group">
-                        <label for="example-number-input" class="form-control-label">&nbsp;Kids</label>
-                        <input class="form-control" type="number" id="example-number-input" name="kids"
-                            value="{{$guest->kids}}">
-                    </div>
-                </div>
-
-                <div class="form-group col-md-3">
-                    <h5>&nbsp;Check in</h5>
-                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                            </div>
-                            <input name="check_in" class="form-control datepicker" placeholder="Select date" type="text"
-                                value="{{$guest->check_in}}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group col-md-3">
-                    <h5>&nbsp;Check out</h5>
-                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                            </div>
-                            <input name="check_out" class="form-control datepicker" placeholder="Select date"
-                                type="text" value="{{$guest->check_out}}">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            {{-- 
+{{-- 
             <div class="form-row justify-content-center">
          
 </div>
 
 </div> --}}
 
-            <tbody>
-                <tr>
+<tbody>
+    <tr>
 
-                    <td class="price-per-night p-0">
-                        <table class="table table-sm borderless mb-0 ">
-                            <thead class="font-weight-bold">
-                                <div id="app">
+        <td class="price-per-night p-0">
+            <table class="table table-sm borderless mb-0 ">
+                <thead class="font-weight-bold">
+                    <div id="app">
 
-                                </div>
-                                <tr>
-                                    <td class="sl">#</td>
-                                    <td>Room type</td>
-                                    <td>Available Rooms</td>
-                                    <td>Tax</td>
-                                    <td class="text-right">Price/Night</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($roomTypes as $roomType)
-                                <tr>
-                                    <td class="sl">1.</td>
-                                    <td class="text-muted">{{$roomType->title}}</td>
-                                    <td>
-                                        <div>
+                    </div>
+                    <tr>
+                        <td class="sl">#</td>
+                        <td>Room type</td>
+                        <td>Available Rooms</td>
+                        <td>Tax</td>
+                        <td class="text-right">Price/Night</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($roomTypes as $roomType)
+                    <tr>
+                        <td class="sl">1.</td>
+                        <td class="text-muted">{{$roomType->title}}</td>
+                        <td>
+                            <div>
 
-                                            @if (count($roomType->rooms) > 0)
-                                            @foreach ($roomType->rooms as $rooms)
-                                            {{-- 
+                                @if (count($roomType->rooms) > 0)
+                                @foreach ($roomType->rooms as $rooms)
+                                {{-- 
                                             <button :class="classname" id="custom{{ $rooms->number}}"
-                                            @click.stop.prevent="selectRoom">{{ $rooms->number}}</button> --}}
+                                @click.stop.prevent="selectRoom">{{ $rooms->number}}</button> --}}
 
-                                            <select-rooms room="{{$rooms->number}}"></select-rooms>
-                                            @endforeach
-                                            @endif
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected disabled>Choose...</option>
-                                            <option value="no_tax">No tax</option>
-                                            @foreach ($taxes ?? '' as $tax)
-
-
-                                            <option value="{{$tax->id}}">{{$tax->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td class="float-right">
-                                        <div class="col-md-7">
-
-                                        </div>
-                                        <div class="col-md-5 float-right">
-                                            <span class="d-inline h3">₹&nbsp;</span><input type="text" name="" id=""
-                                                class="form-control d-inline" value="{{$roomType->base_price}}">
-                                        </div>
-                                    </td>
-                                </tr>
+                                <select-rooms room="{{$rooms->number}}" v-on:select-room="selectRoom"></select-rooms>
                                 @endforeach
+                                @endif
+                            </div>
+                        </td>
 
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
+                        <td>
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option selected disabled>Choose...</option>
+                                <option value="no_tax">No tax</option>
+                                @foreach ($taxes ?? '' as $tax)
 
 
-                    </td>
-                </tr>
-                <!---->
-            </tbody>
+                                <option value="{{$tax->id}}">{{$tax->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td class="float-right">
+                            <div class="col-md-7">
 
-            <button class="btn btn-success btn-lg btn-block mt-3" type="submit">Next</button>
+                            </div>
+                            <div class="col-md-5 float-right">
+                                <span class="d-inline h3">₹&nbsp;</span><input type="text" name="" id=""
+                                    class="form-control d-inline" value="{{$roomType->base_price}}">
+                            </div>
+                        </td>
+
+                    </tr>
+                    @endforeach
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+
+
+
+
+        <input type="hidden" name="rooms[]" v-model="selected">
+
+
+
+
+        <button class="btn btn-success btn-lg btn-block mt-3" type="submit">Next</button>
         </form>
-    </div>
-</div>
+        {{-- <select-rooms-details room-types="{{$roomTypes}}" taxes="{{$taxes}}">
+        @if (count($roomType->rooms) > 0)
+        @foreach ($roomType->rooms as $rooms)
+        <slot>
+            <select-rooms room="{{$rooms->number}}"></select-rooms>
+        </slot>
+        @endforeach
+        @endif
+        </select-rooms-details> --}}
+        </div>
+        </div>
 
 
-@endsection
+        @endsection
 
-@section('scripts')
+        @section('scripts')
 
-@endsection
+        @endsection

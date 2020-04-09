@@ -20,8 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('reservations', require('./components/Reservations.vue').default);
+Vue.component('reservation', require('./components/Reservation.vue').default);
 Vue.component('select-rooms', require('./components/SelectRoom.vue').default);
+Vue.component('select-rooms-details', require('./components/SelectRoomDetails.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,5 +32,18 @@ Vue.component('select-rooms', require('./components/SelectRoom.vue').default);
 
 const app = new Vue({
     el: '#panel',
+    data: {
+        selected: []
+    },
+    methods: {
+        selectRoom(room) {
+            if (this.selected.find(room => room) != room) {
+                this.selected.push(room);
+            } else {
+                this.selected.pop(room);
+            }
 
+            console.log(this.selected);
+        }
+    }
 });
