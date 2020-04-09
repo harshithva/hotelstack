@@ -11,7 +11,6 @@
         </div>
 
 
-
         @if (Session::has('success'))
 
         <div class="alert alert-success mt-2">{{ Session::get('success') }}</div>
@@ -139,7 +138,9 @@
                     <td class="price-per-night p-0">
                         <table class="table table-sm borderless mb-0 ">
                             <thead class="font-weight-bold">
+                                <div id="app">
 
+                                </div>
                                 <tr>
                                     <td class="sl">#</td>
                                     <td>Room type</td>
@@ -155,11 +156,12 @@
                                     <td class="text-muted">{{$roomType->title}}</td>
                                     <td>
                                         <div>
+
                                             @if (count($roomType->rooms) > 0)
                                             @foreach ($roomType->rooms as $rooms)
-                                            <a class="btn btn-sm btn-tsk">
-                                                {{ $rooms->number}}
-                                            </a>
+
+                                            <button :class="classname" id="custom{{ $rooms->number}}"
+                                                @click.stop.prevent="selectRoom">{{ $rooms->number}}</button>
                                             @endforeach
                                             @endif
                                         </div>
@@ -205,5 +207,9 @@
     </div>
 </div>
 
+
+@endsection
+
+@section('scripts')
 
 @endsection
