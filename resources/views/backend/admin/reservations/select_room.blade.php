@@ -159,9 +159,11 @@
 
                                             @if (count($roomType->rooms) > 0)
                                             @foreach ($roomType->rooms as $rooms)
-
+                                            {{-- 
                                             <button :class="classname" id="custom{{ $rooms->number}}"
-                                                @click.stop.prevent="selectRoom">{{ $rooms->number}}</button>
+                                            @click.stop.prevent="selectRoom">{{ $rooms->number}}</button> --}}
+
+                                            <select-rooms room="{{$rooms->number}}"></select-rooms>
                                             @endforeach
                                             @endif
                                         </div>
