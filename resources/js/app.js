@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('reservation', require('./components/Reservation.vue').default);
-Vue.component('select-rooms', require('./components/SelectRoom.vue').default);
+// Vue.component('select-rooms', require('./components/SelectRoom.vue').default);
 Vue.component('select-rooms-details', require('./components/SelectRoomDetails.vue').default);
 
 /**
@@ -37,7 +37,7 @@ const app = new Vue({
     },
     methods: {
         selectRoom(room) {
-            if (this.selected.find(room => room) != room) {
+            if (!this.selected.includes(room)) {
                 this.selected.push(room);
             } else {
                 this.selected.pop(room);

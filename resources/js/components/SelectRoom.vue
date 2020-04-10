@@ -6,24 +6,24 @@
 
 <script>
 export default {
-  props: ["room"],
+  props: ["room", "roomId"],
   data() {
     return {
       message: "Hello world",
-      classname: "btn btn-outline-success btn-sm",
+      classname: "btn btn-outline-success btn-sm ml-2",
       selected: 0
     };
   },
   methods: {
     selectRoom() {
       if (this.selected == 0) {
-        this.classname = "btn btn-success btn-sm";
+        this.classname = "btn btn-success btn-sm ml-2";
         this.selected = 1;
       } else {
-        this.classname = "btn btn-outline-success btn-sm";
+        this.classname = "btn btn-outline-success btn-sm ml-2";
         this.selected = 0;
       }
-      this.$emit("select-room", this.room);
+      this.$emit("select-room", this.roomId);
     }
   }
 };

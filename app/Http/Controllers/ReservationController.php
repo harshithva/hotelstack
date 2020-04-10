@@ -67,6 +67,8 @@ class ReservationController extends Controller
     }
 
     public function calculateSum(Request $request) {
+        $rooms = explode(',',$request->rooms);
+// dd($rooms);
 dd($request);
        
     }

@@ -2056,25 +2056,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["room"],
+  props: ["room", "roomId"],
   data: function data() {
     return {
       message: "Hello world",
-      classname: "btn btn-outline-success btn-sm",
+      classname: "btn btn-outline-success btn-sm ml-2",
       selected: 0
     };
   },
   methods: {
     selectRoom: function selectRoom() {
       if (this.selected == 0) {
-        this.classname = "btn btn-success btn-sm";
+        this.classname = "btn btn-success btn-sm ml-2";
         this.selected = 1;
       } else {
-        this.classname = "btn btn-outline-success btn-sm";
+        this.classname = "btn btn-outline-success btn-sm ml-2";
         this.selected = 0;
       }
 
-      this.$emit("select-room", this.room);
+      this.$emit("select-room", this.roomId);
     }
   }
 });
@@ -2090,6 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SelectRoom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SelectRoom */ "./resources/js/components/SelectRoom.vue");
 //
 //
 //
@@ -2137,26 +2138,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["roomTypes", "taxes"]
+  props: ["roomTypes", "taxes"],
+  components: {
+    SelectRoom: _SelectRoom__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -37798,79 +37785,79 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("tbody", [
-      _c("tr", [
-        _c("td", { staticClass: "price-per-night p-0" }, [
-          _c("table", { staticClass: "table table-sm borderless mb-0 " }, [
-            _vm._m(0),
-            _vm._v(" "),
+  return _c("table", { staticClass: "table table-sm borderless mb-0" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "tbody",
+      _vm._l(_vm.roomTypes, function(roomType) {
+        return _c("tr", [
+          _c("td", { staticClass: "sl" }, [_vm._v("1.")]),
+          _vm._v(" "),
+          _c("td", {
+            staticClass: "text-muted",
+            domProps: { textContent: _vm._s(roomType.title) }
+          }),
+          _vm._v(" "),
+          _c(
+            "td",
+            [
+              _vm._l(roomType.rooms, function(rooms) {
+                return [
+                  _c("select-room", {
+                    attrs: { room: rooms.number, "room-id": rooms.id }
+                  })
+                ]
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("td", [
             _c(
-              "tbody",
-              _vm._l(_vm.roomTypes, function(roomType) {
-                return _c("tr", { key: roomType.id }, [
-                  _c("td", { staticClass: "sl" }, [_vm._v("1.")]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-muted" }, [
-                    _vm._v(_vm._s(roomType.title))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_c("div", [_vm._t("rooms")], 2)]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "select",
-                      {
-                        staticClass: "custom-select",
-                        attrs: { id: "inputGroupSelect01" }
-                      },
-                      [
-                        _c(
-                          "option",
-                          { attrs: { selected: "", disabled: "" } },
-                          [_vm._v("Choose...")]
-                        ),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "no_tax" } }, [
-                          _vm._v("No tax")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.taxes, function(tax) {
-                          return _c(
-                            "option",
-                            { key: tax.id, domProps: { value: tax.id } },
-                            [_vm._v(_vm._s(tax.name))]
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "float-right" }, [
-                    _c("div", { staticClass: "col-md-7" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-5 float-right" }, [
-                      _c("span", { staticClass: "d-inline h3" }, [
-                        _vm._v("₹ ")
-                      ]),
-                      _c("input", {
-                        staticClass: "form-control d-inline",
-                        attrs: { type: "text", name: "", id: "" },
-                        domProps: { value: roomType.base_price }
-                      })
-                    ])
+              "select",
+              {
+                staticClass: "custom-select",
+                attrs: { id: "inputGroupSelect01" }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { selected: "selected", disabled: "disabled" } },
+                  [_vm._v("Choose...")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "no_tax" } }, [
+                  _vm._v("No tax")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.taxes, function(tax) {
+                  return _c("option", { attrs: { value: "tax.id" } }, [
+                    _vm._v(_vm._s(tax.name))
                   ])
-                ])
-              }),
-              0
+                })
+              ],
+              2
             )
+          ]),
+          _vm._v(" "),
+          _c("td", { staticClass: "float-right" }, [
+            _c("div", { staticClass: "col-md-7" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-5 float-right" }, [
+              _c("span", { staticClass: "d-inline h3" }, [_vm._v("₹ ")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control d-inline",
+                attrs: { type: "text", name: "price_per_night[0]", id: "" },
+                domProps: { value: roomType.base_price }
+              })
+            ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("tr")
-    ])
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = [
@@ -37879,8 +37866,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "font-weight-bold" }, [
-      _c("div", { attrs: { id: "app" } }),
-      _vm._v(" "),
       _c("tr", [
         _c("td", { staticClass: "sl" }, [_vm._v("#")]),
         _vm._v(" "),
@@ -50084,8 +50069,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('reservation', __webpack_require__(/*! ./components/Reservation.vue */ "./resources/js/components/Reservation.vue")["default"]);
-Vue.component('select-rooms', __webpack_require__(/*! ./components/SelectRoom.vue */ "./resources/js/components/SelectRoom.vue")["default"]);
+Vue.component('reservation', __webpack_require__(/*! ./components/Reservation.vue */ "./resources/js/components/Reservation.vue")["default"]); // Vue.component('select-rooms', require('./components/SelectRoom.vue').default);
+
 Vue.component('select-rooms-details', __webpack_require__(/*! ./components/SelectRoomDetails.vue */ "./resources/js/components/SelectRoomDetails.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50100,9 +50085,7 @@ var app = new Vue({
   },
   methods: {
     selectRoom: function selectRoom(room) {
-      if (this.selected.find(function (room) {
-        return room;
-      }) != room) {
+      if (!this.selected.includes(room)) {
         this.selected.push(room);
       } else {
         this.selected.pop(room);

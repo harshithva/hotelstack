@@ -109,7 +109,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($roomTypes as $roomType)
+                    @foreach ($roomTypes as $key => $roomType)
                     <tr>
                         <td class="sl">1.</td>
                         <td class="text-muted">{{$roomType->title}}</td>
@@ -122,7 +122,8 @@
                                             <button :class="classname" id="custom{{ $rooms->number}}"
                                 @click.stop.prevent="selectRoom">{{ $rooms->number}}</button> --}}
 
-                                <select-rooms room="{{$rooms->number}}" v-on:select-room="selectRoom"></select-rooms>
+                                <select-rooms room="{{$rooms->number}}" room-id="{{$rooms->id}}"
+                                    v-on:select-room="selectRoom"></select-rooms>
                                 @endforeach
                                 @endif
                             </div>
@@ -144,8 +145,9 @@
 
                             </div>
                             <div class="col-md-5 float-right">
-                                <span class="d-inline h3">₹&nbsp;</span><input type="text" name="" id=""
-                                    class="form-control d-inline" value="{{$roomType->base_price}}">
+                                <span class="d-inline h3">₹&nbsp;</span><input type="text"
+                                    name="price_per_night[{{$key}}]" id="" class="form-control d-inline"
+                                    value="{{$roomType->base_price}}">
                             </div>
                         </td>
 
@@ -161,7 +163,7 @@
 
 
 
-        <input type="hidden" name="rooms[]" v-model="selected">
+        <input type="hidden" name="rooms" :value="selected" />
 
 
 
@@ -177,6 +179,14 @@
         @endforeach
         @endif
         </select-rooms-details> --}}
+
+
+
+        <select-rooms-details :room-types="{{ json_encode($roomTypes) }}" :taxes="{{ json_encode($taxes) }}"
+            v-on:select-room="selectRoom">
+
+        </select-rooms-details>
+
         </div>
         </div>
 
