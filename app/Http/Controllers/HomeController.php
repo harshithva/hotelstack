@@ -122,8 +122,8 @@ class HomeController extends Controller
 
         $home->update([
             'hotel_name' => $request->hotel_name,
-            'main_heading' => $request->main_heading,
-
+            'main_heading' => $request->main_heading,       
+            'banner_image' => $fileNameToStore,
             'sub_heading' => $request->sub_heading,
             'video_link' => $request->video_link,
             'about_title' => $request->about_title,

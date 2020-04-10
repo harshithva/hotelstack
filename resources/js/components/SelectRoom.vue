@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  props: ["room", "roomId"],
+  props: ["room", "roomId", "price-per-night"],
   data() {
     return {
       message: "Hello world",
@@ -23,7 +23,16 @@ export default {
         this.classname = "btn btn-outline-success btn-sm ml-2";
         this.selected = 0;
       }
-      this.$emit("select-room", this.roomId);
+      this.$emit("select-room", this.roomId, this.price);
+    }
+  },
+  computed: {
+    price: function() {
+      if (this.selected == 1) {
+        return this.pricePerNight;
+      } else {
+        return 0;
+      }
     }
   }
 };

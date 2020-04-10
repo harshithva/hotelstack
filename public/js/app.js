@@ -2056,7 +2056,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["room", "roomId"],
+  props: ["room", "roomId", "price-per-night"],
   data: function data() {
     return {
       message: "Hello world",
@@ -2074,7 +2074,16 @@ __webpack_require__.r(__webpack_exports__);
         this.selected = 0;
       }
 
-      this.$emit("select-room", this.roomId);
+      this.$emit("select-room", this.roomId, this.price);
+    }
+  },
+  computed: {
+    price: function price() {
+      if (this.selected == 1) {
+        return this.pricePerNight;
+      } else {
+        return 0;
+      }
     }
   }
 });
@@ -2137,17 +2146,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["roomTypes", "taxes"],
   components: {
     SelectRoom: _SelectRoom__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  data: function data() {
+    return {
+      selected: []
+    };
+  },
   methods: {
-    selectRoom: function selectRoom(room) {
-      console.log(room);
+    selectRoom: function selectRoom(room, price) {
+      console.log(price);
+
+      if (!this.selected.includes(room)) {
+        this.selected.push(room);
+        price = parseInt(price);
+        this.price.push(price);
+      } else {
+        this.selected.pop(room);
+      }
+
+      console.log(this.selected);
       this.$emit("select-room", room);
     }
+  },
+  computed: {
+    price: {}
   }
 });
 
@@ -37810,7 +37851,11 @@ var render = function() {
               _vm._l(roomType.rooms, function(rooms) {
                 return [
                   _c("select-room", {
-                    attrs: { room: rooms.number, "room-id": rooms.id },
+                    attrs: {
+                      room: rooms.number,
+                      "room-id": rooms.id,
+                      "price-per-night": roomType.base_price
+                    },
                     on: { "select-room": _vm.selectRoom }
                   })
                 ]
@@ -37849,7 +37894,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("td", { staticClass: "float-right" }, [
+          _c("td", [
             _c("div", { staticClass: "col-md-7" }),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-5 float-right" }, [
@@ -37859,6 +37904,20 @@ var render = function() {
                 staticClass: "form-control d-inline",
                 attrs: { type: "text", name: "price_per_night[]" },
                 domProps: { value: roomType.base_price }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _c("div", { staticClass: "col-md-7" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-5 float-right" }, [
+              _c("span", { staticClass: "d-inline h3" }, [_vm._v("₹ ")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control d-inline",
+                attrs: { type: "text", name: "price" },
+                domProps: { value: _vm.price }
               })
             ])
           ])
@@ -37883,7 +37942,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("td", [_vm._v("Tax")]),
         _vm._v(" "),
-        _c("td", { staticClass: "text-right" }, [_vm._v("Price/Night")])
+        _c("td", { staticClass: "text-right" }, [_vm._v("Price/Night")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "text-right" }, [_vm._v("Price")])
       ])
     ])
   }
