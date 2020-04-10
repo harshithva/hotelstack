@@ -1,24 +1,12 @@
 <template>
-  <table class="table table-sm borderless mb-0">
-    <thead class="font-weight-bold">
-      <tr>
-        <td class="sl">#</td>
-        <td>Room type</td>
-        <td>Available Rooms</td>
-        <td>Tax</td>
-        <td class="text-right">Price/Night</td>
-        <td class="text-right">Price</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="roomType in roomTypes" :key="roomType.id">
+   <fragment>
         <td class="sl">1.</td>
         <td class="text-muted" v-text="roomType.title"></td>
         <td>
           <template v-for="rooms in roomType.rooms">
              <select-room :room="rooms.number" :room-id="rooms.id" :price-per-night="roomType.base_price" v-on:select-room="selectRoom"></select-room>
             </template>
-          </div>
+          
         </td>
         <td>
           <select id="inputGroupSelect01" class="custom-select">
@@ -47,47 +35,51 @@
             <input
               type="text"
               name="price"
-              :value="price"
+              :value="totalPrice"
               class="form-control d-inline"
             />
           </div>
           </div>
         </td>
-      </tr>
-    </tbody>
-  </table>
+         </fragment>
 </template>
 
 <script>
 import SelectRoom from "./SelectRoom";
+import moment from 'moment';
 export default {
-  props: ["roomTypes", "taxes"],
-    components: { SelectRoom },
-    data(){
-      return {
-       selected:[],
-      }
-    },
-    methods: {
-      selectRoom(room, price) {
-        console.log(price);
-        
-         if (!this.selected.includes(room)) {
-                this.selected.push(room);
-                price = parseInt(price);
-                this.price.push(price);
-            } else {
-                this.selected.pop(room);
-            }
-
-            console.log(this.selected);
-            this.$emit("select-room", room);
+    props:["roomType","taxes", "guestCheckIn", "guestCheckOut"],
+    components:{SelectRoom},
+    data() {
+        return {
+   selected:[],
+    price:[]
         }
     },
-    computed: {
-       price:{
-         
-       }
+    methods:{
+ selectRoom(room,price) {
+      if (!this.selected.includes(room)) {
+        this.selected.push(room);
+        this.price.push(price);
+      } else {
+        this.selected.pop(room);
+        this.price.pop(price);
+      }
+      
+      console.log(this.guestCheckIn);
+      this.$emit("select-room", room);
     }
-};
+    },
+    computed: {
+        totalPrice: function() {
+            let price = this.price.reduce((a, b) => a + b, 0);
+            let startDate = moment(this.guestCheckIn, "DD.MM.YYYY");
+            let endDate = moment(this.guestCheckOut, "DD.MM.YYYY");
+
+            let result = endDate.diff(startDate, 'days');
+            let days = parseInt(result);
+             return price*days;
+        }
+    }
+}
 </script>

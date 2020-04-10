@@ -59,6 +59,7 @@
               placeholder="Select date"
               type="text"
               :value="guestCheckIn"
+              disabled
             />
           </div>
         </div>
@@ -79,6 +80,7 @@
               placeholder="Select date"
               type="text"
               :value="guestCheckOut"
+              disabled
             />
           </div>
         </div>

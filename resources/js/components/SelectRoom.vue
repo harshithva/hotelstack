@@ -9,7 +9,6 @@ export default {
   props: ["room", "roomId", "price-per-night"],
   data() {
     return {
-      message: "Hello world",
       classname: "btn btn-outline-success btn-sm ml-2",
       selected: 0
     };

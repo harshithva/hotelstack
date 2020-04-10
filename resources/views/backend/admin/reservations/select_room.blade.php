@@ -100,10 +100,10 @@
 
 
 
-<select-rooms-details :room-types="{{ json_encode($roomTypes) }}" :taxes="{{ json_encode($taxes) }}"
-    v-on:select-room="selectRoom">
+<room-details :room-types="{{ json_encode($roomTypes) }}" :taxes="{{ json_encode($taxes) }}"
+    guest-check-in="{{$guest->check_in}}" guest-check-out="{{$guest->check_out}}" v-on:select-room="selectRoom">
 
-</select-rooms-details>
+</room-details>
 
 
 
