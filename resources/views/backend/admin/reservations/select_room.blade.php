@@ -84,115 +84,56 @@
 </select> --}}
 
 
-{{-- 
-            <div class="form-row justify-content-center">
-         
+
+
+@foreach ($roomTypes as $key => $roomType)
+
+@if (count($roomType->rooms) > 0)
+@foreach ($roomType->rooms as $rooms)
+
+
+@endforeach
+@endif
+
+@endforeach
+
+
+
+
+<select-rooms-details :room-types="{{ json_encode($roomTypes) }}" :taxes="{{ json_encode($taxes) }}"
+    v-on:select-room="selectRoom">
+
+</select-rooms-details>
+
+
+
+
+<input type="hidden" name="rooms" :value="selected" />
+
+
+
+
+<button class="btn btn-success btn-lg btn-block mt-3" type="submit">Next</button>
+</form>
+{{-- <select-rooms-details room-types="{{$roomTypes}}" taxes="{{$taxes}}">
+@if (count($roomType->rooms) > 0)
+@foreach ($roomType->rooms as $rooms)
+<slot>
+    <select-rooms room="{{$rooms->number}}"></select-rooms>
+</slot>
+@endforeach
+@endif
+</select-rooms-details> --}}
+
+
+
+
+</div>
 </div>
 
-</div> --}}
 
-<tbody>
-    <tr>
+@endsection
 
-        <td class="price-per-night p-0">
-            <table class="table table-sm borderless mb-0 ">
-                <thead class="font-weight-bold">
-                    <div id="app">
+@section('scripts')
 
-                    </div>
-                    <tr>
-                        <td class="sl">#</td>
-                        <td>Room type</td>
-                        <td>Available Rooms</td>
-                        <td>Tax</td>
-                        <td class="text-right">Price/Night</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($roomTypes as $key => $roomType)
-                    <tr>
-                        <td class="sl">1.</td>
-                        <td class="text-muted">{{$roomType->title}}</td>
-                        <td>
-                            <div>
-
-                                @if (count($roomType->rooms) > 0)
-                                @foreach ($roomType->rooms as $rooms)
-                                {{-- 
-                                            <button :class="classname" id="custom{{ $rooms->number}}"
-                                @click.stop.prevent="selectRoom">{{ $rooms->number}}</button> --}}
-
-                                <select-rooms room="{{$rooms->number}}" room-id="{{$rooms->id}}"
-                                    v-on:select-room="selectRoom"></select-rooms>
-                                @endforeach
-                                @endif
-                            </div>
-                        </td>
-
-                        <td>
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option selected disabled>Choose...</option>
-                                <option value="no_tax">No tax</option>
-                                @foreach ($taxes ?? '' as $tax)
-
-
-                                <option value="{{$tax->id}}">{{$tax->name}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td class="float-right">
-                            <div class="col-md-7">
-
-                            </div>
-                            <div class="col-md-5 float-right">
-                                <span class="d-inline h3">₹&nbsp;</span><input type="text"
-                                    name="price_per_night[{{$key}}]" id="" class="form-control d-inline"
-                                    value="{{$roomType->base_price}}">
-                            </div>
-                        </td>
-
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    <tr>
-
-
-
-
-        <input type="hidden" name="rooms" :value="selected" />
-
-
-
-
-        <button class="btn btn-success btn-lg btn-block mt-3" type="submit">Next</button>
-        </form>
-        {{-- <select-rooms-details room-types="{{$roomTypes}}" taxes="{{$taxes}}">
-        @if (count($roomType->rooms) > 0)
-        @foreach ($roomType->rooms as $rooms)
-        <slot>
-            <select-rooms room="{{$rooms->number}}"></select-rooms>
-        </slot>
-        @endforeach
-        @endif
-        </select-rooms-details> --}}
-
-
-
-        <select-rooms-details :room-types="{{ json_encode($roomTypes) }}" :taxes="{{ json_encode($taxes) }}"
-            v-on:select-room="selectRoom">
-
-        </select-rooms-details>
-
-        </div>
-        </div>
-
-
-        @endsection
-
-        @section('scripts')
-
-        @endsection
+@endsection

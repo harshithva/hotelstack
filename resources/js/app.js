@@ -37,6 +37,8 @@ const app = new Vue({
     },
     methods: {
         selectRoom(room) {
+            console.log("Hello");
+
             if (!this.selected.includes(room)) {
                 this.selected.push(room);
             } else {

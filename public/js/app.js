@@ -2137,12 +2137,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["roomTypes", "taxes"],
   components: {
     SelectRoom: _SelectRoom__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    selectRoom: function selectRoom(room) {
+      console.log(room);
+      this.$emit("select-room", room);
+    }
   }
 });
 
@@ -37791,7 +37796,7 @@ var render = function() {
     _c(
       "tbody",
       _vm._l(_vm.roomTypes, function(roomType) {
-        return _c("tr", [
+        return _c("tr", { key: roomType.id }, [
           _c("td", { staticClass: "sl" }, [_vm._v("1.")]),
           _vm._v(" "),
           _c("td", {
@@ -37805,7 +37810,8 @@ var render = function() {
               _vm._l(roomType.rooms, function(rooms) {
                 return [
                   _c("select-room", {
-                    attrs: { room: rooms.number, "room-id": rooms.id }
+                    attrs: { room: rooms.number, "room-id": rooms.id },
+                    on: { "select-room": _vm.selectRoom }
                   })
                 ]
               })
@@ -37832,9 +37838,11 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _vm._l(_vm.taxes, function(tax) {
-                  return _c("option", { attrs: { value: "tax.id" } }, [
-                    _vm._v(_vm._s(tax.name))
-                  ])
+                  return _c(
+                    "option",
+                    { key: tax.id, domProps: { value: tax.id } },
+                    [_vm._v(_vm._s(tax.name))]
+                  )
                 })
               ],
               2
@@ -37849,7 +37857,7 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control d-inline",
-                attrs: { type: "text", name: "price_per_night[0]", id: "" },
+                attrs: { type: "text", name: "price_per_night[]" },
                 domProps: { value: roomType.base_price }
               })
             ])
@@ -50085,6 +50093,8 @@ var app = new Vue({
   },
   methods: {
     selectRoom: function selectRoom(room) {
+      console.log("Hello");
+
       if (!this.selected.includes(room)) {
         this.selected.push(room);
       } else {
