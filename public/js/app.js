@@ -1932,6 +1932,48 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PricePerNight.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PricePerNight.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["roomTypeBasePrice"],
+  data: function data() {
+    return {
+      price: this.roomTypeBasePrice
+    };
+  },
+  methods: {
+    changePrice: function changePrice() {
+      this.$emit("change-price", this.price);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reservation.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Reservation.vue?vue&type=script&lang=js& ***!
@@ -2165,8 +2207,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SelectRoom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SelectRoom */ "./resources/js/components/SelectRoom.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _PricePerNight__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PricePerNight */ "./resources/js/components/PricePerNight.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2203,55 +2246,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["roomType", "taxes", "guestCheckIn", "guestCheckOut"],
   components: {
-    SelectRoom: _SelectRoom__WEBPACK_IMPORTED_MODULE_0__["default"]
+    SelectRoom: _SelectRoom__WEBPACK_IMPORTED_MODULE_0__["default"],
+    PricePerNight: _PricePerNight__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       selected: [],
-      price: []
+      price: [],
+      dataLoaded: true,
+      pp: 0
     };
   },
   methods: {
     selectRoom: function selectRoom(room, price) {
       if (!this.selected.includes(room)) {
-        this.selected.push(room);
-        this.price.push(price);
+        this.selected.push(room); // this.price.push(price);
       } else {
-        this.selected.pop(room);
-        this.price.pop(price);
+        this.selected.pop(room); // this.price.pop(price);
       }
 
+      this.totalPrice(this.roomType.base_price);
       console.log(this.guestCheckIn);
       this.$emit("select-room", room);
+    },
+    totalPrice: function totalPrice(base_price) {
+      if (this.selected.length > 0) {
+        var price = base_price * this.selected.length;
+        var startDate = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.guestCheckIn, "DD.MM.YYYY");
+        var endDate = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.guestCheckOut, "DD.MM.YYYY");
+        var result = endDate.diff(startDate, 'days');
+        var days = parseInt(result);
+        this.pp = price * days;
+      } else {
+        this.pp = 0;
+      }
+    },
+    changePrice: function changePrice(price) {
+      this.roomType.base_price = price;
+      this.totalPrice(price);
     }
   },
-  computed: {
-    totalPrice: function totalPrice() {
-      var price = this.price.reduce(function (a, b) {
-        return a + b;
-      }, 0);
-      var startDate = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.guestCheckIn, "DD.MM.YYYY");
-      var endDate = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.guestCheckOut, "DD.MM.YYYY");
-      var result = endDate.diff(startDate, 'days');
-      var days = parseInt(result);
-      return price * days;
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -55280,6 +55321,59 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PricePerNight.vue?vue&type=template&id=9a9d19ee&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PricePerNight.vue?vue&type=template&id=9a9d19ee& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("fragment", [
+    _c("div", { staticClass: "col-md-7" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-5 float-right" }, [
+      _c("span", { staticClass: "d-inline h3" }, [_vm._v("₹ ")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.price,
+            expression: "price"
+          }
+        ],
+        staticClass: "form-control d-inline",
+        attrs: { type: "text", name: "price_per_night[]" },
+        domProps: { value: _vm.price },
+        on: {
+          change: _vm.changePrice,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.price = $event.target.value
+          }
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reservation.vue?vue&type=template&id=530d0e9e&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Reservation.vue?vue&type=template&id=530d0e9e& ***!
@@ -55600,14 +55694,24 @@ var render = function() {
       [
         _vm._l(_vm.roomType.rooms, function(rooms) {
           return [
-            _c("select-room", {
-              attrs: {
-                room: rooms.number,
-                "room-id": rooms.id,
-                "price-per-night": _vm.roomType.base_price
-              },
-              on: { "select-room": _vm.selectRoom }
-            })
+            _vm.dataLoaded
+              ? _c("select-room", {
+                  attrs: {
+                    room: rooms.number,
+                    "room-id": rooms.id,
+                    "price-per-night": _vm.roomType.base_price
+                  },
+                  on: {
+                    "update:pricePerNight": function($event) {
+                      return _vm.$set(_vm.roomType, "base_price", $event)
+                    },
+                    "update:price-per-night": function($event) {
+                      return _vm.$set(_vm.roomType, "base_price", $event)
+                    },
+                    "select-room": _vm.selectRoom
+                  }
+                })
+              : _vm._e()
           ]
         })
       ],
@@ -55637,19 +55741,16 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("td", [
-      _c("div", { staticClass: "col-md-7" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-5 float-right" }, [
-        _c("span", { staticClass: "d-inline h3" }, [_vm._v("₹ ")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control d-inline",
-          attrs: { type: "text", name: "price_per_night[]" },
-          domProps: { value: _vm.roomType.base_price }
+    _c(
+      "td",
+      [
+        _c("price-per-night", {
+          attrs: { "room-type-base-price": _vm.roomType.base_price },
+          on: { "change-price": _vm.changePrice }
         })
-      ])
-    ]),
+      ],
+      1
+    ),
     _vm._v(" "),
     _c("td", [
       _c("div", { staticClass: "col-md-7" }),
@@ -55660,7 +55761,7 @@ var render = function() {
         _c("input", {
           staticClass: "form-control d-inline",
           attrs: { type: "text", name: "price" },
-          domProps: { value: _vm.totalPrice }
+          domProps: { value: _vm.pp }
         })
       ])
     ])
@@ -68001,6 +68102,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PricePerNight.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/PricePerNight.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PricePerNight_vue_vue_type_template_id_9a9d19ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PricePerNight.vue?vue&type=template&id=9a9d19ee& */ "./resources/js/components/PricePerNight.vue?vue&type=template&id=9a9d19ee&");
+/* harmony import */ var _PricePerNight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PricePerNight.vue?vue&type=script&lang=js& */ "./resources/js/components/PricePerNight.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PricePerNight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PricePerNight_vue_vue_type_template_id_9a9d19ee___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PricePerNight_vue_vue_type_template_id_9a9d19ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PricePerNight.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PricePerNight.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/PricePerNight.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PricePerNight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PricePerNight.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PricePerNight.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PricePerNight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PricePerNight.vue?vue&type=template&id=9a9d19ee&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/PricePerNight.vue?vue&type=template&id=9a9d19ee& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PricePerNight_vue_vue_type_template_id_9a9d19ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PricePerNight.vue?vue&type=template&id=9a9d19ee& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PricePerNight.vue?vue&type=template&id=9a9d19ee&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PricePerNight_vue_vue_type_template_id_9a9d19ee___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PricePerNight_vue_vue_type_template_id_9a9d19ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
