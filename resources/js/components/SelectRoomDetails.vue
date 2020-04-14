@@ -9,15 +9,10 @@
           
         </td>
         <td>
-          <select id="inputGroupSelect01" class="custom-select">
-            <option selected="selected" disabled="disabled">Choose...</option>
-            <option value="no_tax">No tax</option>
-            <option v-for="tax in taxes" :value="tax.id" :key="tax.id">{{tax.name}}</option>
-          </select>
-        </td>
-        <td>
           <price-per-night :room-type-base-price="roomType.base_price" v-on:change-price="changePrice"></price-per-night>
         </td>
+         <taxes :taxes="taxes" v-on:select-tax="addTax"></taxes>
+        
          <td>
           <div class="col-md-7"></div>
           <div class="col-md-5 float-right">
@@ -25,11 +20,14 @@
             <input
               type="text"
               name="price"
-              :value="pp"
-              class="form-control d-inline"
+              :value="roomtype_net_price"
+              class="form-control d-inline" disabled
             />
           </div>
           </div>
+        </td>
+        <td>
+          <p>+ {{this.taxPrice}}</p>
         </td>
          </fragment>
 </template>
@@ -37,31 +35,32 @@
 <script>
 import SelectRoom from "./SelectRoom";
 import PricePerNight from "./PricePerNight";
+import Taxes from "./Taxes";
 import moment from 'moment';
 export default {
     props:["roomType","taxes", "guestCheckIn", "guestCheckOut"],
-    components:{SelectRoom,PricePerNight},
+    components:{SelectRoom,PricePerNight,Taxes},
     data() {
         return {
    selected:[],
     price:[],
     dataLoaded:true,
-    pp: 0
+    roomtype_net_price: 0,
+    selectedTax:[],
+    taxPrice:0
         }
     },
     methods:{
  selectRoom(room,price) {
       if (!this.selected.includes(room)) {
         this.selected.push(room);
-        // this.price.push(price);
-        
+        // this.price.push(price);    
       } else {
         this.selected.pop(room);
         // this.price.pop(price);
       }
       
       this.totalPrice(this.roomType.base_price); 
-      console.log(this.guestCheckIn);
       this.$emit("select-room", room);
     },
     
@@ -73,15 +72,61 @@ export default {
 
             let result = endDate.diff(startDate, 'days');
             let days = parseInt(result);
-            this.pp = price*days;
-      }else {
-        this.pp = 0
+            this.roomtype_net_price = price*days;     
+            let tax = this.taxes.find(taxes => taxes.id == this.selectedTax);     
+            if(tax)
+            {
+                let newPrice = this.getTax(tax, this.roomtype_net_price);
+                console.log(newPrice);
+                this.taxPrice = newPrice;
+            }
+            else
+            {
+              this.taxPrice = 0;
+            }
+      }
+      else
+      {
+        this.roomtype_net_price = 0
       }
             
         },
         changePrice(price) {
       this.roomType.base_price = price
       this.totalPrice(price);   
+    },
+    addTax(taxId) {
+      if(taxId == 0) {
+       this.taxPrice = 0;
+       this.selectedTax = [];
+       return;
+      }
+      
+      let tax = this.taxes.find(tax => tax.id === taxId);
+      if(tax) {
+        this.selectedTax = tax.id;
+        let newPrice = this.getTax(tax, this.roomtype_net_price);
+        this.taxPrice = newPrice;
+      }
+      
+    },
+    getTax(tax, net_price) {
+      console.log(tax);
+      
+      if(tax) {     
+      this.taxPrice = 0;
+      if(net_price >= tax.amount_1){
+        return (net_price/100) * tax.rate_1;
+        
+      }else if(net_price >= tax.amount_2){
+       return (net_price/100) * tax.rate_2;
+      }
+      else
+      {  
+        return 0;
+      }
+      }
+     
     }
     },
     computed: {

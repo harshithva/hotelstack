@@ -8,7 +8,7 @@
               name="price_per_night[]"
               class="form-control d-inline"
               v-model="price"
-              @change="changePrice"
+              @keyup="changePrice"
             />
           </div>
           </div>

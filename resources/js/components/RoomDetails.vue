@@ -5,9 +5,11 @@
         <td class="sl">#</td>
         <td>Room type</td>
         <td>Available Rooms</td>
-        <td>Tax</td>
         <td class="text-right">Price/Night</td>
+        <td class="text-right">Tax</td>
+
         <td class="text-right">Price</td>
+        <td class="text-right">Tax Added</td>
       </tr>
     </thead>
     <tbody>
