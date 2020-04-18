@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  props: ["room", "roomId", "price-per-night"],
+  props: ["room", "roomId", "price-per-night", "roomTypeId"],
   data() {
     return {
       classname: "btn btn-outline-success btn-sm ml-2",
@@ -22,18 +22,12 @@ export default {
         this.classname = "btn btn-outline-success btn-sm ml-2";
         this.selected = 0;
       }
-      this.$emit("select-room", this.roomId, this.price);
+
+      this.$emit("select-room", this.roomId, this.roomTypeId);
+      // this.$emit("total-price", this.roomTypeId);
     }
   },
-  computed: {
-    price: function() {
-      if (this.selected == 1) {
-        return this.pricePerNight;
-      } else {
-        return 0;
-      }
-    }
-  }
+  computed: {}
 };
 </script>
 

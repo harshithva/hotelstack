@@ -7,6 +7,7 @@
           <select
             id="inputGroupSelect01"
             class="custom-select"
+            name="taxes[]"
             v-model="selected"
             @change="selectTax"
           >
@@ -25,8 +26,6 @@
 
 
 <script>
-import vSelect from "vue-select";
-import "vue-select/dist/vue-select.css";
 export default {
   props: ["taxes"],
   data() {
@@ -36,7 +35,6 @@ export default {
   },
   methods: {
     selectTax() {
-      console.log(this.selected);
       this.$emit("select-tax", this.selected);
     }
   },

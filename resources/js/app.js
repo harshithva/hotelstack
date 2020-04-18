@@ -29,6 +29,17 @@ Vue.component('room-details', require('./components/RoomDetails.vue').default);
 
 Vue.use(Fragment.Plugin);
 
+const eventHub = new Vue() // Single event hub
+
+// Distribute to components using global mixin
+Vue.mixin({
+    data: function () {
+        return {
+            eventHub: eventHub
+        }
+    }
+})
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

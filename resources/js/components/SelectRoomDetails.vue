@@ -4,12 +4,13 @@
         <td class="text-muted" v-text="roomType.title"></td>
         <td>
           <template v-for="rooms in roomType.rooms">
-             <select-room v-if="dataLoaded" :room="rooms.number" :room-id="rooms.id" :price-per-night.sync="roomType.base_price" v-on:select-room="selectRoom"></select-room>
+             <select-room v-if="dataLoaded" :room="rooms.number" :room-id="rooms.id" :price-per-night="roomType.base_price" v-on:select-room="selectRoom"
+              v-on:total-price="sendPrice" :room-type-id="roomType.id" :key="rooms.number"></select-room>
             </template>
           
         </td>
         <td>
-          <price-per-night :room-type-base-price="roomType.base_price" v-on:change-price="changePrice"></price-per-night>
+          <price-per-night :room-type-base-price="roomType.base_price" v-on:change-price="changePrice" ></price-per-night>
         </td>
          <taxes :taxes="taxes" v-on:select-tax="addTax"></taxes>
         
@@ -29,6 +30,7 @@
         <td>
           <p>+ {{this.taxPrice}}</p>
         </td>
+        
          </fragment>
 </template>
 
@@ -51,21 +53,22 @@ export default {
         }
     },
     methods:{
- selectRoom(room,price) {
-      if (!this.selected.includes(room)) {
+ selectRoom(room, roomTypeId) {
+      if (this.selected.includes(room) == false) {
         this.selected.push(room);
-        // this.price.push(price);    
+        // this.price.push(price);   
+        
       } else {
         this.selected.pop(room);
         // this.price.pop(price);
       }
-      
+      let total = (this.roomType.base_price * this.selected.length)+this.taxPrice; 
       this.totalPrice(this.roomType.base_price); 
-      this.$emit("select-room", room);
+      this.$emit("select-room", room, roomTypeId, total);
     },
     
     totalPrice(base_price) {
-      if(this.selected.length > 0) {
+      if(this.selected.length >= 1) {
            let price = base_price*this.selected.length;
             let startDate = moment(this.guestCheckIn, "DD.MM.YYYY");
             let endDate = moment(this.guestCheckOut, "DD.MM.YYYY");
@@ -76,9 +79,8 @@ export default {
             let tax = this.taxes.find(taxes => taxes.id == this.selectedTax);     
             if(tax)
             {
-                let newPrice = this.getTax(tax, this.roomtype_net_price);
-                console.log(newPrice);
-                this.taxPrice = newPrice;
+                let newTax = this.getTax(tax, this.roomtype_net_price);
+                this.taxPrice = newTax;
             }
             else
             {
@@ -89,16 +91,15 @@ export default {
       {
         this.roomtype_net_price = 0
       }
-            
+           
         },
-        changePrice(price) {
-      this.roomType.base_price = price
-      this.totalPrice(price);   
+      changePrice(price) {
+      this.$emit("change-price", price, this.roomType.id);  
+      this.totalPrice(this.roomType.base_price); 
     },
     addTax(taxId) {
       if(taxId == 0) {
        this.taxPrice = 0;
-       this.selectedTax = [];
        return;
       }
       
@@ -107,6 +108,7 @@ export default {
         this.selectedTax = tax.id;
         let newPrice = this.getTax(tax, this.roomtype_net_price);
         this.taxPrice = newPrice;
+         this.selectedTax.push(taxId)
       }
       
     },
@@ -127,6 +129,10 @@ export default {
       }
       }
      
+    },
+    sendPrice(roomId) {
+      
+      this.$emit("send-price",this.roomtype_net_price, this.taxPrice, roomId)
     }
     },
     computed: {

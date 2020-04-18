@@ -20,9 +20,21 @@
           :guest-check-in="guestCheckIn"
           :guest-check-out="guestCheckOut"
           v-on:select-room="selectRoom"
+          v-on:change-price="changePrice"
         ></select-room-details>
       </tr>
+      <tr class="mt-3">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <!-- <td class="display-2">Sum: {{this.totalPrice}}</td> -->
+      </tr>
     </tbody>
+    <input type="hidden" name="rooms" :value="selected" />
   </table>
 </template>
 
@@ -33,19 +45,25 @@ export default {
   components: { SelectRoomDetails },
   data() {
     return {
-      selected: []
+      selected: [],
+      totalPrice: 0,
+      totalTax: 0,
+      arrayPrice: []
     };
   },
   methods: {
-    selectRoom(room) {
-      if (!this.selected.includes(room)) {
+    selectRoom(room, roomTypeId, total) {
+      if (this.selected.includes(room) == false) {
         this.selected.push(room);
       } else {
         this.selected.pop(room);
       }
-
-      console.log(this.selected);
       this.$emit("select-room", room);
+    },
+    changePrice(price, roomTypeId) {
+      let roomType = this.roomTypes.find(roomType => roomType.id == roomTypeId);
+      roomType.base_price = price;
+      this.roomTypes = this.roomTypes;
     }
   },
   computed: {}

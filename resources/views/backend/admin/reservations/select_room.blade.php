@@ -101,14 +101,9 @@
 
 
 <room-details :room-types="{{ json_encode($roomTypes) }}" :taxes="{{ json_encode($taxes) }}"
-    guest-check-in="{{$guest->check_in}}" guest-check-out="{{$guest->check_out}}" v-on:select-room="selectRoom">
+    guest-check-in="{{$guest->check_in}}" guest-check-out="{{$guest->check_out}}">
 
 </room-details>
-
-
-
-
-<input type="hidden" name="rooms" :value="selected" />
 
 
 
