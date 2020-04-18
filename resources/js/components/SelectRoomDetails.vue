@@ -30,7 +30,9 @@
         <td>
           <p>+ {{this.taxPrice}}</p>
         </td>
-        
+        <input type="hidden" v-model="nights" name="nights">
+        <input type="hidden" v-model="roomtype_net_price" name="roomtype_total[]">
+        <input type="hidden" v-model="taxPrice" name="roomtype_tax_price[]">
          </fragment>
 </template>
 
@@ -49,7 +51,7 @@ export default {
     dataLoaded:true,
     roomtype_net_price: 0,
     selectedTax:[],
-    taxPrice:0
+    taxPrice:0,
         }
     },
     methods:{
@@ -70,12 +72,8 @@ export default {
     totalPrice(base_price) {
       if(this.selected.length >= 1) {
            let price = base_price*this.selected.length;
-            let startDate = moment(this.guestCheckIn, "DD.MM.YYYY");
-            let endDate = moment(this.guestCheckOut, "DD.MM.YYYY");
-
-            let result = endDate.diff(startDate, 'days');
-            let days = parseInt(result);
-            this.roomtype_net_price = price*days;     
+            
+            this.roomtype_net_price = price*this.nights;     
             let tax = this.taxes.find(taxes => taxes.id == this.selectedTax);     
             if(tax)
             {
@@ -118,10 +116,10 @@ export default {
       if(tax) {     
       this.taxPrice = 0;
       if(net_price >= tax.amount_1){
-        return (net_price/100) * tax.rate_1;
+        return parseFloat((net_price/100) * tax.rate_1).toFixed(2); ;
         
       }else if(net_price >= tax.amount_2){
-       return (net_price/100) * tax.rate_2;
+       return parseFloat((net_price/100) * tax.rate_2).toFixed(2); ;
       }
       else
       {  
@@ -136,7 +134,15 @@ export default {
     }
     },
     computed: {
-      
+      nights: function() {
+         let startDate = moment(this.guestCheckIn, "DD.MM.YYYY");
+            let endDate = moment(this.guestCheckOut, "DD.MM.YYYY");
+
+            let result = endDate.diff(startDate, 'days');
+           
+            let days = parseInt(result);
+             return days;
+      }
     }
 }
 </script>

@@ -49,83 +49,20 @@
                 </div>
             </div>
             <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0"
+                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="90" aria-valuemin="0"
                     aria-valuemax="100" style="width: 90%;"></div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header bg-white">
-                <h2>Create Reservation
+                <h2>Confrim Reservation
                     <a href="https://whitehouseinn.in/admin/reservations" class="btn btn-tsk float-right"><i
                             class="fa fa-list"></i> Reservation List</a></h2>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12 ">
-                        <div class=" mb-3">
-                            <div class="form-row justify-content-center " style="display: none;">
-                                <div class="form-group col-md-4"><label><strong>Guest</strong> <small
-                                            class="text-danger">*</small></label><a
-                                        href="https://whitehouseinn.in/admin/guests/create" target="_blank"
-                                        class="float-right"><i class="fa fa-plus"></i> add new</a> <select id="guest"
-                                        name="guest" class="form-control form-control-lg">
-                                        <option value="">Select</option>
-                                        <option value="1">LIKITH POOJARY</option>
 
-                                    </select>
-                                    <!---->
-                                </div>
-                                <div class="form-group col-md-4"><label><strong>Room</strong> <small
-                                            class="text-danger">*</small></label> <select id="room_type" name="room"
-                                        class="form-control form-control-lg">
-                                        <option value="">Select</option>
-                                        <option value="1">Superior Room</option>
-                                        <option value="2">Deluxe Room</option>
-                                        <option value="3">Standard Deluxe Room</option>
-                                        <option value="4">Super Deluxe Room</option>
-                                    </select>
-                                    <!---->
-                                </div>
-                                <div class="form-group col-md-2"><label><strong>Adults</strong></label> <input
-                                        type="number" class="form-control form-control-lg"> <small
-                                        class="form-text text-info">Max Capacity 2/per room</small>
-                                    <!---->
-                                </div>
-                                <div class="form-group col-md-2"><label><strong>Kids</strong></label> <input
-                                        type="number" class="form-control form-control-lg"> <small
-                                        class="form-text text-info">Max Capacity 2/per room</small></div>
-                            </div>
-                            <div class="form-row justify-content-center " style="display: none;">
-                                <div class="form-group col-md-6"><label><strong>Check in</strong> <small
-                                            class="text-danger">*</small></label>
-                                    <div role="wrapper"
-                                        class="gj-datepicker gj-datepicker-bootstrap gj-unselectable input-group"><input
-                                            type="text" name="check_in" id="check_in" placeholder="YYYY/MM/DD"
-                                            class="form-control" role="input" data-type="datepicker"
-                                            data-guid="d4ec4aea-5ca1-c277-b528-282e1a3bff8f"
-                                            data-datepicker="true"><span class="input-group-append"
-                                            role="right-icon"><button class="btn btn-outline-secondary border-left-0"
-                                                type="button"><i class="fa fa-calendar"
-                                                    aria-hidden="true"></i></button></span></div>
-                                    <!---->
-                                </div>
-                                <div class="form-group col-md-6"><label><strong>Check out</strong> <small
-                                            class="text-danger">*</small></label>
-                                    <div role="wrapper"
-                                        class="gj-datepicker gj-datepicker-bootstrap gj-unselectable input-group"><input
-                                            type="text" name="check_out" id="check_out" placeholder="YYYY/MM/DD"
-                                            class="form-control" role="input" data-type="datepicker"
-                                            data-guid="d1f0534a-4d68-1b49-3e05-bfda23ffa736"
-                                            data-datepicker="true"><span class="input-group-append"
-                                            role="right-icon"><button class="btn btn-outline-secondary border-left-0"
-                                                type="button"><i class="fa fa-calendar"
-                                                    aria-hidden="true"></i></button></span></div>
-                                    <!---->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-12">
                         <div class="form-row mb-4">
                             <div class="col-md">
@@ -134,7 +71,7 @@
                                         <h3>Rooms</h3>
                                     </div>
                                     <div class="card-body">
-                                        <h3>1</h3>
+                                        <h3>{{$reservation->roomsCount}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +81,7 @@
                                         <h3>Adults</h3>
                                     </div>
                                     <div class="card-body">
-                                        <h3>1</h3>
+                                        <h3>{{$reservation->adults}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +91,7 @@
                                         <h3>Kids</h3>
                                     </div>
                                     <div class="card-body">
-                                        <h3>0</h3>
+                                        <h3>{{$reservation->kids}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +101,7 @@
                                         <h3>Nights</h3>
                                     </div>
                                     <div class="card-body">
-                                        <h3>1</h3>
+                                        <h3>{{$reservation->nights}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -263,4 +200,5 @@
                                     Confirm</button> <button class="btn btn-danger float-right mr-1"><i
                                         class="fa fa-arrow-left"></i> Back</button>
                             </div>
-                            </ @endsection @section('scripts') @endsection
+
+                            @endsection @section('scripts') @endsection

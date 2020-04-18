@@ -2262,6 +2262,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2300,11 +2302,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.selected.length >= 1) {
         var price = base_price * this.selected.length;
-        var startDate = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.guestCheckIn, "DD.MM.YYYY");
-        var endDate = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.guestCheckOut, "DD.MM.YYYY");
-        var result = endDate.diff(startDate, 'days');
-        var days = parseInt(result);
-        this.roomtype_net_price = price * days;
+        this.roomtype_net_price = price * this.nights;
         var tax = this.taxes.find(function (taxes) {
           return taxes.id == _this.selectedTax;
         });
@@ -2347,9 +2345,11 @@ __webpack_require__.r(__webpack_exports__);
         this.taxPrice = 0;
 
         if (net_price >= tax.amount_1) {
-          return net_price / 100 * tax.rate_1;
+          return parseFloat(net_price / 100 * tax.rate_1).toFixed(2);
+          ;
         } else if (net_price >= tax.amount_2) {
-          return net_price / 100 * tax.rate_2;
+          return parseFloat(net_price / 100 * tax.rate_2).toFixed(2);
+          ;
         } else {
           return 0;
         }
@@ -2359,7 +2359,15 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit("send-price", this.roomtype_net_price, this.taxPrice, roomId);
     }
   },
-  computed: {}
+  computed: {
+    nights: function nights() {
+      var startDate = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.guestCheckIn, "DD.MM.YYYY");
+      var endDate = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.guestCheckOut, "DD.MM.YYYY");
+      var result = endDate.diff(startDate, 'days');
+      var days = parseInt(result);
+      return days;
+    }
+  }
 });
 
 /***/ }),
@@ -55902,7 +55910,70 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("td", [_c("p", [_vm._v("+ " + _vm._s(this.taxPrice))])])
+      _c("td", [_c("p", [_vm._v("+ " + _vm._s(this.taxPrice))])]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.nights,
+            expression: "nights"
+          }
+        ],
+        attrs: { type: "hidden", name: "nights" },
+        domProps: { value: _vm.nights },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.nights = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.roomtype_net_price,
+            expression: "roomtype_net_price"
+          }
+        ],
+        attrs: { type: "hidden", name: "roomtype_total[]" },
+        domProps: { value: _vm.roomtype_net_price },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.roomtype_net_price = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.taxPrice,
+            expression: "taxPrice"
+          }
+        ],
+        attrs: { type: "hidden", name: "roomtype_tax_price[]" },
+        domProps: { value: _vm.taxPrice },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.taxPrice = $event.target.value
+          }
+        }
+      })
     ],
     1
   )

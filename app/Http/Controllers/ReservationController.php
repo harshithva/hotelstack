@@ -67,10 +67,16 @@ class ReservationController extends Controller
     }
 
     public function calculateSum(Request $request) {
+        $home = Home::first();
         $rooms = explode(',',$request->rooms);
+        $reservation = new Reservation;
+        $reservation->roomsCount = count($rooms);
+        $reservation->adults = $request->adults;
+        $reservation->kids = $request->kids;
+        $reservation->nights = $request->nights;
 // dd($rooms);
 dd($request);
-       
+return view('backend.admin.reservations.confrim',compact('home',"reservation"));
     }
     /**
      * Show the form for creating a new resource.
