@@ -19,6 +19,8 @@ Route::get('/', 'HomeController@index')
 Route::get('/admin/homepage/{id}/edit', 'HomeController@edit')->name('homepageedit')->middleware('auth');
 Route::put('/admin/homepage/{id}', 'HomeController@update')->name('homepageupdate')->middleware('auth');
 
+Route::resource('/admin/hotel/reviews', 'ReviewController');
+
 Route::resource('/admin', 'DashboardController');
 
 Route::resource('/admin/hotel/floors', 'FloorController');

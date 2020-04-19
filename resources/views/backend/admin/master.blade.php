@@ -59,6 +59,15 @@
                     <span class="nav-link-text">Banner Section</span>
                   </a>
                 </li>
+
+                <li class="nav-item ">
+                  <a class="nav-link {{ Route::currentRouteNamed('reviews.index') ? 'active' : '' }}"
+                    href="{{ route('reviews.index')}}">
+                    <i class="ni ni-bold-up text-primary"></i>
+                    <span class="nav-link-text">Reviews</span>
+                  </a>
+                </li>
+
               </ul>
             </li>
 
