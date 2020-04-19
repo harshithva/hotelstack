@@ -74,9 +74,19 @@ class ReservationController extends Controller
         $reservation->adults = $request->adults;
         $reservation->kids = $request->kids;
         $reservation->nights = $request->nights;
-// dd($rooms);
-dd($request);
-return view('backend.admin.reservations.confrim',compact('home',"reservation"));
+        $reservation->total = array_sum($request->roomtype_total);
+        $roomType_tax=[];
+
+        for ($i=0; $i < count($request->roomtype_total); $i++) { 
+            $tax = Tax::find($request->taxes[$i]);
+            $roomType_total = $request->roomtype_total[$i];
+            $tax = $this->calculateTax($tax, $roomType_total);
+            array_push( $roomType_tax, $tax);
+        }
+
+        $reservation->total_tax = array_sum($roomType_tax);
+        dd($reservation->total_tax);
+        return view('backend.admin.reservations.confrim',compact('home',"reservation"));
     }
     /**
      * Show the form for creating a new resource.
@@ -85,7 +95,7 @@ return view('backend.admin.reservations.confrim',compact('home',"reservation"));
      */
     public function create()
     {
-       
+        
     }
 
     /**
@@ -145,9 +155,20 @@ return view('backend.admin.reservations.confrim',compact('home',"reservation"));
     }
     
         
-        
-            
-               
-            
+   function calculateTax($tax, $net_price) {
+
+        if($tax) {
+        if($net_price >= $tax->amount_1){
+          return (float) (($net_price/100) * $tax->rate_1);
+        }else if($net_price >= $tax->amount_2){
+         return (float) (($net_price/100) * $tax->rate_2);
+        }
+        else
+        {  
+          return 0;
+        }
+        }
+       
+      }
             
 }

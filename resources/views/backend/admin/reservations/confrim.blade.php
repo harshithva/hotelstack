@@ -67,8 +67,8 @@
                         <div class="form-row mb-4">
                             <div class="col-md">
                                 <div class="card text-center">
-                                    <div class="card-header">
-                                        <h3>Rooms</h3>
+                                    <div class="card-header bg-primary">
+                                        <h3 class="text-white">Rooms</h3>
                                     </div>
                                     <div class="card-body">
                                         <h3>{{$reservation->roomsCount}}</h3>
@@ -77,8 +77,8 @@
                             </div>
                             <div class="col-md">
                                 <div class="card text-center">
-                                    <div class="card-header">
-                                        <h3>Adults</h3>
+                                    <div class="card-header bg-primary">
+                                        <h3 class="text-white">Adults</h3>
                                     </div>
                                     <div class="card-body">
                                         <h3>{{$reservation->adults}}</h3>
@@ -87,8 +87,8 @@
                             </div>
                             <div class="col-md">
                                 <div class="card text-center">
-                                    <div class="card-header">
-                                        <h3>Kids</h3>
+                                    <div class="card-header bg-primary">
+                                        <h3 class="text-white">Kids</h3>
                                     </div>
                                     <div class="card-body">
                                         <h3>{{$reservation->kids}}</h3>
@@ -97,8 +97,8 @@
                             </div>
                             <div class="col-md">
                                 <div class="card text-center">
-                                    <div class="card-header">
-                                        <h3>Nights</h3>
+                                    <div class="card-header bg-primary">
+                                        <h3 class="text-white">Nights</h3>
                                     </div>
                                     <div class="card-body">
                                         <h3>{{$reservation->nights}}</h3>
@@ -171,23 +171,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="form-row justify-content-center" style="">
-                                            <div class="form-group col-md-3">
-                                                <div class="card p-2">
-                                                    <div class="input-group"><input type="text"
-                                                            placeholder="Apply Coupon" class="form-control">
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-btn">
-                                                                <!---->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!---->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

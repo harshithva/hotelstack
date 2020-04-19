@@ -18,5 +18,11 @@ class FloorSeeder extends Seeder
             'description' => 'This is sample description',
             'status' =>  '1'
         ]);
+        Floor::create([
+            'name' => '2st Floor',
+            'number' => '2',
+            'description' => 'This is sample description',
+            'status' =>  '1'
+        ]);
     }
 }

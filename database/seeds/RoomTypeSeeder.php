@@ -22,5 +22,16 @@ class RoomTypeSeeder extends Seeder
             'kids_capacity' => '2',
             'base_price' => '999'
         ]);
+
+        RoomType::create([
+            'title' => 'Deluxe Room',
+            'slug' => 'deluxe-room',
+            'short_code' => 'DR',
+            'description' => 'Deluxe Room',
+            'base_capacity' =>'2',
+            'higher_capacity' => '2',
+            'kids_capacity' => '2',
+            'base_price' => '1000'
+        ]);
     }
 }
