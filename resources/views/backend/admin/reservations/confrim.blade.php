@@ -33,9 +33,9 @@
         </div>
         @endif
 
-        @if (Session::has('room'))
+        @if (Session::has('confrim'))
 
-        <div class="alert alert-default mt-2">{{ Session::get('room') }}</div>
+        <div class="alert alert-default mt-2">{{ Session::get('confrim') }}</div>
 
         @endif
 
@@ -119,7 +119,8 @@
                                                             <thead class="font-weight-bold">
                                                                 <tr>
                                                                     <td class="sl">#</td>
-                                                                    <td>Date</td>
+                                                                    <td>Check in</td>
+                                                                    <td>Check out</td>
                                                                     <td>Available Room</td>
                                                                     <td>Qty</td>
                                                                     <td class="text-right">Price/Night</td>
@@ -129,7 +130,10 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="sl">1.</td>
-                                                                    <td class="text-muted">2020/04/18</td>
+                                                                    <td class="text-muted">{{$reservation->check_in}}
+                                                                    </td>
+                                                                    <td class="text-muted">{{$reservation->check_out}}
+                                                                    </td>
                                                                     <td>
                                                                         <div><a class="btn btn-sm btn-tsk">
                                                                                 205

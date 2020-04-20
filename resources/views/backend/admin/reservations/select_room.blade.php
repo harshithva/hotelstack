@@ -106,6 +106,8 @@
 </room-details>
 
 
+<input type="hidden" name="check_in" value="{{$guest->check_in}}">
+<input type="hidden" name="check_out" value="{{$guest->check_out}}">
 
 
 <button class="btn btn-success btn-lg btn-block mt-3" type="submit">Next</button>

@@ -49,7 +49,7 @@ class ReservationController extends Controller
     }
 
     public function getRooms(Request $request) {
-
+      
         // $rooms = RoomType::rooms()->get();
         $roomTypes = RoomType::all();
         $home = Home::first();
@@ -67,13 +67,17 @@ class ReservationController extends Controller
     }
 
     public function calculateSum(Request $request) {
+        // dd($request);
         $home = Home::first();
         $rooms = explode(',',$request->rooms);
         $reservation = new Reservation;
+        $reservation->rooms = $rooms;
         $reservation->roomsCount = count($rooms);
         $reservation->adults = $request->adults;
         $reservation->kids = $request->kids;
         $reservation->nights = $request->nights;
+        $reservation->check_in = $request->check_in;
+        $reservation->check_out = $request->check_out;
         $reservation->total = array_sum($request->roomtype_total);
         $roomType_tax=[];
 
@@ -84,8 +88,11 @@ class ReservationController extends Controller
             array_push( $roomType_tax, $tax);
         }
 
+        
+
         $reservation->total_tax = array_sum($roomType_tax);
-        dd($reservation->total_tax);
+        // dd($reservation->total_tax);
+        Session::flash('confrim', "Please Confrim details");
         return view('backend.admin.reservations.confrim',compact('home',"reservation"));
     }
     /**
