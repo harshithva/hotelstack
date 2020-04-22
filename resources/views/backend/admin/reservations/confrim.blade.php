@@ -113,50 +113,48 @@
                                         <table class="table table-sm  res-tbl mb-0">
                                             <tbody>
                                                 <tr>
-                                                    <th>Price Per Night</th>
-                                                    <td class="price-per-night p-0">
-                                                        <table class="table table-sm borderless mb-0 ">
-                                                            <thead class="font-weight-bold">
-                                                                <tr>
-                                                                    <td class="sl">#</td>
-                                                                    <td>Check in</td>
-                                                                    <td>Check out</td>
-                                                                    <td>Available Room</td>
-                                                                    <td>Qty</td>
-                                                                    <td class="text-right">Price/Night</td>
-                                                                    <td class="text-right">Total Price</td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="sl">1.</td>
-                                                                    <td class="text-muted">{{$reservation->check_in}}
-                                                                    </td>
-                                                                    <td class="text-muted">{{$reservation->check_out}}
-                                                                    </td>
-                                                                    <td>
-                                                                        <div><a class="btn btn-sm btn-tsk">
-                                                                                205
-                                                                            </a><a
-                                                                                class="btn btn-sm btn-outline-secondary">
-                                                                                209
-                                                                            </a><a
-                                                                                class="btn btn-sm btn-outline-secondary">
-                                                                                211
-                                                                            </a></div>
-                                                                    </td>
-                                                                    <td class="text-success">1 / 1</td>
-                                                                    <td class="text-right">999 Rupee</td>
-                                                                    <td class="text-right">
-                                                                        999 Rupee
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
+                                                    <table class="table table-sm borderless mb-0">
+                                                        <thead class="font-weight-bold">
+                                                            <tr>
+                                                                <td class="sl">#</td>
+                                                                <td>Check in</td>
+                                                                <td>Check out</td>
+                                                                <td>Available Room</td>
+                                                                <td>Qty</td>
+
+                                                                <td class="text-right">Total Price</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="sl">1.</td>
+                                                                <td class="text-muted">{{$reservation->check_in}}
+                                                                </td>
+                                                                <td class="text-muted">{{$reservation->check_out}}
+                                                                </td>
+                                                                <td>
+                                                                    <div>
+                                                                        @foreach ($reservation->rooms as $room)
+
+
+                                                                        <span class="badge badge-pill badge-success">
+                                                                            {{$room->number}}</span>
+                                                                        @endforeach
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-success">{{$reservation->rooms_count}}
+                                                                </td>
+
+                                                                <td class="text-right">
+                                                                    {{$reservation->total}} Rupee
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </tr>
+
                                                 <tr>
-                                                    <th>Taxes</th>
+
                                                     <td class="p-0">
                                                         <table class="table table-sm borderless mb-0">
                                                             <tbody>
@@ -165,11 +163,29 @@
                                                                     <td class="text-right "><span
                                                                             class="border-top"><input type="hidden"
                                                                                 value="0">
-                                                                            0 Rupee</span></td>
+                                                                            {{$reservation->total_tax}} Rupee</span>
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </td>
+
+                                                    <td class="p-0">
+                                                        <table class="table table-sm borderless mb-0">
+                                                            <tbody>
+                                                                <tr class="font-weight-bold">
+                                                                    <td colspan="3">Total (Including tax)</td>
+                                                                    <td class="text-right "><span
+                                                                            class="border-top"><input type="hidden"
+                                                                                value="0">
+                                                                            {{$reservation->total_plus_tax}}
+                                                                            Rupee</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+
                                                 </tr>
                                                 <!---->
                                             </tbody>
@@ -179,14 +195,29 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-row justify-content-center">
-                            <div class="form-group col-sm-6 mt-2"><button class="btn btn-outline-tsk float-left"><i
-                                        class="fa fa-refresh"></i> Reset</button>
+                            <div class="form-group col-sm-6 mt-2">
+                                <a href="{{route('reservations.guest')}}"
+                                    class="btn btn-warning btn-outline-tsk float-left">
+                                    <i class="fa fa-refresh"></i> Reset
+                                </a>
                                 <div>
                                     <!---->
-                                </div> <button class="btn btn-tsk float-right"><i class="fa fa-save"></i> Reservation
-                                    Confirm</button> <button class="btn btn-danger float-right mr-1"><i
-                                        class="fa fa-arrow-left"></i> Back</button>
+                                </div>
+                                <form action="{{route('reservations.store')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="reservaton" value="{{$reservation}}">
+                                    <button class="btn btn-primary btn-tsk float-right" type="submit"><i
+                                            class="fa fa-save"></i>
+                                        Reservation
+                                        Confirm</button>
+                                </form>
+
+                                {{-- <a class="btn btn-danger float-right mr-1"
+                                        href="{{route('reservations.rooms.select', $reservation->guest)}}"><i
+                                    class="fa fa-arrow-left"></i>
+                                Back</a> --}}
                             </div>
 
                             @endsection @section('scripts') @endsection

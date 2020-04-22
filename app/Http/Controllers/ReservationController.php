@@ -20,6 +20,8 @@ class ReservationController extends Controller
         $this->middleware('auth');
     }
 
+    private $reservation;
+
     /**
      * Display a listing of the resource.
      *
@@ -72,6 +74,7 @@ class ReservationController extends Controller
         $rooms = explode(',',$request->rooms);
         $reservation = new Reservation;
         $reservation->rooms = $rooms;
+        $reservation->guest = $request->user_id;
         $reservation->roomsCount = count($rooms);
         $reservation->adults = $request->adults;
         $reservation->kids = $request->kids;
@@ -80,6 +83,7 @@ class ReservationController extends Controller
         $reservation->check_out = $request->check_out;
         $reservation->total = array_sum($request->roomtype_total);
         $roomType_tax=[];
+        $room_numbers=[];
 
         for ($i=0; $i < count($request->roomtype_total); $i++) { 
             $tax = Tax::find($request->taxes[$i]);
@@ -87,11 +91,19 @@ class ReservationController extends Controller
             $tax = $this->calculateTax($tax, $roomType_total);
             array_push( $roomType_tax, $tax);
         }
-
-        
-
         $reservation->total_tax = array_sum($roomType_tax);
-        // dd($reservation->total_tax);
+
+        foreach ($reservation->rooms as $room_id) {
+            $room = Room::find($room_id);
+            array_push( $room_numbers, $room);
+          }
+
+        $reservation->rooms = $room_numbers;
+
+        $reservation->rooms_count = count($room_numbers);
+        $reservation->total_plus_tax =  $reservation->total+ $reservation->total_tax;
+        $this->reservation = $reservation;
+     
         Session::flash('confrim', "Please Confrim details");
         return view('backend.admin.reservations.confrim',compact('home',"reservation"));
     }
@@ -113,7 +125,8 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        // dd($this->reservation);
     }
 
     /**
