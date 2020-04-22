@@ -8,10 +8,13 @@ use App\Home;
 use App\Tax;
 use App\RoomType;
 use App\Room;
+use App\ReservationRoom;
+use Carbon\Carbon;
 
 use Session;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ReservationController extends Controller
 {
@@ -102,7 +105,7 @@ class ReservationController extends Controller
 
         $reservation->rooms_count = count($room_numbers);
         $reservation->total_plus_tax =  $reservation->total+ $reservation->total_tax;
-        $this->reservation = $reservation;
+        
      
         Session::flash('confrim', "Please Confrim details");
         return view('backend.admin.reservations.confrim',compact('home',"reservation"));
@@ -125,8 +128,56 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        // dd($this->reservation);
+        $data = json_decode($request->reservation);
+        
+        // dd($data);
+
+        // $this->validate($request,[
+        //     'guest'=>'required|integer',
+        //     'adults'=>'required|integer|min:1',
+        //     'kids'=>'required|integer|min:0',
+        //     'check_in'=>'required|date|after_or_equal:today',
+        //     'check_out'=>'required|date|after_or_equal:check_in',
+        //     'night_list'=>'required',
+        //     'rooms_count'=>'required'
+        // ]);
+
+        $reservation = new Reservation;
+        $reservation->uid = (string) Str::uuid();
+        $reservation->user_id = $data->guest;
+        $reservation->adults = $data->adults;
+        $reservation->kids = $data->kids;
+        $reservation->check_in = Carbon::createFromFormat('d/m/Y', $data->check_in);
+        $reservation->check_out = Carbon::createFromFormat('d/m/Y',$data->check_out);
+        $reservation->number_of_room = $data->rooms_count;
+        $reservation->total = $data->total;
+        $reservation->total_tax = $data->total_tax;
+        $reservation->total_plus_tax = $data->total_plus_tax;
+        $reservation->save();
+
+        try {
+
+            foreach($data->rooms as $room)
+            {
+                $reservation_room = new ReservationRoom;
+                $reservation_room->reservation_id = $reservation->id;
+                $reservation_room->room_id = $room->id;
+        
+                $reservation_room->check_in = Carbon::createFromFormat('d/m/Y', $data->check_in);
+                $reservation_room->check_out = Carbon::createFromFormat('d/m/Y', $data->check_out);
+                $reservation_room->save();
+            }
+          }
+          
+          //catch exception
+          catch(Exception $e) {
+             Session::flash('danger', "Oops..Something went wrong!");
+            return redirect()->route('reservations.index');
+          }
+
+          $reservation->status = 'SUCCESS';
+          $reservation->save();
+        return redirect()->route('reservations.index');
     }
 
     /**

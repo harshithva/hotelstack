@@ -207,7 +207,7 @@
                                 </div>
                                 <form action="{{route('reservations.store')}}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="reservaton" value="{{$reservation}}">
+                                    <input type="hidden" name="reservation" value="{{$reservation}}">
                                     <button class="btn btn-primary btn-tsk float-right" type="submit"><i
                                             class="fa fa-save"></i>
                                         Reservation
