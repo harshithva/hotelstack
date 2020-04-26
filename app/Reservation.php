@@ -10,7 +10,8 @@ class Reservation extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function room_type(){
-        return $this->belongsTo(RoomType::class, 'id');
+    public function reservation_rooms() {
+        return $this->hasMany(ReservationRoom::class, 'reservation_id');
     }
+
 }

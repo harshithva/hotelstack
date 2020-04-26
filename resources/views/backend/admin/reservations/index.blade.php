@@ -61,7 +61,6 @@
             <th scope="col" class="sort" data-sort="budget">Reservation Number</th>
             <th scope="col" class="sort" data-sort="status">Reservation Date</th>
             <th scope="col" class="sort" data-sort="status">Guest</th>
-            <th scope="col" class="sort" data-sort="status">Room Type</th>
             <th scope="col" class="sort" data-sort="completion">Check in</th>
             <th scope="col" class="sort" data-sort="completion">Check Out</th>
             <th scope="col" class="sort" data-sort="completion">Booking Type</th>
@@ -78,7 +77,6 @@
           <td>{{ $reservation->uid }}</td>
           <td>{{ $reservation->created_at}}</td>
           <td>{{ optional($reservation->user)->name }}</td>
-          <td>{{ optional($reservation->room_type)->title }}</td>
           <td>{{ $reservation->check_in}}</td>
           <td>{{ $reservation->check_out}}</td>
           <td><span class="badge">Offline</span></td>
