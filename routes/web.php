@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\ReservationMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/email', function() {
+return new ReservationMail();
+});
 Route::get('/', 'HomeController@index')
         ->name('home');
 
