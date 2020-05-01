@@ -57,9 +57,61 @@ class ReservationController extends Controller
     }
 
     public function getRooms(Request $request) {
-      
+       $dateCheckin = Carbon::createFromFormat('d/m/Y', $request->check_in)->format('Y-m-d');
+      $dateCheckout = Carbon::createFromFormat('d/m/Y', $request->check_out)->format('Y-m-d');
+
+      $reservations = Reservation::where('active', 1)
+      ->where(function($query) use ($dateCheckin, $dateCheckout){
+                  $query->where([
+                      ['check_in', '<=', $dateCheckin],
+                      ['check_out', '>=', $dateCheckin]
+                  ])
+                  ->orWhere([
+                      ['check_in', '<', $dateCheckout],
+                      ['check_out', '>=', $dateCheckout]
+                  ])
+                  ->orWhere([
+                      ['check_in', '>=', $dateCheckin],
+                      ['check_out', '<', $dateCheckout]
+                  ]);
+              })
+            ->orderBy('check_in')
+            ->get();
+           
+            $bookedRooms = [];
+            foreach($reservations as $reservation)
+            {
+              $bookedRooms = ReservationRoom::where('reservation_id', $reservation->id)->get();
+            }
+
+            $availableRooms = [];
+            foreach($bookedRooms as $bookedRoom)
+            {
+              $reservedRoom = $bookedRoom->pluck('room_id')->toArray();
+             
+              // Room::where('room_type_id',$room_type)->whereNotIn('id', $reservedRooms)->get();
+              $availableRooms = Room::whereNotIn('id', $reservedRoom)->get();
+             
+            }
+
+            $roomTypes = RoomType::with('rooms')->get();
+            
+            // foreach($roomTypes as $roomType)
+            // {
+            //   foreach($bookedRooms as $bookedRoom)
+            //   {
+            //     $filtered = $roomType->rooms->filter(function ($value, $key) {
+            //       return $value->id != 4;
+            //   });
+            //   }
+            //   // $roomType = $filtered;
+            // }
+           
+        
+
+            // dd($roomTypes);
         // $rooms = RoomType::rooms()->get();
-        $roomTypes = RoomType::all();
+        
         $home = Home::first();
         
         $guest = User::findOrFail($request->user_id);
@@ -154,7 +206,7 @@ class ReservationController extends Controller
         // ]);
 
         $reservation = new Reservation;
-        $reservation->uid = (string) Str::uuid();
+        $reservation->uid = sprintf("%06d", mt_rand(1, 999999));
         $reservation->user_id = $data->guest;
         $reservation->adults = $data->adults;
         $reservation->kids = $data->kids;

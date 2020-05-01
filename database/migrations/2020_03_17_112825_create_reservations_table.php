@@ -16,8 +16,9 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('uid')->unique();
+            $table->boolean('active')->default(1);
             $table->unsignedBigInteger('user_id');
-            // $table->unsignedBigInteger('room_type_id');
+    
             $table->integer('adults')->default(1);
             $table->integer('kids')->default(0);
             $table->date('check_in');
