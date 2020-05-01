@@ -84,32 +84,43 @@ class ReservationController extends Controller
               $bookedRooms = ReservationRoom::where('reservation_id', $reservation->id)->get();
             }
 
-            $availableRooms = [];
-            foreach($bookedRooms as $bookedRoom)
-            {
-              $reservedRoom = $bookedRoom->pluck('room_id')->toArray();
-             
-              // Room::where('room_type_id',$room_type)->whereNotIn('id', $reservedRooms)->get();
-              $availableRooms = Room::whereNotIn('id', $reservedRoom)->get();
-             
-            }
-
-            $roomTypes = RoomType::with('rooms')->get();
+            if(empty($bookedRooms)){
+              $roomTypes = RoomType::with('rooms')->get();
+            }else {
+              $availableRooms = [];
+              foreach($bookedRooms as $bookedRoom)
+              {
+                $reservedRoom = $bookedRoom->pluck('room_id')->toArray();
+               
+                // Room::where('room_type_id',$room_type)->whereNotIn('id', $reservedRooms)->get();
+                $availableRooms = Room::whereNotIn('id', $reservedRoom)->pluck('id')->toArray();
+               
+              }
+       
+            // dd($availableRooms);
             
-            // foreach($roomTypes as $roomType)
-            // {
-            //   foreach($bookedRooms as $bookedRoom)
-            //   {
-            //     $filtered = $roomType->rooms->filter(function ($value, $key) {
-            //       return $value->id != 4;
-            //   });
-            //   }
-            //   // $roomType = $filtered;
-            // }
+                $roomTypes = RoomType::with(['rooms'=> function($query) use ($availableRooms) {
+                  $query->whereIn('id', $availableRooms);
+                }
+                ])->get();
+            }
            
-        
-
-            // dd($roomTypes);
+            
+            
+// dd($roomTypes);
+            
+            
+      //       foreach($roomTypes as $roomType)
+      //       {
+      //         foreach($availableRooms as $availableRoom)
+      //         {
+      //           $roomType->rooms->filter(function ($value, $key) {
+      //             return $value->id == $availableRoom;
+      //         });
+      //         }
+      //       }
+           
+      // dd($roomTypes);
         // $rooms = RoomType::rooms()->get();
         
         $home = Home::first();
