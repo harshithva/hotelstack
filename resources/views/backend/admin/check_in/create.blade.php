@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-@section('title','Create new review')
+@section('title','Create new reservation')
 @section('main')
 
 <div class="main-content p-4" id="panel">
@@ -7,15 +7,15 @@
 
         <div class="card">
             <div class="card-header bg-white">
-                <h2>Create New Review
-                    <a class="btn btn-tsk float-right" href="{{ route('reviews.index') }}"><i class="fa fa-list"></i>
-                        Review List</a>
+                <h2>Create New Reservation
+                    <a class="btn btn-tsk float-right" href="{{ route('guests.index') }}"><i class="fa fa-list"></i>
+                        Reservation List</a>
                 </h2>
             </div>
 
 
             <div class="card-body">
-                <form action="{{ route('reviews.store') }}" method="post" enctype="multipart/form-data"><input
+                <form action="{{ route('guests.store') }}" method="post" enctype="multipart/form-data"><input
                         type="hidden">
                     @csrf
 

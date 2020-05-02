@@ -43,6 +43,11 @@ Route::get('/admin/hotel/reservations/make/{guest}/select_room_type', 'Reservati
 Route::post('/admin/hotel/reservations/make/{guest}/select_room_type/room', 'ReservationController@getRooms')->name('reservations.rooms');
 Route::post('/admin/hotel/reservations/make/{guest}/select_room_type/room/select', 'ReservationController@calculateSum')->name('reservations.rooms.select');
 
+Route::resource('/admin/hotel/checkin', 'CheckInController');
+Route::get('/admin/hotel/checkin/make/select_guests', 'CheckInController@selectGuest')->name('check_in.guest');
+Route::get('/admin/hotel/checkin/make/{guest}/select_room_type', 'CheckInController@selectRoomDetails')->name('check_in.room_details');
+Route::post('/admin/hotel/checkin/make/{guest}/select_room_type/room', 'CheckInController@getRooms')->name('check_in.rooms');
+Route::post('/admin/hotel/checkin/make/{guest}/select_room_type/room/select', 'CheckInController@calculateSum')->name('check_in.rooms.select');
 // API
 // Route::resource('/api/v1/guests', 'GuestApiController');
 

@@ -17,6 +17,8 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->string('uid')->unique();
             $table->boolean('active')->default(1);
+            $table->boolean('checked_in')->default(0);
+            $table->boolean('checked_out')->default(0);
             $table->unsignedBigInteger('user_id');
     
             $table->integer('adults')->default(1);
