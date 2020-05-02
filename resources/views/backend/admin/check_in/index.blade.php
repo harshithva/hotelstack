@@ -5,9 +5,9 @@
   <div class="table-responsive">
     <div>
       <div class="card-header bg-white">
-        <h2>Reservations
-          <a class="btn btn-success float-right" href="{{ route('reservations.guest') }}"><i
-              class="fa fa-plus"></i>&nbsp;Add Reservation</a>
+        <h2>Check in's
+          <a class="btn btn-success float-right" href="{{ route('check_in.guest') }}"><i
+              class="fa fa-plus"></i>&nbsp;Add Check in</a>
         </h2>
       </div>
 

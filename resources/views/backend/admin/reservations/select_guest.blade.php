@@ -124,8 +124,9 @@
                             </span>
                         </form> --}}
 
-                        <a class="btn btn-default" href="{{ route('reservations.room_details', $guest->id) }}"><i
-                                class="fa fa-plus"></i>&nbsp; Select Guest</a>
+                        <a class="btn btn-outline-default"
+                            href="{{ route('reservations.room_details', $guest->id) }}"><i class="fa fa-plus"></i>&nbsp;
+                            Select Guest</a>
                         <br>
 
                     </td>

@@ -39,6 +39,13 @@ class CheckInController extends Controller
         return view('backend.admin.check_in.index',compact('home','reservations'));
     }
 
+    public function  selectGuest() {
+        $guests = User::where('usertype','user')->orderBy('id', 'desc')->paginate(10);
+        $home = Home::first();
+        Session::flash('guest', "Select Guest");
+        return view('backend.admin.check_in.select_guest', compact('home','guests'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
