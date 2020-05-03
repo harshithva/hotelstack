@@ -56,7 +56,7 @@
 
         <div class="card">
             <div class="card-header bg-white">
-                <h2>Confrim Checkin
+                <h2>Confirm Checkin
                     <a href="{{route("checkin.index")}}" class="btn btn-tsk float-right"><i class="fa fa-list"></i>Check
                         in List</a></h2>
             </div>

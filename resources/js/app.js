@@ -49,7 +49,8 @@ Vue.mixin({
 const app = new Vue({
     el: '#panel',
     data: {
-        selected: []
+        selected: [],
+        buttonDisabled: 0
     },
     methods: {
         selectRoom(room) {
@@ -57,11 +58,10 @@ const app = new Vue({
 
             if (!this.selected.includes(room)) {
                 this.selected.push(room);
+                this.buttonDisabled = 1;
             } else {
                 this.selected.pop(room);
             }
-
-            console.log(this.selected);
         }
     }
 });

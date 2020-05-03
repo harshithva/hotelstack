@@ -57,6 +57,7 @@ class ReservationController extends Controller
     }
 
     public function getRooms(Request $request) {
+ 
        $dateCheckin = Carbon::createFromFormat('d/m/Y', $request->check_in)->format('Y-m-d');
       $dateCheckout = Carbon::createFromFormat('d/m/Y', $request->check_out)->format('Y-m-d');
 
@@ -146,6 +147,12 @@ class ReservationController extends Controller
     }
 
     public function calculateSum(Request $request) {
+      // dd("hi");
+    //   $this->validate($request,[
+    //     'rooms_count'=>'required'
+    // ]);
+
+
         // dd($request);
         $home = Home::first();
         $rooms = explode(',',$request->rooms);
@@ -203,8 +210,6 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $data = json_decode($request->reservation);
-        
-        // dd($data);
 
         // $this->validate($request,[
         //     'guest'=>'required|integer',

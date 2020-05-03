@@ -56,9 +56,9 @@
 
         <div class="card">
             <div class="card-header bg-white">
-                <h2>Confrim Reservation
-                    <a href="https://whitehouseinn.in/admin/reservations" class="btn btn-tsk float-right"><i
-                            class="fa fa-list"></i> Reservation List</a></h2>
+                <h2>Confirm Reservation
+                    <a href="{{route("reservations.index")}}" class="btn btn-tsk float-right"><i class="fa fa-list"></i>
+                        Reservation List</a></h2>
             </div>
             <div class="card-body">
                 <div class="row">
