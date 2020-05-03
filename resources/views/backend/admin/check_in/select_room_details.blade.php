@@ -4,9 +4,7 @@
 <div class="main-content p-4" id="panel">
     <div>
         <div class="card-header bg-white">
-            <h2>Room Type
-                <a class="btn btn-success float-right" href="{{ route('room_types.create') }}"><i
-                        class="fa fa-plus"></i>&nbsp;Create Room Type</a>
+            <h2>Select Room Details
             </h2>
         </div>
 
@@ -55,7 +53,7 @@
             </div>
         </div>
 
-        <form action="{{ route('reservations.rooms', $guest->id) }}" method="POST">
+        <form action="{{ route('check_in.rooms', $guest->id) }}" method="POST">
             @csrf
             <div class="form-group">
                 <div class="input-group input-group-lg">

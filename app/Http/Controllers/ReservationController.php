@@ -354,7 +354,10 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-   
+      $reservation->status = "CANCEL";
+      $reservation->active = 0;
+      $reservation->save();
+      return redirect()->route('reservations.index');
     }
     
         

@@ -198,14 +198,14 @@
 
                         <div class="form-row justify-content-center">
                             <div class="form-group col-sm-6 mt-2">
-                                <a href="{{route('reservations.guest')}}"
+                                <a href="{{route('check_in.guest')}}"
                                     class="btn btn-warning btn-outline-tsk float-left">
                                     <i class="fa fa-refresh"></i> Reset
                                 </a>
                                 <div>
                                     <!---->
                                 </div>
-                                <form action="{{route('reservations.store')}}" method="POST">
+                                <form action="{{route('check_in.store')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="reservation" value="{{$reservation}}">
                                     <button class="btn btn-primary btn-tsk float-right" type="submit"><i

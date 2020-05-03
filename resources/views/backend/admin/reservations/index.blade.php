@@ -85,7 +85,7 @@
           @if ($reservation->status == 'PENDING')
           <td><span class="badge badge-info">Pending</span></td>
           @elseif($reservation->status == 'CANCEL')
-          <td><span class="badge badge-danger">Cancel</span></td>
+          <td><span class="badge badge-danger">Cancelled</span></td>
           @else
           <td><span class="badge badge-success">Success</span></td>
           @endif
@@ -102,7 +102,7 @@
               @method('DELETE')
               <span class="text-danger">
                 <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit"
-                  style="background:none!important;border:none;padding:0!important;">Delete</button>
+                  style="background:none!important;border:none;padding:0!important;">Cancel</button>
               </span>
             </form>
 

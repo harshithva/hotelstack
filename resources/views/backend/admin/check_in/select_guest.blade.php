@@ -124,7 +124,7 @@
                             </span>
                         </form> --}}
 
-                        <a class="btn btn-outline-default" href="{{ route('checkin.room_details', $guest->id) }}"><i
+                        <a class="btn btn-outline-default" href="{{ route('check_in.room_details', $guest->id) }}"><i
                                 class="fa fa-plus"></i>&nbsp;
                             Select Guest</a>
                         <br>
