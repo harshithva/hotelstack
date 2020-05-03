@@ -56,9 +56,9 @@
 
         <div class="card">
             <div class="card-header bg-white">
-                <h2>Confrim Reservation
-                    <a href="https://whitehouseinn.in/admin/reservations" class="btn btn-tsk float-right"><i
-                            class="fa fa-list"></i> Reservation List</a></h2>
+                <h2>Confrim Checkin
+                    <a href="{{route("checkin.index")}}" class="btn btn-tsk float-right"><i class="fa fa-list"></i>Check
+                        in List</a></h2>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -119,7 +119,7 @@
                                                                 <td class="sl">#</td>
                                                                 <td>Check in</td>
                                                                 <td>Check out</td>
-                                                                <td>Available Room</td>
+                                                                <td>Rooms</td>
                                                                 <td>Qty</td>
 
                                                                 <td class="text-right">Total Price</td>
@@ -205,13 +205,12 @@
                                 <div>
                                     <!---->
                                 </div>
-                                <form action="{{route('check_in.store')}}" method="POST">
+                                <form action="{{route('checkin.store')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="reservation" value="{{$reservation}}">
                                     <button class="btn btn-primary btn-tsk float-right" type="submit"><i
                                             class="fa fa-save"></i>
-                                        Reservation
-                                        Confirm</button>
+                                        Check in</button>
                                 </form>
 
                                 {{-- <a class="btn btn-danger float-right mr-1"

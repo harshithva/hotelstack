@@ -276,7 +276,7 @@ class CheckInController extends Controller
         Mail::to($guest->email)->send(new ReservationMail($data));
 
 
-        return redirect()->route('check_in.index');
+        return redirect()->route('checkin.index');
     }
 
     /**
@@ -321,6 +321,24 @@ class CheckInController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $reservation->status = "CANCEL";
+      $reservation->active = 0;
+      $reservation->save();
+      return redirect()->route('reservations.index');
+    }
+    function calculateTax($tax, $net_price) {
+
+      if($tax) {
+      if($net_price >= $tax->amount_1){
+        return (float) (($net_price/100) * $tax->rate_1);
+      }else if($net_price >= $tax->amount_2){
+       return (float) (($net_price/100) * $tax->rate_2);
+      }
+      else
+      {  
+        return 0;
+      }
+      }
+     
     }
 }

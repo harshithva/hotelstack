@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <form action="{{ route('reservations.rooms.select', $guest->id) }}" method="POST">
+        <form action="{{ route('check_in.rooms.select', $guest->id) }}" method="POST">
             @csrf
             {{-- <div class="form-group">
                 <div class="input-group input-group-lg">

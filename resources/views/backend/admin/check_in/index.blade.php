@@ -102,7 +102,7 @@
               @method('DELETE')
               <span class="text-danger">
                 <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit"
-                  style="background:none!important;border:none;padding:0!important;">Delete</button>
+                  style="background:none!important;border:none;padding:0!important;">Cancel</button>
               </span>
             </form>
 
