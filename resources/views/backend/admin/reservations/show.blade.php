@@ -84,36 +84,34 @@
                         </div>
                         <div class="col-md-4 invoice-col">
                             Guest Details <address> <br>
-                                <strong>Ambreesh R M</strong><br>
-                                S/O MUTHAPPA,
-                                #5,RAMAPURA,HGULIBALE
-                                KOLAR,KARNATAKA
-                                563114<br>
-                                Phone: 9900272360<br>
-                                Email: admin@gmail.com </address>
+                                <strong>{{$reservation->user->name}}</strong><br>
+                                {{$reservation->user->address ?? ""}}
+                                <br>
+                                Phone: {{$reservation->user->phone}}<br>
+                                Email: {{$reservation->user->email}}</address>
                         </div>
                         <div class="col-md-4 invoice-col">
                             <table width="90%">
                                 <tbody>
                                     <tr>
-                                        <th><b>Room Type</b></th>
+                                        {{-- <th><b>Room Type</b></th>
                                         <th>:</th>
-                                        <td>Deluxe Room</td>
+                                        <td>Deluxe Room</td> --}}
                                     </tr>
                                     <tr>
                                         <th><b>Booking Date:</b></th>
                                         <th>:</th>
-                                        <td>2020/03/20 20:39:01 PM</td>
+                                        <td>{{$reservation->created_at}}</td>
                                     </tr>
                                     <tr>
                                         <th><b>Check in </b></th>
                                         <th>:</th>
-                                        <td>2020-03-20</td>
+                                        <td>{{$reservation->check_in}}</td>
                                     </tr>
                                     <tr>
                                         <th><b>Check out</b></th>
                                         <th>:</th>
-                                        <td>2020-03-21</td>
+                                        <td>{{$reservation->check_out}}</td>
                                     </tr>
                                     <tr>
                                         <th><b>Payment Status </b></th>
@@ -125,17 +123,23 @@
                                     <tr>
                                         <th><b>Booking Status </b></th>
                                         <th>:</th>
-                                        <td><span class="badge badge-success">SUCCESS</span></td>
+                                        @if ($reservation->status == 'PENDING')
+                                        <td><span class="badge badge-info">Pending</span></td>
+                                        @elseif($reservation->status == 'CANCEL')
+                                        <td><span class="badge badge-danger">Cancelled</span></td>
+                                        @else
+                                        <td><span class="badge badge-success">Success</span></td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th><b>Adults</b></th>
                                         <th>:</th>
-                                        <td>2 Person</td>
+                                        <td>{{$reservation->adults}} Person</td>
                                     </tr>
                                     <tr>
                                         <th><b>Kids </b></th>
                                         <th>:</th>
-                                        <td>0 Person</td>
+                                        <td>{{$reservation->kids}} Person</td>
                                     </tr>
                                     <tr>
                                         <th><b>Nights </b></th>
