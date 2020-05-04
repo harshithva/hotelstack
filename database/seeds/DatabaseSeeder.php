@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TaxSeeder::class);
         $this->call(GuestSeeder::class);
         $this->call(ReviewSeeder::class);
+        $this->call(HotelDetailSeeder::class);
        
     }
 }

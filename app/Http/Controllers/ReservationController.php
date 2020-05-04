@@ -11,6 +11,8 @@ use App\Tax;
 use App\RoomType;
 use App\Room;
 use App\ReservationRoom;
+use App\HotelDetail;
+
 use Carbon\Carbon;
 
 use Session;
@@ -325,7 +327,9 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+      $home = Home::first();
+      $hotel = HotelDetail::first();
+      return view("backend.admin.reservations.show",compact("home", "reservation","hotel"));
     }
 
     /**
