@@ -329,6 +329,8 @@ class ReservationController extends Controller
     {
       $home = Home::first();
       $hotel = HotelDetail::first();
+      // $r = $reservation->reservation_room;
+      // dd($r);
       return view("backend.admin.reservations.show",compact("home", "reservation","hotel"));
     }
 

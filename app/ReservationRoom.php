@@ -10,11 +10,11 @@ class ReservationRoom extends Model
 
     // protected $dates = ['check_in','check_out'];
 
-    public function reservation_rooms() {
-        return $this->belongsTo(Reservation::class, 'reservation_id');
+    public function reservation_room() {
+        return $this->belongsTo(Reservation::class, 'id');
     }
 
     public function room() {
-        return $this->hasOne(Room::class, 'room_id');
+        return $this->hasOne(Room::class, 'id');
     }
 }

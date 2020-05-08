@@ -13,7 +13,7 @@ class Reservation extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function reservation_rooms() {
+    public function reservation_room() {
         return $this->hasMany(ReservationRoom::class, 'reservation_id');
     }
 

@@ -79,7 +79,7 @@
                                 Phone: {{$hotel->phone_number}}<br>
                                 Email: {{$hotel->email}} <br>
                                 Address: {{$hotel->address}} <br>
-                                GSTTIN: {{$hotel->gst_number}} <br>
+                                GSTIN: {{$hotel->gst_number}} <br>
                             </address>
                         </div>
                         <div class="col-md-4 invoice-col">
@@ -106,12 +106,12 @@
                                     <tr>
                                         <th><b>Check in </b></th>
                                         <th>:</th>
-                                        <td>{{$reservation->check_in}}</td>
+                                        <td> {{ date('d-M-y', strtotime($reservation->check_in)) }}</td>
                                     </tr>
                                     <tr>
                                         <th><b>Check out</b></th>
                                         <th>:</th>
-                                        <td>{{$reservation->check_out}}</td>
+                                        <td>{{ date('d-M-y', strtotime($reservation->check_out)) }}</td>
                                     </tr>
                                     <tr>
                                         <th><b>Payment Status </b></th>
@@ -165,16 +165,23 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1.</td>
-                                        <td>2020-03-20</td>
+                                        <td>#</td>
+                                        <td>{{ date('d-M-y', strtotime($reservation->created_at)) }}</td>
                                         <td>
-                                            105
+                                            <div>
+                                                @foreach ($reservation->reservation_room as $room)
+
+
+                                                <span class="badge badge-pill badge-success">
+                                                    {{$room->room->number}}</span>
+                                                @endforeach
+                                            </div>
                                         </td>
-                                        <td align="right">1,299.00 Rupee</td>
+                                        <td align="right">{{$reservation->total}} Rupee</td>
                                     </tr>
                                     <tr class="border-top">
                                         <td colspan="3"><b>Total Price</b></td>
-                                        <td align="right"> <b> 1,299.00 Rupee</b></td>
+                                        <td align="right"> <b> {{$reservation->total}} Rupee</b></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -187,8 +194,8 @@
                                 <table class="table-sm w-100">
                                     <tbody>
                                         <tr>
-                                            <td colspan="3" align=""><b>Discount</b></td>
-                                            <td class="text-right"><b>499.00 Rupee</b></td>
+                                            <td colspan="3" align=""><b>Total Tax</b></td>
+                                            <td class="text-right"><b>{{$reservation->total_tax}} Rupee</b></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -203,7 +210,7 @@
                                     <tbody>
                                         <tr>
                                             <td colspan="3" align=""><b>Payable Amount</b></td>
-                                            <td class="text-right"><b>800.00 Rupee</b></td>
+                                            <td class="text-right"><b>{{$reservation->total_plus_tax}} Rupee</b></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -346,7 +353,7 @@
                                 Phone: 091485 08738,9148508737<br>
                                 Email: contact@whitehouseinn.in <br>
                                 veenu complex, Kundapura Main Rd, opp. canara bank, Kundapura, Karnataka 576201
-                                GSTTIN:29AFRPP7885A1ZQ
+                                GSTIN:29AFRPP7885A1ZQ
                             </address>
                         </div>
                         <div class="col-md-4 invoice-col">
