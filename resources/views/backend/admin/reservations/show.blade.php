@@ -8,7 +8,70 @@
                 <a class="btn btn-outline-success float-right" href="{{ route('reservations.index') }}"><i
                         class="fa fa-list"></i>&nbsp;Reservation List</a>
             </h2>
+            <div class="mt-3">
+
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    Add Payment
+                </button>
+            </div>
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" action="{{route('payment.store')}}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0">Reservation Number</strong></label>
+                                        <input class="form-control" readonly="" value="{{$reservation->uid}}">
+                                    </div>
+                                </div>
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0">Date</strong></label>
+                                        <input class="form-control" name="date" readonly="" value="{{date('d/m/Y')}}">
+                                    </div>
+                                </div>
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0" name="method">Payment
+                                                Method</strong></label>
+                                        <select class="form-control" name="payment_method">
+                                            <option value="CASH" selected>Cash</option>
+                                            <option value="CARD">Card</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="reservation_id" value="{{$reservation->id}}">
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0">Amount</strong></label>
+                                        <input class="form-control" name="amount" value="" placeholder="0.00" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+
 
 
         @if (Session::has('success'))
