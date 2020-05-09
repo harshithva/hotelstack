@@ -35,7 +35,20 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $this->validate($request,[
+            'reservation_id'=> ['required','max:255'],
+            'method'=>['required','max:255'],
+            'amount' => ['required','max:100'],
+              ]);
+
+              $payment = new Payment;
+              $payment->transaction_id = sprintf("%010d", mt_rand(1, 999999));
+              $payment->reservation_id = $request->reservation_id;
+              $payment->amount = $request->amount;
+              $payment->method = $request->method;
+              $payment->save();
+
+              return redirect()->back();
     }
 
     /**

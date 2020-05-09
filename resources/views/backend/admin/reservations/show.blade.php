@@ -44,15 +44,15 @@
                                 </div>
                                 <div class="form-row justify-content-center">
                                     <div class="form-group col-sm-12" data-children-count="1">
-                                        <label><strong data-children-count="0" name="method">Payment
+                                        <label><strong data-children-count="0">Payment
                                                 Method</strong></label>
-                                        <select class="form-control" name="payment_method">
+                                        <select class="form-control" name="method">
                                             <option value="CASH" selected>Cash</option>
                                             <option value="CARD">Card</option>
                                         </select>
                                     </div>
                                 </div>
-                                <input type="hidden" name="reservation_id" value="{{$reservation->id}}">
+                                <input type="hidden" name="reservation_id" value="{{$reservation->id}}" type="number">
                                 <div class="form-row justify-content-center">
                                     <div class="form-group col-sm-12" data-children-count="1">
                                         <label><strong data-children-count="0">Amount</strong></label>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Pay</button>
                                 </div>
                             </form>
                         </div>
