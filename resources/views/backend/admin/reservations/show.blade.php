@@ -3,7 +3,7 @@
 @section('main')
 <div class="main-content p-4" id="panel">
     <div>
-        <div class="card-header bg-white">
+        <div class="card-header bg-white d-print-none">
             <h2>Reservation
                 <a class="btn btn-outline-success float-right" href="{{ route('reservations.index') }}"><i
                         class="fa fa-list"></i>&nbsp;Reservation List</a>
@@ -16,11 +16,13 @@
                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_service">
                     Add Service
                 </button>
+                <button class="btn btn-outline-default btn-sm" onclick="javascript:window.print()"><i
+                        class="fa fa-print"></i></button>
             </div>
 
 
-            <div class="modal fade" id="add_payment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade d-print-none" id="add_payment" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -76,8 +78,8 @@
 
         {{-- Add service --}}
 
-        <div class="modal fade" id="add_service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade d-print-none" id="add_service" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -244,7 +246,11 @@
                                     <th><b>Payment Status </b></th>
                                     <th>:</th>
                                     <td>
-                                        <span class="badge badge-success">Paid</span>
+                                        @if(($reservation->total_plus_tax - $reservation->total_paid) <= 0) <span
+                                            class="badge badge-success">Paid</span>
+                                            @else
+                                            <span class="badge badge-info">Due</span>
+                                            @endif
                                     </td>
                                 </tr>
                                 <tr>
