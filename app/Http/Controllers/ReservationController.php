@@ -331,6 +331,13 @@ class ReservationController extends Controller
       $hotel = HotelDetail::first();
       // $r = $reservation->reservation_room;
       // dd($r);
+      $payment_list = $reservation->payment;
+      $reservation->total_paid = 0;
+      foreach ($payment_list as $payment) {
+        $reservation->total_paid += $payment->amount;
+      }
+
+      
       return view("backend.admin.reservations.show",compact("home", "reservation","hotel"));
     }
 

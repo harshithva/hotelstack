@@ -50,6 +50,7 @@ Route::post('/admin/hotel/checkin/make/{guest}/select_room_type/room', 'CheckInC
 Route::post('/admin/hotel/checkin/make/{guest}/select_room_type/room/select', 'CheckInController@calculateSum')->name('check_in.rooms.select');
 
 Route::resource('/admin/hotel/reservation/payment', 'PaymentController');
+Route::delete('/admin/hotel/reservation/reservation_room/{room}', 'RerservationRoomController@destroy')->name('reservation.room.delete');
 
 // API
 // Route::resource('/api/v1/guests', 'GuestApiController');

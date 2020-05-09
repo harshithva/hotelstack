@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Payment;
 use Illuminate\Http\Request;
+use App\ReservationRoom;
 
-class PaymentController extends Controller
+class RerservationRoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,29 +35,16 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'reservation_id'=> ['required','max:255'],
-            'method'=>['required','max:255'],
-            'amount' => ['required','max:100'],
-              ]);
-
-              $payment = new Payment;
-              $payment->transaction_id = sprintf("%010d", mt_rand(1, 999999));
-              $payment->reservation_id = $request->reservation_id;
-              $payment->amount = $request->amount;
-              $payment->method = $request->method;
-              $payment->save();
-              
-              return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Payment  $payment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Payment $payment)
+    public function show($id)
     {
         //
     }
@@ -65,10 +52,10 @@ class PaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Payment  $payment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Payment $payment)
+    public function edit($id)
     {
         //
     }
@@ -77,10 +64,10 @@ class PaymentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Payment  $payment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -88,11 +75,13 @@ class PaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Payment  $payment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payment $payment)
+    public function destroy($id)
     {
-        //
+        $room = ReservationRoom::findOrFail($id);
+        $room->delete();
+        return redirect()->back();
     }
 }

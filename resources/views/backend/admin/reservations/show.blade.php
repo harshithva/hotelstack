@@ -296,20 +296,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($reservation->payment as $payment)
                                         <tr>
                                             <td>1</td>
-                                            <td>2020-03-20 20:39:24</td>
-                                            <td>1584716964-7583</td>
-                                            <td>Cash</td>
-                                            <td class="text-right"> 800 Rupee</td>
+                                            <td>{{$payment->created_at}}</td>
+                                            <td>{{$payment->transaction_id}}</td>
+                                            <td>{{$payment->method}}</td>
+                                            <td class="text-right"> {{$payment->amount}} Rupee</td>
                                         </tr>
+                                        @endforeach
                                         <tr class="border-top">
                                             <td colspan="4" align=""><b>Total Payment</b></td>
-                                            <td class="text-right"><b>800.00 Rupee</b></td>
+                                            <td class="text-right"><b>{{ $reservation->total_paid}} Rupee</b></td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" align=""><b>Due</b></td>
-                                            <td class="text-right"><b>0.00 Rupee</b></td>
+                                            <td class="text-right">
+                                                <b>{{$reservation->total_plus_tax - $reservation->total_paid}} Rupee</b>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -332,13 +336,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($reservation->payment as $payment)
                                     <tr>
                                         <td>1</td>
-                                        <td>2020-03-20 20:39:24</td>
-                                        <td>1584716964-7583</td>
-                                        <td>Cash</td>
-                                        <td class="text-right">₹ 800</td>
+                                        <td>{{$payment->created_at}}</td>
+                                        <td>{{$payment->transaction_id}}</td>
+                                        <td>{{$payment->method}}</td>
+                                        <td class="text-right"> {{$payment->amount}} Rupee</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -357,24 +363,27 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if ($reservation->reservation_room ?? "")
+                            @foreach ($reservation->reservation_room as $key=>$room)
                             <tr>
-                                <td>1</td>
-                                <td>2020-03-20</td>
-                                <td>105</td>
+                                <td>{{$key}}</td>
+                                <td>{{$room->created_at}}</td>
+                                <td>{{$room->room->number}}</td>
                                 <td>
-                                    1st Floor
+                                    {{$room->room->floor->name}}
                                 </td>
                                 <td class="text-right">
-                                    <a href="#" class="btn btn-sm btn-tsk"
-                                        onclick="confirm('Are you sure cancel this room?')?$('#room_delete_form_151').submit():false"><i
-                                            class="fa fa-trash danger"></i></a>
-                                    <a href="/manage_room/100/edit" class="btn btn-sm bg-secondary text-white"><i
-                                            class="fa fa-pencil-square-o"></i></a>
-                                    <form action="https://www.whitehouseinn.in/admin/reservation/151/cancel_room"
-                                        method="post" id="room_delete_form_151"><input type="hidden" name="_token"
-                                            value="bJCEMfZzztdhbATaIPQ2HvwmD317w80CBxragk4p"></form>
+                                    <form action="{{route('reservation.room.delete', $room->id)}}" method="post"
+                                        id="rooms">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"><i
+                                                class="fa fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -528,16 +537,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($reservation->payment as $payment)
                                         <tr>
                                             <td>1</td>
-                                            <td>2020-03-20 20:39:24</td>
-                                            <td>1584716964-7583</td>
-                                            <td>Cash</td>
-                                            <td class="text-right"> 800 Rupee</td>
+                                            <td>{{$payment->created_at}}</td>
+                                            <td>{{$payment->transaction_id}}</td>
+                                            <td>{{$payment->method}}</td>
+                                            <td class="text-right"> {{$payment->amount}} Rupee</td>
                                         </tr>
+                                        @endforeach
                                         <tr class="border-top">
                                             <td colspan="4" align=""><b>Total Payment</b></td>
-                                            <td class="text-right"><b>800.00 Rupee</b></td>
+                                            <td class="text-right"><b>{{$reservation->total_paid}} Rupee</b></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -550,7 +561,9 @@
                                 <tbody>
                                     <tr class="">
                                         <td><b>Due</b></td>
-                                        <td align="right"> <b> 0.00 Rupee</b></td>
+                                        <td align="right">
+                                            <b>{{$reservation->total_plus_tax - $reservation->total_paid}} Rupee</b>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
