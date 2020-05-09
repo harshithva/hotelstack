@@ -9,7 +9,9 @@ use App\Reservation;
 use App\Home;
 use App\Tax;
 use App\RoomType;
+use App\PaidService;
 use App\Room;
+use App\Service;
 use App\ReservationRoom;
 use App\HotelDetail;
 
@@ -327,18 +329,25 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
+      
       $home = Home::first();
       $hotel = HotelDetail::first();
       // $r = $reservation->reservation_room;
       // dd($r);
+      $paid_services = PaidService::all();
       $payment_list = $reservation->payment;
       $reservation->total_paid = 0;
       foreach ($payment_list as $payment) {
         $reservation->total_paid += $payment->amount;
       }
-
-      
-      return view("backend.admin.reservations.show",compact("home", "reservation","hotel"));
+      $extra = 0;
+      foreach ($reservation->service as $service) {
+        $extra += $service->paid_service->price*$service->quantity;
+      }
+     
+     
+     
+      return view("backend.admin.reservations.show",compact("home", "reservation","hotel","paid_services","extra"));
     }
 
     /**

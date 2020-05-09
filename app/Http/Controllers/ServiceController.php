@@ -35,7 +35,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'reservation_id'=> ['required','max:255'],
+            'paid_service_id'=>['required','max:255'],
+            'quantity' => ['required','max:100'],
+              ]);
+
+              $payment = new Service;
+     
+              $payment->reservation_id = $request->reservation_id;
+              $payment->paid_service_id = $request->paid_service_id;
+              $payment->quantity = $request->quantity;
+              $payment->save();
+              
+              return redirect()->back();
     }
 
     /**
@@ -80,6 +93,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return redirect()->back();
     }
 }

@@ -21,4 +21,7 @@ class Reservation extends Model
         return $this->hasMany(Payment::class, 'reservation_id');
     }
 
+    public function service() {
+        return $this->hasMany(Service::class, 'reservation_id');
+    }
 }

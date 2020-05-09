@@ -13,7 +13,7 @@
                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add_payment">
                     Add Payment
                 </button>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_service">
                     Add Service
                 </button>
             </div>
@@ -76,7 +76,7 @@
 
         {{-- Add service --}}
 
-        <div class="modal fade" id="add_payment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="add_service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -87,7 +87,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form" action="{{route('payment.store')}}" method="post"
+                        <form class="form" action="{{route('service.store')}}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-row justify-content-center">
@@ -104,19 +104,22 @@
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-sm-12" data-children-count="1">
-                                    <label><strong data-children-count="0">Payment
+                                    <label><strong data-children-count="0">Select service
                                             Method</strong></label>
-                                    <select class="form-control" name="method">
-                                        <option value="CASH" selected>Cash</option>
-                                        <option value="CARD">Card</option>
+                                    <select class="form-control" name="paid_service_id">
+                                        @foreach ($paid_services as $paid_service)
+                                        <option value="{{$paid_service->id}}">{{$paid_service->title}}
+                                            ( {{$paid_service->price}} Rupee )</option>
+                                        @endforeach
+
                                     </select>
                                 </div>
                             </div>
                             <input type="hidden" name="reservation_id" value="{{$reservation->id}}" type="number">
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-sm-12" data-children-count="1">
-                                    <label><strong data-children-count="0">Amount</strong></label>
-                                    <input class="form-control" name="amount" value="" placeholder="0.00" required>
+                                    <label><strong data-children-count="0">Quantity</strong></label>
+                                    <input class="form-control" name="quantity" value="" placeholder="0" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -317,6 +320,14 @@
                         <div class="table-responsive">
                             <table class="table-sm w-100">
                                 <tbody>
+
+                                    <tr>
+                                        <td colspan="3" align=""><b>Extra</b></td>
+                                        <td class="text-right"><b>
+                                                {{$extra}} Rupee</b></td>
+                                    </tr>
+
+
                                     <tr>
                                         <td colspan="3" align=""><b>Total Tax</b></td>
                                         <td class="text-right"><b>{{$reservation->total_tax}} Rupee</b></td>
@@ -334,7 +345,8 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="3" align=""><b>Payable Amount</b></td>
-                                        <td class="text-right"><b>{{$reservation->total_plus_tax}} Rupee</b></td>
+                                        <td class="text-right"><b>{{$reservation->total_plus_tax + $extra}} Rupee</b>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -424,10 +436,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($reservation->reservation_room ?? "")
+                        @if (count($reservation->reservation_room)>0)
                         @foreach ($reservation->reservation_room as $key=>$room)
                         <tr>
-                            <td>{{$key}}</td>
+                            <td>{{$key+1}}</td>
                             <td>{{$room->created_at}}</td>
                             <td>{{$room->room->number}}</td>
                             <td>
@@ -462,9 +474,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if (count($reservation->service) > 0)
+                        @foreach ($reservation->service as $key=>$service)
                         <tr>
-                            <td colspan="7" class="text-danger">No service!</td>
+                            <td>{{$key+1}}</td>
+                            <td>{{$service->created_at}}</td>
+                            <td>{{$service->paid_service->title}}</td>
+                            <td class="text-center">
+                                {{$service->quantity}}
+                            </td>
+                            <td class="text-right">
+                                {{$service->paid_service->price }}
+                            </td>
+                            <td class="text-right">
+                                {{$service->paid_service->price * $service->quantity}}
+                            </td>
+                            <td class="text-right">
+                                <form action="{{route('service.destroy', $service->id)}}" method="post" id="rooms">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i
+                                            class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
