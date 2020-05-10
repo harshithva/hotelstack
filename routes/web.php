@@ -51,6 +51,7 @@ Route::post('/admin/hotel/checkin/make/{guest}/select_room_type/room/select', 'C
 
 Route::resource('/admin/hotel/reservation/payment', 'PaymentController');
 Route::resource('/admin/hotel/reservation/service', 'ServiceController');
+Route::resource('/admin/hotel/reservation/report', 'ExpenseController');
 Route::delete('/admin/hotel/reservation/reservation_room/{room}', 'RerservationRoomController@destroy')->name('reservation.room.delete');
 
 // API

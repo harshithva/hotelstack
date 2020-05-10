@@ -10,6 +10,7 @@ use App\Home;
 use App\Tax;
 use App\RoomType;
 use App\Room;
+use App\PaidService;
 use App\ReservationRoom;
 use Carbon\Carbon;
 
@@ -287,7 +288,23 @@ class CheckInController extends Controller
      */
     public function show($id)
     {
-        //
+      $home = Home::first();
+      $hotel = HotelDetail::first();
+      $reservation = Reservation::findOrFail($id);
+      $paid_services = PaidService::all();
+      $payment_list = $reservation->payment;
+      $reservation->total_paid = 0;
+      foreach ($payment_list as $payment) {
+        $reservation->total_paid += $payment->amount;
+      }
+      $extra = 0;
+      foreach ($reservation->service as $service) {
+        $extra += $service->paid_service->price*$service->quantity;
+      }
+     
+     
+     
+      return view("backend.admin.check_in.show",compact("home", "reservation","hotel","paid_services","extra"));
     }
 
     /**

@@ -183,10 +183,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html"
-                target="_blank">
+              <a class="nav-link" href="{{route('report.index')}}">
                 <i class="ni ni-chart-pie-35"></i>
-                <span class="nav-link-text">Plugins</span>
+                <span class="nav-link-text">Reports</span>
               </a>
             </li>
             <li class="nav-item">
