@@ -18,6 +18,10 @@
                 </button>
                 <button class="btn btn-outline-default btn-sm" onclick="javascript:window.print()"><i
                         class="fa fa-print"></i></button>
+                <form action="{{route("reservations.checkin",$reservation->id)}}" method="post" class="d-inline-block">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-warning btn-sm">Check in</button>
+                </form>
             </div>
 
 

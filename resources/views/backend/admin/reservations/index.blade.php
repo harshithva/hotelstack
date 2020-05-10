@@ -82,10 +82,13 @@
           <td><span class="badge">Offline</span></td>
 
 
+
           @if ($reservation->status == 'PENDING')
           <td><span class="badge badge-info">Pending</span></td>
           @elseif($reservation->status == 'CANCEL')
           <td><span class="badge badge-danger">Cancelled</span></td>
+          @elseif($reservation->checked_in == 1)
+          <td><span class="badge badge-success">Checked in</span></td>
           @else
           <td><span class="badge badge-success">Success</span></td>
           @endif

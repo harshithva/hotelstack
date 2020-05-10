@@ -386,7 +386,17 @@ class ReservationController extends Controller
       $reservation->save();
       return redirect()->route('reservations.index');
     }
+
+    public function checkIn($id)
+    {
+      $reservation = Reservation::find($id);
+      $reservation->checked_in = 1;
+      $reservation->save();
     
+      return redirect()->route('reservations.index');
+    }
+    
+
         
    function calculateTax($tax, $net_price) {
 

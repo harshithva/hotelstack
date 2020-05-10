@@ -42,6 +42,7 @@ Route::get('/admin/hotel/reservations/make/select_guests', 'ReservationControlle
 Route::get('/admin/hotel/reservations/make/{guest}/select_room_type', 'ReservationController@selectRoomDetails')->name('reservations.room_details');
 Route::post('/admin/hotel/reservations/make/{guest}/select_room_type/room', 'ReservationController@getRooms')->name('reservations.rooms');
 Route::post('/admin/hotel/reservations/make/{guest}/select_room_type/room/select', 'ReservationController@calculateSum')->name('reservations.rooms.select');
+Route::post('/admin/hotel/reservations/make/checkin/{reservation_id}', 'ReservationController@checkIn')->name('reservations.checkin');
 
 Route::resource('/admin/hotel/checkin', 'CheckInController');
 Route::get('/admin/hotel/checkin/make/select_guests', 'CheckInController@selectGuest')->name('check_in.guest');
