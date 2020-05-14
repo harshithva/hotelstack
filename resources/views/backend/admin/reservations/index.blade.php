@@ -89,6 +89,8 @@
           <td><span class="badge badge-danger">Cancelled</span></td>
           @elseif($reservation->checked_in == 1)
           <td><span class="badge badge-success">Checked in</span></td>
+          @elseif($reservation->active == 0)
+          <td><span class="badge badge-default">no show</span></td>
           @else
           <td><span class="badge badge-success">Success</span></td>
           @endif

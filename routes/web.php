@@ -43,6 +43,7 @@ Route::get('/admin/hotel/reservations/make/{guest}/select_room_type', 'Reservati
 Route::post('/admin/hotel/reservations/make/{guest}/select_room_type/room', 'ReservationController@getRooms')->name('reservations.rooms');
 Route::post('/admin/hotel/reservations/make/{guest}/select_room_type/room/select', 'ReservationController@calculateSum')->name('reservations.rooms.select');
 Route::post('/admin/hotel/reservations/make/checkin/{reservation_id}', 'ReservationController@checkIn')->name('reservations.checkin');
+Route::post('/admin/hotel/reservations/make/mark_as_no_show/{reservation_id}', 'ReservationController@markAsNoShow')->name('reservations.mark_noshow');
 
 Route::resource('/admin/hotel/checkin', 'CheckInController');
 Route::get('/admin/hotel/checkin/make/select_guests', 'CheckInController@selectGuest')->name('check_in.guest');

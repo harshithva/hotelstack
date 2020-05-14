@@ -396,6 +396,14 @@ class ReservationController extends Controller
       return redirect()->route('reservations.index');
     }
     
+    public function markAsNoShow($id)
+    {
+      $reservation = Reservation::find($id);
+      $reservation->active = 0;
+      $reservation->save();
+    
+      return redirect()->route('reservations.index');
+    }
 
         
    function calculateTax($tax, $net_price) {

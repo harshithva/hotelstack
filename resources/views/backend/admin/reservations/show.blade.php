@@ -22,6 +22,11 @@
                     @csrf
                     <button type="submit" class="btn btn-outline-warning btn-sm">Check in</button>
                 </form>
+                <form action="{{route("reservations.mark_noshow",$reservation->id)}}" method="post"
+                    class="d-inline-block">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-default btn-sm">Mark noshow</button>
+                </form>
             </div>
 
 
