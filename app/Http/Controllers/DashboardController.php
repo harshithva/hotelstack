@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Home;
+use App\Room;
+use Carbon\Carbon;
 use Session;
 
+use App\Reservation;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -27,12 +30,31 @@ class DashboardController extends Controller
 
         if(auth()->user()->usertype == 'admin')
         {
-            return view('backend.admin.dashboard', compact('home'));
+            $reservations = Reservation::orderBy('id', 'desc')->paginate(10);
+            $checkins = Reservation::where('checked_in',1)->orderBy('id', 'desc')->paginate(10);
+            
+            $home = Home::first();
+            $date = Carbon::now();
+            $year = $date->year;
+        $month = $date->month;
+            if ($month < 10) {
+                $month = '0' . $month;
+            }
+     
+            $thisMonth = $year . '-' . $month;
+
+            $monthlyReservationCount = Reservation::where('created_at', 'like', $thisMonth .'%')->count();
+            $monthlyCheckInCount = Reservation::where('checked_in',1)->where('created_at', 'like', $thisMonth .'%')->count();
+            $roomsCount = Room::get()->count();
+            $guestCount = User::get()->count();
+            
+            return view('backend.admin.dashboard', compact('home','reservations','monthlyReservationCount','monthlyCheckInCount','checkins','roomsCount','guestCount'));
         }
         else 
         {
             return view('backend.user.dashboard', compact('home'));
         }
+        
     }
 
     /**
@@ -100,4 +122,7 @@ class DashboardController extends Controller
     {
         //
     }
+
+    
+
 }
