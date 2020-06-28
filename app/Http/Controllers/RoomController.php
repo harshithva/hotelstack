@@ -22,7 +22,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::paginate(10);;
+        $rooms = Room::all();
         $home = Home::first();
         return view('backend.admin.hotel_config.rooms.index', compact('rooms','home'));
 
