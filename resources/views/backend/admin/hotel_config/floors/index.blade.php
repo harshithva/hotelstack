@@ -84,7 +84,7 @@
             @endif
 
             <div class="mt-4">
-                <table class="table table-striped table-bordered table-white" style="width:100%" id="myTable">
+                <table class="table table-striped table-bordered table-white" style="width:100%" id="floorsTable">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col" class="sort text-center" data-sort="name">Sl. No.</th>

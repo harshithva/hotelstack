@@ -244,7 +244,7 @@
 
   <script>
     $(document).ready(function() {
-    $('#myTable').DataTable( {
+    $('#floorsTable').DataTable( {
       "oLanguage": {
 "oPaginate": {
 "sFirst": "First", // This is the link to the first page
@@ -258,6 +258,29 @@
         buttons: [
           { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
                     columns: [ 0, 1, 2, 3]
+                }}
+        ]
+        
+    } );
+
+ 
+} );
+
+$(document).ready(function() {
+    $('#roomTypesTable').DataTable( {
+      "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+      
+        dom: 'Bfrtip',
+        buttons: [
+          { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
+                    columns: [ 0, 1, 2, 3,4,5]
                 }}
         ]
         
