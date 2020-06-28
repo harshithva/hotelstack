@@ -211,7 +211,6 @@
 
 
 
-  @yield('scripts')
 
   <script src="{{ asset('backend/assets/vendor/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ asset('backend/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
@@ -226,12 +225,12 @@
   <script src="{{ asset('backend/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}">
   </script>
   <script src="{{ asset('js/app.js') }}"></script>
+  {{-- datatables --}}
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
@@ -242,77 +241,8 @@
 
 
 
-  <script>
-    $(document).ready(function() {
-    $('#floorsTable').DataTable( {
-      "oLanguage": {
-"oPaginate": {
-"sFirst": "First", // This is the link to the first page
-"sPrevious": "&#8592;", // This is the link to the previous page
-"sNext": "&#8594;", // This is the link to the next page
-"sLast": "Last" // This is the link to the last page
-}
-},
-      
-        dom: 'Bfrtip',
-        buttons: [
-          { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
-                    columns: [ 0, 1, 2, 3,4]
-                }}
-        ]
-        
-    } );
+  @yield('scripts')
 
- 
-} );
-
-$(document).ready(function() {
-    $('#roomTypesTable').DataTable( {
-      "oLanguage": {
-"oPaginate": {
-"sFirst": "First", // This is the link to the first page
-"sPrevious": "&#8592;", // This is the link to the previous page
-"sNext": "&#8594;", // This is the link to the next page
-"sLast": "Last" // This is the link to the last page
-}
-},
-      
-        dom: 'Bfrtip',
-        buttons: [
-          { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
-                    columns: [ 0, 1, 2, 3,4,5]
-                }}
-        ]
-        
-    } );
-
- 
-} );
-
-
-$(document).ready(function() {
-    $('#roomsTable').DataTable( {
-      "oLanguage": {
-"oPaginate": {
-"sFirst": "First", // This is the link to the first page
-"sPrevious": "&#8592;", // This is the link to the previous page
-"sNext": "&#8594;", // This is the link to the next page
-"sLast": "Last" // This is the link to the last page
-}
-},
-      
-        dom: 'Bfrtip',
-        buttons: [
-          { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
-                    columns: [ 0, 1, 2, 3,4]
-                }}
-        ]
-        
-    } );
-
- 
-} );
-  </script>
 </body>
 
 </html>
