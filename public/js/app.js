@@ -68280,7 +68280,8 @@ Vue.mixin({
 var app = new Vue({
   el: '#panel',
   data: {
-    selected: []
+    selected: [],
+    buttonDisabled: 0
   },
   methods: {
     selectRoom: function selectRoom(room) {
@@ -68288,11 +68289,10 @@ var app = new Vue({
 
       if (!this.selected.includes(room)) {
         this.selected.push(room);
+        this.buttonDisabled = 1;
       } else {
         this.selected.pop(room);
       }
-
-      console.log(this.selected);
     }
   }
 });
@@ -68845,8 +68845,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\hotelplex\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\hotelplex\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\coding\laravel\hotelstack\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\coding\laravel\hotelstack\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

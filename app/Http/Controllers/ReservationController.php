@@ -315,7 +315,7 @@ class ReservationController extends Controller
             'total_tax' => $reservation->total_tax,
      ];
     
-        Mail::to($guest->email)->send(new ReservationMail($data));
+        // Mail::to($guest->email)->send(new ReservationMail($data));
 
 
         return redirect()->route('reservations.index');
