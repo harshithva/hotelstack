@@ -18,7 +18,7 @@ class ExpenseController extends Controller
     public function index()
     {
         $home = Home::first();
-        $expenses = Expense::orderBy('created_at', 'DESC')->get();
+        $expenses = Expense::orderBy('created_at', 'DESC')->all();
         $date = Carbon::now();
         $expenses->total = $this->getMonthlySum($date);
         $income = Payment::sum('amount');

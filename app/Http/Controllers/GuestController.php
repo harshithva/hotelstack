@@ -22,7 +22,7 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $guests = User::where('usertype','user')->orderBy('id', 'desc')->paginate(10);
+        $guests = User::where('usertype','user')->orderBy('id', 'desc')->get();
         $home = Home::first();
         return view('backend.admin.guests.index', compact('home','guests'));
     }

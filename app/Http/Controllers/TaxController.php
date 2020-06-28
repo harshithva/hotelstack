@@ -21,7 +21,7 @@ class TaxController extends Controller
      */
     public function index()
     {
-        $taxes = Tax::paginate(10);
+        $taxes = Tax::all();
         $home = Home::first();
         return view('backend.admin.hotel_config.tax.index', compact('taxes','home'));
     }

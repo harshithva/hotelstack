@@ -20,7 +20,7 @@ class PaidServiceController extends Controller
      */
     public function index()
     {
-        $paid_services = PaidService::paginate(10);
+        $paid_services = PaidService::all();
         $home = Home::first();
         return view('backend.admin.hotel_config.paid_services.index', compact('paid_services','home'));
     }

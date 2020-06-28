@@ -39,7 +39,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::orderBy('id', 'desc')->paginate(10);
+        $reservations = Reservation::orderBy('id', 'desc')->get();
         $home = Home::first();
         return view('backend.admin.reservations.index',compact('home','reservations'));
     }
@@ -307,13 +307,13 @@ class ReservationController extends Controller
           // }
 
         //   Send Mail
-        $data = [
-            'name' => $guest->name,
-            'total' => $reservation->total_plus_tax,
-            'check_in' => $data->check_in,
-            'check_out' => $data->check_out,
-            'total_tax' => $reservation->total_tax,
-     ];
+    //     $data = [
+    //         'name' => $guest->name,
+    //         'total' => $reservation->total_plus_tax,
+    //         'check_in' => $data->check_in,
+    //         'check_out' => $data->check_out,
+    //         'total_tax' => $reservation->total_tax,
+    //  ];
     
         // Mail::to($guest->email)->send(new ReservationMail($data));
 
