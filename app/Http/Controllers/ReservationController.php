@@ -344,8 +344,7 @@ class ReservationController extends Controller
       foreach ($reservation->service as $service) {
         $extra += $service->paid_service->price*$service->quantity;
       }
-     
-     
+   
      
       return view("backend.admin.reservations.show",compact("home", "reservation","hotel","paid_services","extra"));
     }

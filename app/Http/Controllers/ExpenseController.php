@@ -18,11 +18,11 @@ class ExpenseController extends Controller
     public function index()
     {
         $home = Home::first();
-        $expenses = Expense::orderBy('created_at', 'DESC')->all();
+        $expenses = Expense::orderBy('created_at', 'DESC')->get();
         $date = Carbon::now();
         $expenses->total = $this->getMonthlySum($date);
         $income = Payment::sum('amount');
-        return view('backend.admin.reports.index',compact('home',"expenses","income"));
+        return view('backend.admin.expenses.index',compact('home',"expenses","income"));
     }
 
     /**

@@ -35,7 +35,7 @@ class CheckInController extends Controller
     public function index()
     {
         
-        $reservations = Reservation::where('checked_in', 1)->orderBy('id', 'desc')->all();
+        $reservations = Reservation::where('checked_in', 1)->orderBy('id', 'desc')->get();
         $home = Home::first();
         return view('backend.admin.check_in.index',compact('home','reservations'));
     }
@@ -301,6 +301,8 @@ class CheckInController extends Controller
       foreach ($reservation->service as $service) {
         $extra += $service->paid_service->price*$service->quantity;
       }
+
+     
      
      
      

@@ -91,6 +91,7 @@
 
 
       <div class="mt-4">
+
         <table class="table table-striped table-bordered table-white" id="reservationsTable">
 
 
@@ -187,7 +188,7 @@
       dom: 'Bfrtip',
       buttons: [
         { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
-                  columns: [ 0, 1, 2, 3,4,5]
+                  columns: [ 0, 1, 2, 3,4,5,6,7,8]
               }}
       ]
       
@@ -195,6 +196,8 @@
 
 
 } );
+
+
 
 </script>
 @endsection

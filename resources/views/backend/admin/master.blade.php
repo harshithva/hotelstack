@@ -49,7 +49,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="#homepage_settings" data-toggle="collapse" aria-expanded="false"
                 class="collapsed">
                 <i class="ni ni-planet text-orange"></i>
@@ -60,139 +60,114 @@
               <ul id="homepage_settings" class="list-unstyled collapse">
                 <li class="nav-item ">
                   <a class="nav-link {{ Route::currentRouteNamed('homepageedit') ? 'active' : '' }}"
-                    href="{{ route('homepageedit', $home->id)}}">
-                    <i class="ni ni-bold-up text-primary"></i>
-                    <span class="nav-link-text">Banner Section</span>
-                  </a>
-                </li>
-
-                <li class="nav-item ">
-                  <a class="nav-link {{ Route::currentRouteNamed('reviews.index') ? 'active' : '' }}"
-                    href="{{ route('reviews.index')}}">
-                    <i class="ni ni-bold-up text-primary"></i>
-                    <span class="nav-link-text">Reviews</span>
-                  </a>
-                </li>
-
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a href="#Hotel_configure" class="nav-link" data-toggle="collapse" aria-expanded="false"
-                class="collapsed">
-                <i class="ni ni-app"></i>
-                <span class="nav-link-text">Hotel Configuration</span>
-              </a>
-
-
-
-
-              <ul id="Hotel_configure" class="list-unstyled collapse">
-                <li class="nav-item ">
-                  <a class="nav-link {{ Route::currentRouteNamed('floors.index') ? 'active' : '' }}"
-                    href="{{ route('floors.index') }}">
-                    <i class="ni ni-bold-up text-primary"></i>
-                    <span class="nav-link-text">Floors</span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link {{ Route::currentRouteNamed('room_types.index') ? 'active' : '' }}"
-                    href="{{ route('room_types.index') }}">
-                    <i class="ni ni-bold-up text-primary"></i>
-                    <span class="nav-link-text">Room Types</span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link {{ Route::currentRouteNamed('rooms.index') ? 'active' : '' }}"
-                    href="{{ route('rooms.index') }}">
-                    <i class="ni ni-bold-up text-primary"></i>
-                    <span class="nav-link-text">Rooms</span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link {{ Route::currentRouteNamed('paid_services.index') ? 'active' : '' }}"
-                    href="{{ route('paid_services.index') }}">
-                    <i class="ni ni-bold-up text-primary"></i>
-                    <span class="nav-link-text">Paid Service</span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link {{ Route::currentRouteNamed('tax.index') ? 'active' : '' }}"
-                    href="{{ route('tax.index') }}">
-                    <i class="ni ni-bold-up text-primary"></i>
-                    <span class="nav-link-text">Tax</span>
-                  </a>
-                </li>
-
-              </ul>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link {{ Route::currentRouteNamed('guests.index') ? 'active' : '' }}"
-                href="{{ route('guests.index') }}">
-                <i class="ni ni-single-02 text-yellow"></i>
-                <span class="nav-link-text">Guests</span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link {{ Route::currentRouteNamed('reservations.index') ? 'active' : '' }}"
-                href="{{ route('reservations.index') }}">
-                <i class="ni ni-bullet-list-67 text-default"></i>
-                <span class="nav-link-text">Reservation</span>
-              </a>
-            </li>
-            {{--    <li class="nav-item {{ Route::currentRouteNamed('rooms.index') ? 'active' : '' }}">
-            <a class="nav-link" href="login.html">
-              <i class="ni ni-key-25 text-info"></i>
-              <span class="nav-link-text">Login</span>
+            href="{{ route('homepageedit', $home->id)}}">
+            <i class="ni ni-bold-up text-primary"></i>
+            <span class="nav-link-text">Banner Section</span>
             </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="register.html">
-                <i class="ni ni-circle-08 text-pink"></i>
-                <span class="nav-link-text">Register</span>
+
+            <li class="nav-item ">
+              <a class="nav-link {{ Route::currentRouteNamed('reviews.index') ? 'active' : '' }}"
+                href="{{ route('reviews.index')}}">
+                <i class="ni ni-bold-up text-primary"></i>
+                <span class="nav-link-text">Reviews</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="upgrade.html">
-                <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">Upgrade</span>
-              </a>
-            </li>--}}
+
           </ul>
-          <!-- Divider -->
-          <hr class="my-3">
-          <!-- Heading -->
-          <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Documentation</span>
-          </h6>
+          </li> --}}
+
+
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('checkin.index') ? 'active' : '' }}"
+              href="{{ route('checkin.index') }}">
+              <i class="ni ni-spaceship"></i>
+              <span class="nav-link-text">Check in</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('reservations.index') ? 'active' : '' }}"
+              href="{{ route('reservations.index') }}">
+              <i class="ni ni-bullet-list-67 text-default"></i>
+              <span class="nav-link-text">Reservation</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('guests.index') ? 'active' : '' }}"
+              href="{{ route('guests.index') }}">
+              <i class="ni ni-single-02 text-yellow"></i>
+              <span class="nav-link-text">Guests</span>
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('guests.index') ? 'active' : '' }}"
+              href="{{ route('guests.index') }}">
+              <i class="ni ni-bell-55 text-primary"></i>
+              <span class="nav-link-text">House Keeping</span>
+            </a>
+          </li>
+
+
+
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('floors.index') ? 'active' : '' }}"
+              href="{{ route('floors.index') }}">
+              <i class="ni ni-building text-info"></i>
+              <span class="nav-link-text">Floors</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('room_types.index') ? 'active' : '' }}"
+              href="{{ route('room_types.index') }}">
+              <i class="ni ni-app text-success"></i>
+              <span class="nav-link-text">Room Types</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('rooms.index') ? 'active' : '' }}"
+              href="{{ route('rooms.index') }}">
+              <i class="ni ni-shop text-default"></i>
+              <span class="nav-link-text">Rooms</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('paid_services.index') ? 'active' : '' }}"
+              href="{{ route('paid_services.index') }}">
+              <i class="ni ni-money-coins text-warning"></i>
+              <span class="nav-link-text">Paid Service</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('tax.index') ? 'active' : '' }}"
+              href="{{ route('tax.index') }}">
+              <i class="ni ni-credit-card text-danger"></i>
+              <span class="nav-link-text">Tax</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item ">
+            <a class="nav-link {{ Route::currentRouteNamed('expenses.index') ? 'active' : '' }}"
+              href="{{ route('expenses.index') }}">
+              <i class="ni ni-briefcase-24 text-warning"></i>
+              <span class="nav-link-text">Expense</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="ni ni-chart-pie-35"></i>
+              <span class="nav-link-text">Reports</span>
+            </a>
+          </li>
+          </ul>
+
+
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('checkin.index') }}">
-                <i class="ni ni-spaceship {{ Route::currentRouteNamed('check_in.index') ? 'active' : '' }}"></i>
-                <span class="nav-link-text">Check in</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html"
-                target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Foundation</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html"
-                target="_blank">
-                <i class="ni ni-ui-04"></i>
-                <span class="nav-link-text">Components</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('report.index')}}">
-                <i class="ni ni-chart-pie-35"></i>
-                <span class="nav-link-text">Reports</span>
-              </a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link active active-pro" href="{{route('home')}}" target="_blank">
                 <i class="ni ni-send text-dark"></i>
