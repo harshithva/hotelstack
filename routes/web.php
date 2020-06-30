@@ -51,6 +51,14 @@ Route::get('/admin/hotel/checkin/make/{guest}/select_room_type', 'CheckInControl
 Route::post('/admin/hotel/checkin/make/{guest}/select_room_type/room', 'CheckInController@getRooms')->name('check_in.rooms');
 Route::post('/admin/hotel/checkin/make/{guest}/select_room_type/room/select', 'CheckInController@calculateSum')->name('check_in.rooms.select');
 
+// check out
+Route::get('/admin/hotel/checkin/make/check_out/{id}', 'CheckInController@check_out')->name('check_out');
+
+// invoice
+Route::post('/admin/hotel/checkin/generate/invoice', 'InvoiceController@store')->name('check_in.generate.invoice');
+Route::get('/admin/hotel/checkin/invoice/{reservation_id}/view', 'InvoiceController@show')->name('invoice.view');
+Route::patch('/admin/hotel/checkin/invoice/update/{reservation_id}', 'InvoiceController@update')->name('invoice.update');
+
 Route::resource('/admin/hotel/reservation/payment', 'PaymentController');
 Route::resource('/admin/hotel/reservation/service', 'ServiceController');
 

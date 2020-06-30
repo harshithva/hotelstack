@@ -24,4 +24,8 @@ class Reservation extends Model
     public function service() {
         return $this->hasMany(Service::class, 'reservation_id');
     }
+
+    public function invoice() {
+        return $this->hasOne(Invoice::class, 'checkin_id','id')->latest();
+    }
 }

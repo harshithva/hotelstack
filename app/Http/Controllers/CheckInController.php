@@ -198,6 +198,7 @@ class CheckInController extends Controller
         $reservation->checked_in = 1;
 
         $reservation_id = $reservation->uid;
+        $reservation->status = 'SUCCESS';
         $reservation->save();
 
         try {
@@ -362,7 +363,8 @@ class CheckInController extends Controller
      */
     public function edit($id)
     {
-        //
+      $reservation = Reservation::findOrFail($id);
+      return view("backend.admin.check_in.edit",compact("reservation"));
     }
 
     /**
@@ -374,7 +376,7 @@ class CheckInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -385,6 +387,7 @@ class CheckInController extends Controller
      */
     public function destroy($id)
     {
+      $reservation = Reservation::findOrFail($id);
       $reservation->status = "CANCEL";
       $reservation->active = 0;
       $reservation->save();
@@ -404,5 +407,14 @@ class CheckInController extends Controller
       }
       }
      
+    }
+
+
+    public function check_out($id)
+    {
+      $reservation = Reservation::findOrFail($id);
+      $reservation->checked_out = 1;
+      $reservation->save();
+      return redirect()->back();
     }
 }

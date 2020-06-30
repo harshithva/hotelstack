@@ -63,30 +63,37 @@
             <td>{{ $reservation->check_out}}</td>
             <td><span class="badge">Offline</span></td>
 
-
+            {{-- 
             @if ($reservation->status == 'PENDING')
             <td><span class="badge badge-info">Pending</span></td>
             @elseif($reservation->status == 'CANCEL')
             <td><span class="badge badge-danger">Cancelled</span></td>
             @else
             <td><span class="badge badge-success">Success</span></td>
+            @endif --}}
+
+
+            @if ($reservation->checked_out)
+            <td><span class="badge badge-danger">CHECKED OUT</span></td>
+            @else
+            <td><span class="badge badge-success">CHECKED IN</span></td>
             @endif
 
 
             <td>
-              <a href="{{ route('reservations.edit', $reservation->id) }}">
-                <i class="fas fa-edit"></i>&nbsp;Edit
+              {{-- <a href="{{ route('reservations.edit', $reservation->id) }}">
+              <i class="fas fa-edit"></i>&nbsp;Edit
               </a>
-              <br>
-
+              <br> --}}
+              {{-- 
               <form action="{{ route('reservations.destroy', $reservation->id)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <span class="text-danger">
-                  <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit"
-                    style="background:none!important;border:none;padding:0!important;">Cancel</button>
-                </span>
-              </form>
+              @csrf
+              @method('DELETE')
+              <span class="text-danger">
+                <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit"
+                  style="background:none!important;border:none;padding:0!important;">Cancel</button>
+              </span>
+              </form> --}}
 
               <a href="{{ route('checkin.show', $reservation->id) }}">
                 <i class="fas fa-bookmark"></i>&nbsp;View

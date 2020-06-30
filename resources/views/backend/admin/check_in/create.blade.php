@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header bg-white">
                 <h2>Create New Reservation
-                    <a class="btn btn-tsk float-right" href="{{ route('guests.index') }}"><i class="fa fa-list"></i>
+                    <a class="btn btn-tsk float-right" href="{{ route('checkin.index') }}"><i class="fa fa-list"></i>
                         Reservation List</a>
                 </h2>
             </div>
