@@ -40,13 +40,13 @@
           <thead class="thead-light">
             <tr>
               <th scope="col" class="sort" data-sort="name">Sl. No.</th>
-              <th scope="col" class="sort" data-sort="budget">Reservation Number</th>
-              <th scope="col" class="sort" data-sort="status">Reservation Date</th>
+              <th scope="col" class="sort" data-sort="budget">Booking ID</th>
+              <th scope="col" class="sort" data-sort="status">Booking Date</th>
               <th scope="col" class="sort" data-sort="status">Guest</th>
               <th scope="col" class="sort" data-sort="completion">Check in</th>
               <th scope="col" class="sort" data-sort="completion">Check Out</th>
               <th scope="col" class="sort" data-sort="completion">Booking Type</th>
-              <th scope="col" class="sort" data-sort="completion">Reservation Status</th>
+              <th scope="col" class="sort" data-sort="completion">Booking Status</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -88,7 +88,7 @@
                 </span>
               </form>
 
-              <a href="{{ route('reservations.show', $reservation->id) }}">
+              <a href="{{ route('checkin.show', $reservation->id) }}">
                 <i class="fas fa-bookmark"></i>&nbsp;View
               </a>
               <br>

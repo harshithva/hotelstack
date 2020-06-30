@@ -31,8 +31,8 @@ class ExpenseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        return view('backend.admin.expenses.create');
     }
 
     /**

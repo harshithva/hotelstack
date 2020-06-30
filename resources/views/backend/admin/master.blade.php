@@ -157,7 +157,7 @@
 
 
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{Route('reports.index')}}">
               <i class="ni ni-chart-pie-35"></i>
               <span class="nav-link-text">Reports</span>
             </a>
@@ -197,8 +197,9 @@
   <script src="{{ asset('backend/assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('backend/assets/js/argon.js?v=1.2.0')}}"></script>
-  <script src="{{ asset('backend/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}">
-  </script>
+  <script src="{{ asset('backend/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"> </script>
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone-amd-module.min.js">
+  </script> --}}
   <script src="{{ asset('js/app.js') }}"></script>
   {{-- datatables --}}
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>

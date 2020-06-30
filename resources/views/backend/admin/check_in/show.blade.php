@@ -4,23 +4,124 @@
 <div class="main-content p-4" id="panel">
     <div>
         <div class="card-header bg-white d-print-none">
-            <h2>Reservation
+            <h2>Check in
                 <a class="btn btn-outline-success float-right" href="{{ route('reservations.index') }}"><i
                         class="fa fa-list"></i>&nbsp;Reservation List</a>
             </h2>
             <div class="mt-3">
-
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add_payment">
-                    Add Payment
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#generate_invoice">
+                    Generate Invoice
+                </button>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_room">
+                    Add Room
                 </button>
                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_service">
                     Add Service
                 </button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add_payment">
+                    Add Payment
+                </button>
+
                 <button class="btn btn-outline-default btn-sm" onclick="javascript:window.print()"><i
-                        class="fa fa-print"></i></button>
+                        class="fa fa-print">
+                    </i>
+                </button>
+
             </div>
 
 
+            {{-- generate_invoice --}}
+            <div class="modal fade d-print-none" id="generate_invoice" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Generate Invoice</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" action="{{route('payment.store')}}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0">Booking ID</strong></label>
+                                        <input class="form-control" readonly="" value="{{$reservation->uid}}">
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="reservation_id" value="{{$reservation->id}}" type="number">
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0">Tax</strong></label>
+                                        <input class="form-control" name="tax" value="" placeholder="0.00 %" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Generate</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            {{-- Add room--}}
+            <div class="modal fade d-print-none" id="add_room" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Room</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" action="{{route('reservation.room.store')}}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0">Booking ID</strong></label>
+                                        <input class="form-control" readonly="" value="{{$reservation->uid}}">
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="reservation_id" value="{{$reservation->id}}" type="number">
+                                <input type="hidden" name="check_in" value="{{$reservation->check_in}}" type="number">
+                                <input type="hidden" name="check_out" value="{{$reservation->check_out}}" type="number">
+
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group col-sm-12" data-children-count="1">
+                                        <label><strong data-children-count="0">Tax</strong></label>
+                                        <select class="custom-select custom-select-lg mb-3" name="room_id">
+                                            <option selected>Select Room</option>
+                                            @foreach ($rooms as $room)
+                                            <option value="{{$room->id}}">{{$room->number}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Allot</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            {{-- add payment --}}
             <div class="modal fade d-print-none" id="add_payment" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -37,7 +138,7 @@
                                 @csrf
                                 <div class="form-row justify-content-center">
                                     <div class="form-group col-sm-12" data-children-count="1">
-                                        <label><strong data-children-count="0">Reservation Number</strong></label>
+                                        <label><strong data-children-count="0">Booking ID</strong></label>
                                         <input class="form-control" readonly="" value="{{$reservation->uid}}">
                                     </div>
                                 </div>
@@ -94,7 +195,7 @@
                             @csrf
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-sm-12" data-children-count="1">
-                                    <label><strong data-children-count="0">Reservation Number</strong></label>
+                                    <label><strong data-children-count="0">Booking ID</strong></label>
                                     <input class="form-control" readonly="" value="{{$reservation->uid}}">
                                 </div>
                             </div>
@@ -196,7 +297,7 @@
                             <img src="{{ asset('backend/assets/img/brand/blue.png') }}" class="img-fluid"
                                 style="max-height: 40px">
                             <br><br>
-                            <small class="pull-right">Reservation Number: {{$reservation->uid}}</small>
+                            <small class="pull-right">Booking ID: {{$reservation->uid}}</small>
                         </h2>
                         <hr>
                     </div>
@@ -302,12 +403,16 @@
                                     <td>{{ date('d-M-y', strtotime($reservation->created_at)) }}</td>
                                     <td>
                                         <div>
+                                            @if (count($reservation->reservation_room) > 1)
+
+
                                             @foreach ($reservation->reservation_room as $room)
 
 
                                             <span class="badge badge-pill badge-success">
                                                 {{$room->room->number}}</span>
                                             @endforeach
+                                            @endif
                                         </div>
                                     </td>
                                     <td align="right">{{$reservation->total}} Rupee</td>

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ReservationRoom;
-use App\Reservation;
+use App\Expense;
+use App\Home;
+use App\Payment;
 use Carbon\Carbon;
 
-class RerservationRoomController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,12 @@ class RerservationRoomController extends Controller
      */
     public function index()
     {
-        //
+        $home = Home::first();
+        $expenses = Expense::orderBy('created_at', 'DESC')->get();
+        $date = Carbon::now();
+        $expenses->total = $this->getMonthlySum($date);
+        $income = Payment::sum('amount');
+        return view('backend.admin.reports.index',compact('expenses','income'));
     }
 
     /**
@@ -37,17 +43,7 @@ class RerservationRoomController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-        $room = new ReservationRoom;
-        $room->reservation_id = $request->reservation_id;
-        $room->room_id = $request->room_id;
-        $room->check_in = $request->check_in;
-        $room->check_out = $request->check_out;
-        $room->save();
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -92,8 +88,22 @@ class RerservationRoomController extends Controller
      */
     public function destroy($id)
     {
-        $room = ReservationRoom::findOrFail($id);
-        $room->delete();
-        return redirect()->back();
+        //
+    }
+
+    public function getMonthlySum(Carbon $date)
+    {
+        $year = $date->year;
+        $month = $date->month;
+
+        if ($month < 10) {
+            $month = '0' . $month;
+        }
+
+        $search = $year . '-' . $month;
+
+        $sum = Expense::where('created_at', 'like', $search .'%')->sum('amount');
+
+        return $sum;
     }
 }

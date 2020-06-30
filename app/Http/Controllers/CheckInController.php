@@ -13,6 +13,7 @@ use App\Room;
 use App\PaidService;
 use App\ReservationRoom;
 use Carbon\Carbon;
+use App\HotelDetail;
 
 use Session;
 
@@ -292,6 +293,7 @@ class CheckInController extends Controller
       $hotel = HotelDetail::first();
       $reservation = Reservation::findOrFail($id);
       $paid_services = PaidService::all();
+    
       $payment_list = $reservation->payment;
       $reservation->total_paid = 0;
       foreach ($payment_list as $payment) {
@@ -303,10 +305,53 @@ class CheckInController extends Controller
       }
 
      
+      $dateCheckin = $reservation->check_in;
+      $dateCheckout = $reservation->check_out;
+
+      $reservations = Reservation::where('active', 1)
+      ->where(function($query) use ($dateCheckin, $dateCheckout){
+                  $query->where([
+                      ['check_in', '<=', $dateCheckin],
+                      ['check_out', '>=', $dateCheckin]
+                  ])
+                  ->orWhere([
+                      ['check_in', '<', $dateCheckout],
+                      ['check_out', '>=', $dateCheckout]
+                  ])
+                  ->orWhere([
+                      ['check_in', '>=', $dateCheckin],
+                      ['check_out', '<', $dateCheckout]
+                  ]);
+              })
+            ->orderBy('check_in')
+            ->get();
+           
+            $bookedRooms = [];
+            foreach($reservations as $reservation)
+            {
+              $bookedRooms = ReservationRoom::where('reservation_id', $reservation->id)->get();
+            }
+
+            if(empty($bookedRooms)){
+              $roomTypes = RoomType::with('rooms')->get();
+            }else {
+              $availableRooms = [];
+              foreach($bookedRooms as $bookedRoom)
+              {
+                $reservedRoom = $bookedRoom->pluck('room_id')->toArray();
+               
+                // Room::where('room_type_id',$room_type)->whereNotIn('id', $reservedRooms)->get();
+                $availableRooms = Room::whereNotIn('id', $reservedRoom)->pluck('id')->toArray();
+               
+              }
+                $rooms = Room::whereIn('id', $availableRooms)->get();
+          
+          
+            }
      
      
      
-      return view("backend.admin.check_in.show",compact("home", "reservation","hotel","paid_services","extra"));
+      return view("backend.admin.check_in.show",compact("home", "reservation","hotel","paid_services","extra","rooms"));
     }
 
     /**

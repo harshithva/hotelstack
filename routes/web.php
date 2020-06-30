@@ -57,9 +57,12 @@ Route::resource('/admin/hotel/reservation/service', 'ServiceController');
 
 Route::resource('/admin/hotel/expenses', 'ExpenseController');
 
-Route::delete('/admin/hotel/reservation/reservation_room/{room}', 'RerservationRoomController@destroy')->name('reservation.room.delete');
+// reports
+Route::get('/admin/hotel/reports', 'ReportController@index')->name('reports.index');
 
-// API
-// Route::resource('/api/v1/guests', 'GuestApiController');
+Route::delete('/admin/hotel/reservation/reservation_room/{room}', 'RerservationRoomController@destroy')->name('reservation.room.delete');
+Route::post('/admin/hotel/reservation/reservation_room/add', 'RerservationRoomController@store')->name('reservation.room.store');
+
+
 
 Auth::routes();
