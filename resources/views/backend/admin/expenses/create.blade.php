@@ -74,7 +74,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('rooms.store') }}" method="post">
+                <form action="{{ route('expenses.store') }}" method="post">
                     @csrf
 
                     @if ($errors->any())
@@ -87,29 +87,29 @@
                     </div>
                     @endif
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-
-                    </div>
-                    <div class="form-group" app-field-wrapper="note"><label for="note"
-                            class="control-label">Note</label><textarea id="note" name="note" class="form-control"
-                            rows="4"></textarea></div>
-
-
                     <div class="input-group mb-3">
 
-                        <select class="browser-default custom-select">
+                        <select class="browser-default custom-select" required name="category_id">
                             <option selected>Select Expense Category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+
                         </select>
                         <div class="input-group-append">
                             <button class="btn btn-default" type="button" id="button-addon2" data-toggle="modal"
                                 data-target="#AddExpenseCategory"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="name" class="form-control" id="exampleInputEmail1" required name="name">
+
+                    </div>
+                    <div class="form-group" app-field-wrapper="note"><label for="note"
+                            class="control-label">Note</label><textarea id="note" name="note" class="form-control"
+                            rows="4" name="note"></textarea></div>
 
 
                     <div class="input-group mb-3">
@@ -119,8 +119,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                 </div>
-                                <input value="" name="" class="form-control datepicker" placeholder="Select date"
-                                    type="text" required>
+                                <input name="date" class="form-control datepicker" placeholder="Select date" type="text"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                                 class="req text-danger">* </small>Amount</label><input type="number" id="amount"
                             name="amount" class="form-control" value=""></div>
 
-                    <button type="button" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </form>
             </div>
         </div>
@@ -141,39 +141,7 @@
 
 {{-- expense category modal --}}
 
-
-<div class="modal fade" id="AddExpenseCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form action="">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group" app-field-wrapper="name"><label for="name" class="control-label"> <small
-                                class="req text-danger">* </small>Category Name</label>
-                        <input type="text" id="name" name="name" class="form-control" value="">
-                    </div>
-
-                    <div class="form-group" app-field-wrapper="description"><label for="description"
-                            class="control-label">Category Description</label>
-                        <textarea id="description" name="description" class="form-control" rows="4"></textarea>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-    </div>
-    </form>
-</div>
+@include('backend.admin.includes.add_expense_category')
 
 @endsection
 

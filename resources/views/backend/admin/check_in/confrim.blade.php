@@ -4,10 +4,7 @@
 <div class="main-content p-4" id="panel">
     <div>
         <div class="card-header bg-white">
-            <h2>Rooms
-                <a class="btn btn-success float-right" href="{{ route('rooms.create') }}"><i
-                        class="fa fa-plus"></i>&nbsp;Create Room</a>
-            </h2>
+            <h2>Check in</h2>
         </div>
 
 
@@ -56,7 +53,7 @@
 
         <div class="card">
             <div class="card-header bg-white">
-                <h2>Confirm Checkin
+                <h2>Confirm Check in
                     <a href="{{route("checkin.index")}}" class="btn btn-tsk float-right"><i class="fa fa-list"></i>Check
                         in List</a></h2>
             </div>

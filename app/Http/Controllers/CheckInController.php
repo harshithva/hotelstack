@@ -209,8 +209,6 @@ class CheckInController extends Controller
                 $reservation_room->reservation_id = $reservation->id;
                 $reservation_room->room_id = $room->id;
         
-                $reservation_room->check_in = Carbon::createFromFormat('d/m/Y', $data->check_in);
-                $reservation_room->check_out = Carbon::createFromFormat('d/m/Y', $data->check_out);
                 $reservation_room->save();
             }
           }
@@ -301,7 +299,9 @@ class CheckInController extends Controller
         $reservation->total_paid += $payment->amount;
       }
       $extra = 0;
+      // dd($reservation->service);
       foreach ($reservation->service as $service) {
+
         $extra += $service->paid_service->price*$service->quantity;
       }
 
@@ -364,7 +364,52 @@ class CheckInController extends Controller
     public function edit($id)
     {
       $reservation = Reservation::findOrFail($id);
-      return view("backend.admin.check_in.edit",compact("reservation"));
+      $guests = User::all();
+
+
+      $dateCheckin = $reservation->check_in;
+      $dateCheckout = $reservation->check_out;
+      $reservations = Reservation::where('active', 1)
+      ->where(function($query) use ($dateCheckin, $dateCheckout){
+                  $query->where([
+                      ['check_in', '<=', $dateCheckin],
+                      ['check_out', '>=', $dateCheckin]
+                  ])
+                  ->orWhere([
+                      ['check_in', '<', $dateCheckout],
+                      ['check_out', '>=', $dateCheckout]
+                  ])
+                  ->orWhere([
+                      ['check_in', '>=', $dateCheckin],
+                      ['check_out', '<', $dateCheckout]
+                  ]);
+              })
+            ->orderBy('check_in')
+            ->get();
+           
+            $bookedRooms = [];
+            foreach($reservations as $reservation)
+            {
+              $bookedRooms = ReservationRoom::where('reservation_id', $reservation->id)->get();
+            }
+
+            if(empty($bookedRooms)){
+              $roomTypes = RoomType::with('rooms')->get();
+            }else {
+              $availableRooms = [];
+              foreach($bookedRooms as $bookedRoom)
+              {
+                $reservedRoom = $bookedRoom->pluck('room_id')->toArray();
+               
+                // Room::where('room_type_id',$room_type)->whereNotIn('id', $reservedRooms)->get();
+                $availableRooms = Room::whereNotIn('id', $reservedRoom)->pluck('id')->toArray();
+               
+              }
+                $rooms = Room::whereIn('id', $availableRooms)->get();
+          
+          
+            }
+      return view("backend.admin.check_in.edit",compact("reservation","guests","rooms"));
     }
 
     /**
@@ -376,7 +421,23 @@ class CheckInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        // dd($request);
+
+        $checkin = Reservation::findOrFail($id);
+        $checkin->user_id = $request->user_id;
+        $checkin->adults = $request->adults;
+        $checkin->kids = $request->kids;
+        $checkin->check_in = Carbon::createFromFormat('d/m/Y', $request->check_in);
+        $checkin->check_out = Carbon::createFromFormat('d/m/Y', $request->check_out);
+        $checkin->checked_in = $request->checked_in;
+        $checkin->checked_out = $request->checked_out;
+        $checkin->total = $request->total;
+        // $checkin->total_tax = $request->total_tax;
+        // $checkin->total_plus_tax = $request->total_plus_tax;
+        $checkin->save();
+
+        Session::flash('checkin_update', "Updated");
+        return redirect()->back();
     }
 
     /**

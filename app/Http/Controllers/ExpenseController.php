@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
+use App\ExpenseCategory;
 use App\Home;
 use App\Payment;
 use Carbon\Carbon;
@@ -31,8 +32,8 @@ class ExpenseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        return view('backend.admin.expenses.create');
+    {   $categories = ExpenseCategory::all();
+        return view('backend.admin.expenses.create',compact('categories'));
     }
 
     /**
@@ -43,12 +44,24 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        Expense::create(
-            request() -> validate([
-          'name'=> ['required','max:255'],
-          'amount' => ['required','min:3']
-         ])
-        );
+     $request->validate([
+         'name'=> ['required','max:255'],
+         'amount'=> ['required','max:255'],
+         'category_id'=> ['required','max:255'],
+     ]);
+        // Expense::create(
+        //     request() -> validate([
+        //   'name'=> ['required','max:255'],
+        //   'amount' => ['required','min:3']
+        //  ])
+        // );
+        $expense = new Expense;
+        $expense->name = $request->name;
+        $expense->note = $request->note;
+        $expense->category_id = $request->category_id;
+        $expense->date = Carbon::createFromFormat('d/m/Y',$request->date);
+        $expense->amount = $request->amount;
+        $expense->save();
         
        
         return redirect()->back();

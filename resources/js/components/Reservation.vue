@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form-group">
-      <div class="input-group input-group-lg">
+      <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-lg">Guest Name</span>
         </div>

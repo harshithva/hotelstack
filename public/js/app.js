@@ -1958,6 +1958,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["roomTypeBasePrice"],
   data: function data() {
@@ -55483,7 +55484,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control d-inline",
-        attrs: { type: "text", name: "price_per_night[]" },
+        attrs: { type: "text", name: "price_per_night[]", autocomplete: "off" },
         domProps: { value: _vm.price },
         on: {
           keyup: _vm.changePrice,
@@ -55522,7 +55523,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "input-group input-group-lg" }, [
+      _c("div", { staticClass: "input-group" }, [
         _vm._m(0),
         _vm._v(" "),
         _c("input", {

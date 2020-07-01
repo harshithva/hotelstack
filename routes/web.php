@@ -62,8 +62,9 @@ Route::patch('/admin/hotel/checkin/invoice/update/{reservation_id}', 'InvoiceCon
 Route::resource('/admin/hotel/reservation/payment', 'PaymentController');
 Route::resource('/admin/hotel/reservation/service', 'ServiceController');
 
-
+// expense
 Route::resource('/admin/hotel/expenses', 'ExpenseController');
+Route::resource('/admin/hotel/expenses_category', 'ExpenseCategoryController');
 
 // reports
 Route::get('/admin/hotel/reports', 'ReportController@index')->name('reports.index');

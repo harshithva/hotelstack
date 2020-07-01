@@ -45,7 +45,7 @@ class ReservationController extends Controller
     }
 
     public function  selectGuest() {
-        $guests = User::where('usertype','user')->orderBy('id', 'desc')->paginate(10);
+        $guests = User::where('usertype','user')->orderBy('id', 'desc')->get();
         $home = Home::first();
         Session::flash('guest', "Select Guest");
         return view('backend.admin.reservations.select_guest', compact('home','guests'));
@@ -248,8 +248,7 @@ class ReservationController extends Controller
                 $reservation_room->reservation_id = $reservation->id;
                 $reservation_room->room_id = $room->id;
         
-                $reservation_room->check_in = Carbon::createFromFormat('d/m/Y', $data->check_in);
-                $reservation_room->check_out = Carbon::createFromFormat('d/m/Y', $data->check_out);
+
                 $reservation_room->save();
             }
           }

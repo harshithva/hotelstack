@@ -56,12 +56,12 @@
         <form action="{{ route('check_in.rooms', $guest->id) }}" method="POST">
             @csrf
             <div class="form-group">
-                <div class="input-group input-group-lg">
+                <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Guest Name</span>
                     </div>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg" value="{{ $guest->name }}" name="guest">
+                        aria-describedby="inputGroup-sizing-lg" value="{{ $guest->name }}" name="guest" required>
                     <input type="hidden" value="{{$guest->id}}" name="user_id" />
                 </div>
             </div>
@@ -79,14 +79,16 @@
                 <div class="form-group col-md-6">
                     <div class="form-group">
                         <label for="example-number-input" class="form-control-label">&nbsp;Adults</label>
-                        <input class="form-control" type="number" value="1" id="example-number-input" name="adults">
+                        <input class="form-control" type="number" value="1" id="example-number-input" name="adults"
+                            required>
                     </div>
                 </div>
 
                 <div class="form-group col-md-6">
                     <div class="form-group">
                         <label for="example-number-input" class="form-control-label">&nbsp;Kids</label>
-                        <input class="form-control" type="number" value="0" id="example-number-input" name="kids">
+                        <input class="form-control" type="number" value="0" id="example-number-input" name="kids"
+                            required>
                     </div>
                 </div>
 
@@ -94,26 +96,26 @@
 
             <div class="form-row justify-content-center">
                 <div class="form-group col-md-6">
-                    <h3>&nbsp;Check in</h3>
+                    <label>Check in</label>
                     <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                             </div>
                             <input value="{{ old('check_in') }}" name="check_in" class="form-control datepicker"
-                                placeholder="Select date" type="text">
+                                placeholder="Select date" type="text" required autocomplete="off">
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <h3>&nbsp;Check out</h3>
+                    <label>Check out</label>
                     <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                             </div>
                             <input value="{{ old('check_in') }}" name="check_out" class="form-control datepicker"
-                                placeholder="Select date" type="text">
+                                placeholder="Select date" type="text" required autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -121,8 +123,7 @@
 
 
 
-
-            <button class="btn btn-success btn-lg btn-block" type="submit">Check Available Rooms</button>
+            <button class="btn btn-success" type="submit">Check Available Rooms</button>
         </form>
     </div>
 </div>

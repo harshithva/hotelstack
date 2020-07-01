@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ExpenseCategory;
 use Illuminate\Http\Request;
-use App\ReservationRoom;
-use App\Reservation;
-use Carbon\Carbon;
 
-class RerservationRoomController extends Controller
+class ExpenseCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,25 +35,20 @@ class RerservationRoomController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-        $room = new ReservationRoom;
-        $room->reservation_id = $request->reservation_id;
-        $room->room_id = $request->room_id;
-      
-        $room->save();
-
+        $category = new ExpenseCategory;
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();
         return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\ExpenseCategory  $expenseCategory
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ExpenseCategory $expenseCategory)
     {
         //
     }
@@ -63,10 +56,10 @@ class RerservationRoomController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\ExpenseCategory  $expenseCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ExpenseCategory $expenseCategory)
     {
         //
     }
@@ -75,10 +68,10 @@ class RerservationRoomController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\ExpenseCategory  $expenseCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ExpenseCategory $expenseCategory)
     {
         //
     }
@@ -86,13 +79,11 @@ class RerservationRoomController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\ExpenseCategory  $expenseCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ExpenseCategory $expenseCategory)
     {
-        $room = ReservationRoom::findOrFail($id);
-        $room->delete();
-        return redirect()->back();
+        //
     }
 }

@@ -22,7 +22,7 @@ class Reservation extends Model
     }
 
     public function service() {
-        return $this->hasMany(Service::class, 'reservation_id');
+        return $this->hasMany(Service::class, 'reservation_id','id');
     }
 
     public function invoice() {

@@ -11,6 +11,6 @@ class Service extends Model
     }
 
     public function paid_service() {
-        return $this->belongsTo(PaidService::class, 'id');
+        return $this->hasOne(PaidService::class,'id','paid_service_id');
     }
 }

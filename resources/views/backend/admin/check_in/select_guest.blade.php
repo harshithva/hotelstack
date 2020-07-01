@@ -2,77 +2,59 @@
 @section('title', 'Guests')
 @section('main')
 <div class="main-content p-4" id="panel">
-    <div class="table-responsive">
-        <div>
-            <div class="card-header bg-white">
-                <h2>Select Guest
-                    <a class="btn btn-success float-right" href="{{ route('guests.create') }}"><i
-                            class="fa fa-plus"></i>&nbsp;Add Guest</a>
-                </h2>
-            </div>
 
-            @if (Session::has('guest'))
+    <div>
+        <div class="card-header bg-white">
+            <h2>Select Guest
+                <a class="btn btn-success float-right" href="{{ route('guests.create') }}"><i
+                        class="fa fa-plus"></i>&nbsp;Add Guest</a>
+            </h2>
+        </div>
 
-            <div class="alert alert-default mt-2">{{ Session::get('guest') }}</div>
+        @if (Session::has('guest'))
 
-            @endif
+        <div class="alert alert-default mt-2">{{ Session::get('guest') }}</div>
 
-            @if (Session::has('success'))
+        @endif
 
-            <div class="alert alert-success mt-2">{{ Session::get('success') }}</div>
+        @if (Session::has('success'))
 
-            @endif
+        <div class="alert alert-success mt-2">{{ Session::get('success') }}</div>
 
-            @if (Session::has('danger'))
+        @endif
 
-            <div class="alert alert-danger mt-2">{{ Session::get('danger') }}</div>
+        @if (Session::has('danger'))
 
-            @endif
+        <div class="alert alert-danger mt-2">{{ Session::get('danger') }}</div>
 
-            @if ($errors->any())
-            <div class="alert alert-danger mt-3">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+        @endif
 
-            <div class="progress-wrapper">
-                <div class="progress-info">
-                    <div class="progress-label">
-                        <span>Task completed</span>
-                    </div>
-                    <div class="progress-percentage">
-                        <span>10%</span>
-                    </div>
+        @if ($errors->any())
+        <div class="alert alert-danger mt-3">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <div class="progress-wrapper">
+            <div class="progress-info">
+                <div class="progress-label">
+                    <span>Task completed</span>
                 </div>
-                <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0"
-                        aria-valuemax="100" style="width: 10%;"></div>
+                <div class="progress-percentage">
+                    <span>10%</span>
                 </div>
             </div>
-
-            <table class="table align-items-center overflow-hidden">
-                <!-- Search form -->
-                <form class="navbar-search navbar-search-light form-inline mr-sm-3 mt-3" id="navbar-search-main"
-                    method="POST" action="{{ route('guests.search')}}">
-                    @csrf
-                    <div class="form-group mb-0">
-                        <div class="input-group input-group-alternative input-group-merge">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                            </div>
-                            <input class="form-control" placeholder="Search" type="text" name="q" value="{{ $q ?? ""}}">
-                            <button type="submit" class="btn btn-default">Search</button>
-                        </div>
-                    </div>
-
-                    {{-- <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close"> --}}
-                    {{-- <span aria-hidden="true">×</span> --}}
-                    {{-- </button> --}}
-                </form>
+            <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                    aria-valuemax="100" style="width: 10%;"></div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <table class="table table-striped table-bordered table-white" id="selectGuestTable">
 
                 <thead class="thead-light">
                     <tr>
@@ -110,22 +92,9 @@
 
 
                     <td>
-                        {{-- <a href="{{ route('guests.edit', $guest->id) }}">
-                        <i class="fas fa-edit"></i>&nbsp;Edit
-                        </a>
-                        <br>
 
-                        <form action="{{ route('guests.destroy', $guest->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <span class="text-danger">
-                                <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit"
-                                    style="background:none!important;border:none;padding:0!important;">Delete</button>
-                            </span>
-                        </form> --}}
-
-                        <a class="btn btn-outline-default" href="{{ route('check_in.room_details', $guest->id) }}"><i
-                                class="fa fa-plus"></i>&nbsp;
+                        <a class="btn btn-outline-default btn-sm"
+                            href="{{ route('check_in.room_details', $guest->id) }}"><i class="fa fa-plus"></i>&nbsp;
                             Select Guest</a>
                         <br>
 
@@ -136,11 +105,31 @@
             </table>
         </div>
 
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center">{{ $guests->links() }}</div>
-        </div>
-
     </div>
+
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+  $('#selectGuestTable').DataTable( {
+    "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+
+    
+      
+  } );
+
+
+} );
+
+</script>
 @endsection

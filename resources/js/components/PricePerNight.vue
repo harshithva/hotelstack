@@ -9,6 +9,7 @@
               class="form-control d-inline"
               v-model="price"
               @keyup="changePrice"
+              autocomplete="off" 
             />
           </div>
           </div>

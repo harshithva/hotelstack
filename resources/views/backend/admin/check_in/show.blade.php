@@ -5,7 +5,7 @@
     <div>
         <div class="card-header bg-white d-print-none">
             <h2>Check in
-                <a class="btn btn-outline-success float-right" href="{{ route('reservations.index') }}"><i
+                <a class="btn btn-outline-success float-right" href="{{ route('checkin.index') }}"><i
                         class="fa fa-list"></i>&nbsp;Check In List</a>
             </h2>
             <div class="mt-3">
@@ -22,16 +22,16 @@
                 @endif
 
 
-
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_room">
-                    Add Room
-                </button>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_service">
-                    Add Service
-                </button>
                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add_payment">
                     Add Payment
                 </button>
+                {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_room">
+                    Add Room
+                </button> --}}
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_service">
+                    Add Service
+                </button>
+
                 <a class="btn btn-danger btn-sm text-white" href="{{route('check_out',$reservation->id)}}">
                     Check Out
                 </a>
@@ -89,8 +89,7 @@
             </div>
 
 
-            {{-- Add room--}}
-            @include('backend.admin.includes.add_room')
+
             {{-- add payment --}}
             @include('backend.admin.includes.add_payment')
             {{-- Add service --}}
@@ -376,15 +375,16 @@
                 <div role="tabpanel" class="tab-pane fade" id="Payments">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="mt-2  text-tsk">PAYMENT LIST</h4>
-                            <table class="table table-sm table-bordered">
+
+                            <table class="table table-striped table-bordered table-white" id="paymentsTable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Date</th>
                                         <th>Transaction</th>
                                         <th>Method</th>
-                                        <th class="text-right">Amount</th>
+                                        <th>Amount</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -394,7 +394,16 @@
                                         <td>{{$payment->created_at}}</td>
                                         <td>{{$payment->transaction_id}}</td>
                                         <td>{{$payment->method}}</td>
-                                        <td class="text-right"> {{$payment->amount}} Rupee</td>
+                                        <td> {{$payment->amount}} Rupees</td>
+                                        <td>
+                                            <form action="{{route('payment.destroy', $payment->id)}}" method="post"
+                                                id="rooms">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-outline-danger btn-sm"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -403,8 +412,8 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="Room">
-                    <h4 class="mt-2 text-tsk">ROOM LIST</h4>
-                    <table class="table table-sm table-bordered">
+
+                    <table class="table table-striped table-bordered table-white" id="roomsTable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -424,7 +433,7 @@
                                 <td>
                                     {{$room->room->floor->name}}
                                 </td>
-                                <td class="text-right">
+                                <td>
                                     <form action="{{route('reservation.room.delete', $room->id)}}" method="post"
                                         id="rooms">
                                         @csrf
@@ -440,8 +449,8 @@
                     </table>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="Service">
-                    <h4 class="mt-2 text-tsk">SERVICE LIST</h4>
-                    <table class="table table-sm table-bordered">
+
+                    <table class="table table-striped table-bordered table-white" id="servicesTable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -483,175 +492,59 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- <div role="tabpanel" class="tab-pane fade" id="print">
-                    <div class="row mt-5">
-                        <div class="col-md-12">
-                            <h2 class="page-header">
-                                <img src="https://www.whitehouseinn.in/assets/logo.png" style="max-height: 100px">
-                                <small class="pull-right">Booking Number: #4445-1584716941</small>
-                            </h2>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row invoice-info">
-                        <div class="col-md-4 invoice-col">
-                            Hotel Details <address>
-                                <strong>White House Inn</strong><br>
-                                Phone: 091485 08738,9148508737<br>
-                                Email: contact@whitehouseinn.in <br>
-                                veenu complex, Kundapura Main Rd, opp. canara bank, Kundapura, Karnataka 576201
-                                GSTIN:29AFRPP7885A1ZQ
-                            </address>
-                        </div>
-                        <div class="col-md-4 invoice-col">
-                            Guest Details <address>
-                                <strong>Ambreesh R M</strong><br>
-                                S/O MUTHAPPA,
-                                #5,RAMAPURA,HGULIBALE
-                                KOLAR,KARNATAKA
-                                563114<br>
-                                Phone: 9900272360<br>
-                                Email: admin@gmail.com </address>
-                        </div>
-                        <div class="col-md-4 invoice-col">
-                            <table width="90%">
-                                <tbody>
-                                    <tr>
-                                        <th><b>Room Type</b></th>
-                                        <th>:</th>
-                                        <td>Deluxe Room</td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Booking Date:</b></th>
-                                        <th>:</th>
-                                        <td>2020/03/20 20:39:01 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Check in </b></th>
-                                        <th>:</th>
-                                        <td>2020-03-20</td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Check out</b></th>
-                                        <th>:</th>
-                                        <td>2020-03-21</td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Payment Status </b></th>
-                                        <th>:</th>
-                                        <td>
-                                            <span class="badge badge-success">Paid</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Booking Status </b></th>
-                                        <th>:</th>
-                                        <td><span class="badge badge-success">SUCCESS</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Adults</b></th>
-                                        <th>:</th>
-                                        <td>2 Person</td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Kids </b></th>
-                                        <th>:</th>
-                                        <td>0 Person</td>
-                                    </tr>
-                                    <tr>
-                                        <th><b>Nights </b></th>
-                                        <th>:</th>
-                                        <td>1</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12 table-responsive">
-                            <table class=" table-sm w-100">
-                                <tbody>
-                                    <tr class="">
-                                        <td><b>Night Fair</b></td>
-                                        <td align="right"> <b> 1,299.00 Rupee</b></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td><b>Taxes</b></td>
-                                        <td align="right"> <b> 0.00 Rupee</b></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td><b>Total Paid Service</b></td>
-                                        <td align="right"> <b> 0.00 Rupee</b></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td><b>Discount</b></td>
-                                        <td align="right"> <b> 499.00 Rupee</b></td>
-                                    </tr>
-                                    <tr class="border-top">
-                                        <td><b>Payable Amount</b></td>
-                                        <td align="right"> <b> 800.00 Rupee</b></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
+                @endsection
 
-                        <div class="col-md-12">
-                            <p class="lead text-info">Payment</p>
-                            <div class="table-responsive">
-                                <table class="table-sm w-100">
-                                    <thead>
-                                        <tr class="bg-light">
-                                            <th>#</th>
-                                            <th>Date</th>
-                                            <th>Transaction</th>
-                                            <th>Method</th>
-                                            <th class="text-right">Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($reservation->payment as $payment)
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{$payment->created_at}}</td>
-                <td>{{$payment->transaction_id}}</td>
-                <td>{{$payment->method}}</td>
-                <td class="text-right"> {{$payment->amount}} Rupee</td>
-                </tr>
-                @endforeach
-                <tr class="border-top">
-                    <td colspan="4" align=""><b>Total Payment</b></td>
-                    <td class="text-right"><b>{{$reservation->total_paid}} Rupee</b></td>
-                </tr>
-                </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 table-responsive">
-            <table class=" table-sm w-100">
-                <tbody>
-                    <tr class="">
-                        <td><b>Due</b></td>
-                        <td align="right">
-                            <b>{{$reservation->total_plus_tax - $reservation->total_paid}} Rupee</b>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-</div>
-</div>
---}}
+                @section('scripts')
+                <script>
+                    $(document).ready(function() {
+  $('#paymentsTable').DataTable( {
+    "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+    
+      
+  } );
 
 
-@endsection
+} );
+                    $(document).ready(function() {
+  $('#roomsTable').DataTable( {
+    "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+    
+      
+  } );
 
-@section('scripts')
 
-@endsection
+} );
+                    $(document).ready(function() {
+  $('#servicesTable').DataTable( {
+    "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+    
+      
+  } );
+
+
+} );
+
+                </script>
+                @endsection

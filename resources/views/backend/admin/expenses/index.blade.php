@@ -92,18 +92,20 @@
                             <th scope="col">#</th>
                             <th scope="col">Expense</th>
                             <th scope="col">Amount</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Date</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($expenses as $expense)
+                        @foreach ($expenses as $key => $expense)
                         <tr>
-                            <th scope="row">{{$expense->id}}</th>
+                            <th scope="row">{{$key+1}}</th>
                             <td>{{$expense->name}}</td>
                             <td>{{$expense->amount}}</td>
-                            <td>{{$expense->created_at}}</td>
+                            <td>{{ $expense->category->name  }}</td>
+                            <td>{{ date("d/m/Y", strtotime($expense->date))  }}</td>
                             <td>
                                 <form action="{{route("expenses.destroy",$expense->id)}}" method="post">
                                     @csrf

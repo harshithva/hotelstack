@@ -20,9 +20,6 @@
                     </div>
 
                     <input type="hidden" name="reservation_id" value="{{$reservation->id}}" type="number">
-                    <input type="hidden" name="check_in" value="{{$reservation->check_in}}" type="number">
-                    <input type="hidden" name="check_out" value="{{$reservation->check_out}}" type="number">
-
                     <div class="form-row justify-content-center">
                         <div class="form-group col-sm-12" data-children-count="1">
                             <label><strong data-children-count="0">Tax</strong></label>
