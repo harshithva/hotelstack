@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-@section('title', 'Reservation')
+@section('title','Expenses')
 @section('main')
 <div class="main-content p-4" id="panel">
 
@@ -60,155 +60,265 @@
     </div>
 
     <div>
-        <div class="card-header bg-white d-print-none">
+        <div class="card-header bg-white">
             <h2>Reports
 
             </h2>
-            <div>
-                <div class="row">
-                    <div class="col">
+        </div>
 
-                        <div class="card card-stats">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">Total Income</h5>
-                                        <span class="h2 font-weight-bold mb-0">&#8377; {{$income}}</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                                            <i class="ni ni-chart-pie-35"></i>
-                                        </div>
-                                    </div>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card card-stats">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Total Income</h5>
+                                <span class="h2 font-weight-bold mb-0">&#8377; {{$income}}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                    <i class="ni ni-chart-pie-35"></i>
                                 </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                    {{-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> --}}
-                                    <span class="text-nowrap">Since last month</span>
-                                </p>
                             </div>
                         </div>
+                        <p class="mt-3 mb-0 text-sm">
+                            {{-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> --}}
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
                     </div>
-                    <div class="col">
-
-                        <div class="card card-stats">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">Total Expense</h5>
-                                        <span class="h2 font-weight-bold mb-0">&#8377; {{$expenses->total}}</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
-                                            <i class="ni ni-chart-pie-35"></i>
-                                        </div>
-                                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card card-stats">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Total Expense</h5>
+                                <span class="h2 font-weight-bold mb-0">&#8377; {{$expenses->total}}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
+                                    <i class="ni ni-chart-pie-35"></i>
                                 </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                    {{-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> --}}
-                                    <span class="text-nowrap">Since last month</span>
-                                </p>
                             </div>
                         </div>
-
-                    </div>
-
-                </div>
-
-
-
-                @if (Session::has('success'))
-
-                <div class="alert alert-success mt-2">{{ Session::get('success') }}</div>
-
-                @endif
-
-                @if (Session::has('danger'))
-
-                <div class="alert alert-danger mt-2">{{ Session::get('danger') }}</div>
-
-                @endif
-
-                @if ($errors->any())
-                <div class="alert alert-danger mt-3">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-
-                @if (Session::has('room'))
-
-                <div class="alert alert-default mt-2">{{ Session::get('room') }}</div>
-
-                @endif
-
-                {{-- <form method="POST" action="{{route("report.store")}}" class="mt-2">
-                {{ csrf_field() }}
-
-                @if ($errors->any())
-                <div class="alert alert-danger mt-3">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-
-                <div class="form-row justify-center">
-                    <div class="col">
-                        <input type="text" name="name" class="form-control p-4" placeholder="Expense">
-                    </div>
-                    <div class="col">
-                        <input type="text" name="amount" class="form-control p-4" placeholder="0.00">
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-outline-primary">Add Expense</button>
+                        <p class="mt-3 mb-0 text-sm">
+                            {{-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> --}}
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
                     </div>
                 </div>
-                </form> --}}
+            </div>
+        </div>
+
+        @if (Session::has('message'))
+
+        <div class="alert alert-success mt-2">{{ Session::get('message') }}</div>
+
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-danger mt-3">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+
+
+
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                    aria-controls="nav-home" aria-selected="true">Invoices</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#expenses" role="tab"
+                    aria-controls="nav-profile" aria-selected="false">Expenses</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                    aria-controls="nav-contact" aria-selected="false">Payments</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="invoices" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="mt-4">
+                    <table class="table table-striped table-bordered table-white" id="invoicesTable">
+                        <thead class="thead thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Invoice No</th>
+                                <th scope="col">Tax</th>
+                                <th scope="col">Date</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($invoices as $key => $invoice)
+                            <tr>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{$invoice->invoice_no}}</td>
+                                <td>{{$invoice->tax}}</td>
+
+                                <td>{{ date("d/m/Y", strtotime($invoice->date))  }}</td>
+
+
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="expenses" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="mt-4">
+                    <table class="table table-striped table-bordered table-white" id="expensesTable">
+                        <thead class="thead thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Expense</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Date</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($expenses as $key => $expense)
+                            <tr>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{$expense->name}}</td>
+                                <td>{{$expense->amount}}</td>
+                                <td>{{ $expense->category->name  }}</td>
+                                <td>{{ date("d/m/Y", strtotime($expense->date))  }}</td>
+
+
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+
+                    </table>
+                </div>
 
             </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="mt-4">
+                    <table class="table table-striped table-bordered table-white" id="paymentsTable">
+                        <thead class="thead thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Transaction ID</th>
+
+                                <th scope="col">Amount</th>
+                                <th scope="col">Method</th>
+                                <th scope="col">Date</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($payments as $key => $payment)
+                            <tr>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{ $payment->transaction_id}}</td>
+                                <td>{{ $payment->amount}}</td>
+                                <td>{{ $payment->method}}</td>
+
+                                <td>{{ date("d/m/Y", strtotime( $payment->created_at))  }}</td>
 
 
-            <table class="table mt-4">
-                <thead class="thead bg-success text-white">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Expense</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+                            </tr>
+                            @endforeach
 
-                    @foreach ($expenses as $expense)
-                    <tr>
-                        <th scope="row">{{$expense->id}}</th>
-                        <td>{{$expense->name}}</td>
-                        <td>{{$expense->amount}}</td>
-                        <td>{{$expense->created_at}}</td>
-                        <td>
-                            <form action="{{route("report.destroy",$expense->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
+                        </tbody>
 
-                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
-
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
+                    </table>
+                </div>
+            </div>
+        </div>
 
 
-            @endsection
 
-            @section('scripts')
+    </div>
 
-            @endsection
+</div>
+
+@endsection
+
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+    $('#invoicesTable').DataTable( {
+      "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+      
+        dom: 'Bfrtip',
+        buttons: [
+          { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
+                    columns: [ 0, 1, 2, 3]
+                }}
+        ]
+        
+    } );
+
+ 
+} );
+    $(document).ready(function() {
+    $('#expensesTable').DataTable( {
+      "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+      
+        dom: 'Bfrtip',
+        buttons: [
+          { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
+                    columns: [ 0, 1, 2, 3]
+                }}
+        ]
+        
+    } );
+
+ 
+} );
+
+    $(document).ready(function() {
+    $('#paymentsTable').DataTable( {
+      "oLanguage": {
+"oPaginate": {
+"sFirst": "First", // This is the link to the first page
+"sPrevious": "&#8592;", // This is the link to the previous page
+"sNext": "&#8594;", // This is the link to the next page
+"sLast": "Last" // This is the link to the last page
+}
+},
+      
+        dom: 'Bfrtip',
+        buttons: [
+          { "extend": 'print', "text":'Print',"className": 'btn btn-primary btn-sm' , exportOptions: {
+                    columns: [ 0, 1, 2, 3]
+                }}
+        ]
+        
+    } );
+
+ 
+} );
+
+</script>
+@endsection

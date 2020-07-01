@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Expense;
 use App\Home;
 use App\Payment;
+use App\Invoice;
 use Carbon\Carbon;
 
 class ReportController extends Controller
@@ -22,7 +23,9 @@ class ReportController extends Controller
         $date = Carbon::now();
         $expenses->total = $this->getMonthlySum($date);
         $income = Payment::sum('amount');
-        return view('backend.admin.reports.index',compact('expenses','income'));
+        $payments = Payment::all();
+        $invoices = Invoice::all();
+        return view('backend.admin.reports.index',compact('expenses','income','payments','invoices'));
     }
 
     /**

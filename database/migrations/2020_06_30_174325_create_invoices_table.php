@@ -17,6 +17,7 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->decimal('tax', 5, 2);
             $table->unsignedBigInteger('checkin_id');
+            $table->string('invoice_no')->nullable();
             $table->timestamps();
 
             $table->foreign('checkin_id')->references('id')->on('reservations')->onDelete('cascade');

@@ -44,6 +44,15 @@ class InvoiceController extends Controller
         $invoice->checkin_id = $request->checkin_id;
         $invoice->tax = $request->tax;
         $invoice->save();
+
+
+        $my_id = sprintf('%04d', $invoice->id);
+        $invoice_no = 'INV' .  $my_id;
+        $invoice->invoice_no = $invoice_no;
+        $invoice->save();
+
+
+
         $reservation = Reservation::findOrFail($request->checkin_id);
         $payment_list = $reservation->payment;
         $reservation->total_paid = 0;
@@ -106,6 +115,7 @@ class InvoiceController extends Controller
   
         $invoice->checkin_id = $request->checkin_id;
         $invoice->tax = $request->tax;
+        // $invoice->invoice_no = $request->invoice_no;
         $invoice->save();
         $reservation = Reservation::findOrFail($request->checkin_id);
         $payment_list = $reservation->payment;
