@@ -55,24 +55,6 @@
         </div>
         <div class="mt-4">
             <table class="table table-striped table-bordered table-white" id="selectGuestTable">
-                <!-- Search form -->
-                <form class="navbar-search navbar-search-light form-inline mr-sm-3 mt-3" id="navbar-search-main"
-                    method="POST" action="{{ route('guests.search')}}">
-                    @csrf
-                    <div class="form-group mb-0">
-                        <div class="input-group input-group-alternative input-group-merge">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                            </div>
-                            <input class="form-control" placeholder="Search" type="text" name="q" value="{{ $q ?? ""}}">
-                            <button type="submit" class="btn btn-default">Search</button>
-                        </div>
-                    </div>
-
-                    {{-- <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close"> --}}
-                    {{-- <span aria-hidden="true">×</span> --}}
-                    {{-- </button> --}}
-                </form>
 
                 <thead class="thead-light">
                     <tr>
@@ -112,7 +94,7 @@
                     <td>
 
 
-                        <a class="btn btn-outline-default"
+                        <a class="btn btn-outline-default btn-sm"
                             href="{{ route('reservations.room_details', $guest->id) }}"><i class="fa fa-plus"></i>&nbsp;
                             Select Guest</a>
                         <br>

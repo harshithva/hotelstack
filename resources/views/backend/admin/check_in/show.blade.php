@@ -174,7 +174,7 @@
                         </div>
                         <div class="col-md-4 invoice-col">
                             Guest Details <address> <br>
-                                <strong>{{$reservation->user->name}}</strong><br>
+                                <strong>{{$reservation->user->name}}</strong>
                                 {{$reservation->user->address ?? ""}}
                                 <br>
                                 Phone: {{$reservation->user->phone}}<br>
@@ -207,8 +207,8 @@
                                         <th><b>Payment Status </b></th>
                                         <th>:</th>
                                         <td>
-                                            @if(($reservation->total_plus_tax - $reservation->total_paid) <= 0) <span
-                                                class="badge badge-success">Paid</span>
+                                            @if(($reservation->total - $paid) <= 0) <span class="badge badge-success">
+                                                Paid</span>
                                                 @else
                                                 <span class="badge badge-info">Due</span>
                                                 @endif
@@ -304,11 +304,11 @@
                                                     {{$extra}} Rupee</b></td>
                                         </tr>
 
-
+                                        {{-- 
                                         <tr>
                                             <td colspan="3" align=""><b>Total Tax</b></td>
                                             <td class="text-right"><b>{{$reservation->total_tax}} Rupee</b></td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -322,7 +322,7 @@
                                     <tbody>
                                         <tr>
                                             <td colspan="3" align=""><b>Payable Amount</b></td>
-                                            <td class="text-right"><b>{{$reservation->total_plus_tax + $extra}}
+                                            <td class="text-right"><b>{{$reservation->total + $extra}}
                                                     Rupee</b>
                                             </td>
                                         </tr>
@@ -358,12 +358,12 @@
                                         @endforeach
                                         <tr class="border-top">
                                             <td colspan="4" align=""><b>Total Payment</b></td>
-                                            <td class="text-right"><b>{{ $reservation->total_paid}} Rupee</b></td>
+                                            <td class="text-right"><b>{{ $paid}} Rupee</b></td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" align=""><b>Due</b></td>
                                             <td class="text-right">
-                                                <b>{{$reservation->total_plus_tax - $reservation->total_paid}} Rupee</b>
+                                                <b>{{$reservation->total - $paid}} Rupee</b>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -58,7 +58,7 @@
         <form action="{{ route('reservations.rooms', $guest->id) }}" method="POST">
             @csrf
             <div class="form-group">
-                <div class="input-group input-group-lg">
+                <div class="input-group ">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Guest Name</span>
                     </div>
@@ -126,7 +126,7 @@
 
 
 
-            <button class="btn btn-success btn-lg btn-block" type="submit">Check Available Rooms</button>
+            <button class="btn btn-success" type="submit">Check Available Rooms</button>
         </form>
     </div>
 </div>

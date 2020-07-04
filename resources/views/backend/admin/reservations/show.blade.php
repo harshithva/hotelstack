@@ -16,8 +16,7 @@
                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_service">
                     Add Service
                 </button>
-                <button class="btn btn-outline-default btn-sm" onclick="javascript:window.print()"><i
-                        class="fa fa-print"></i></button>
+
                 <form action="{{route("reservations.checkin",$reservation->id)}}" method="post" class="d-inline-block">
                     @csrf
                     <button type="submit" class="btn btn-outline-warning btn-sm">Check in</button>
@@ -25,8 +24,14 @@
                 <form action="{{route("reservations.mark_noshow",$reservation->id)}}" method="post"
                     class="d-inline-block">
                     @csrf
-                    <button type="submit" class="btn btn-outline-default btn-sm">Mark noshow</button>
+                    <button type="submit" class="btn btn-outline-default btn-sm m-1">Mark noshow</button>
                 </form>
+
+                <a class="btn btn-default btn-sm text-white" href="{{route('reservations.edit',$reservation->id)}}">
+                    Edit
+                </a>
+                <button class="btn btn-outline-default btn-sm" onclick="javascript:window.print()"><i
+                        class="fa fa-print"></i></button>
             </div>
 
 
@@ -222,7 +227,7 @@
                     </div>
                     <div class="col-md-4 invoice-col">
                         Guest Details <address> <br>
-                            <strong>{{$reservation->user->name}}</strong><br>
+                            <strong>{{$reservation->user->name}}</strong>
                             {{$reservation->user->address ?? ""}}
                             <br>
                             Phone: {{$reservation->user->phone}}<br>
@@ -343,10 +348,10 @@
                                     </tr>
 
 
-                                    <tr>
+                                    {{-- <tr>
                                         <td colspan="3" align=""><b>Total Tax</b></td>
                                         <td class="text-right"><b>{{$reservation->total_tax}} Rupee</b></td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>
@@ -360,7 +365,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="3" align=""><b>Payable Amount</b></td>
-                                        <td class="text-right"><b>{{$reservation->total_plus_tax + $extra}} Rupee</b>
+                                        <td class="text-right"><b>{{$reservation->total + $extra}} Rupee</b>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -395,12 +400,12 @@
                                     @endforeach
                                     <tr class="border-top">
                                         <td colspan="4" align=""><b>Total Payment</b></td>
-                                        <td class="text-right"><b>{{ $reservation->total_paid}} Rupee</b></td>
+                                        <td class="text-right"><b>{{  $paid}} Rupee</b></td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" align=""><b>Due</b></td>
                                         <td class="text-right">
-                                            <b>{{$reservation->total_plus_tax - $reservation->total_paid}} Rupee</b>
+                                            <b>{{$reservation->total - $paid}} Rupee</b>
                                         </td>
                                     </tr>
                                 </tbody>

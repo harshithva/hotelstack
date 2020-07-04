@@ -101,8 +101,8 @@
           </li>
 
           <li class="nav-item ">
-            <a class="nav-link {{ Route::currentRouteNamed('guests.index') ? 'active' : '' }}"
-              href="{{ route('guests.index') }}">
+            <a class="nav-link {{ Route::currentRouteNamed('housekeeping.index') ? 'active' : '' }}"
+              href="{{ route('housekeeping.index') }}">
               <i class="ni ni-bell-55 text-primary"></i>
               <span class="nav-link-text">House Keeping</span>
             </a>
@@ -169,9 +169,10 @@
           <ul class="navbar-nav mb-md-3">
 
             <li class="nav-item">
-              <a class="nav-link active active-pro" href="{{route('home')}}" target="_blank">
+              <a class="nav-link active active-pro" href="https://vawebsites.in" target="_blank">
                 <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">Visit Homepage</span>
+                {{-- <span class="nav-link-text">Visit Homepage</span> --}}
+                <span class="nav-link-text">Made in India</span>
               </a>
             </li>
           </ul>

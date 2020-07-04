@@ -80,14 +80,19 @@ class InvoiceController extends Controller
         foreach ($payment_list as $payment) {
           $reservation->total_paid += $payment->amount;
         }
+       
         $extra = 0;
         foreach ($reservation->service as $service) {
           $extra += $service->paid_service->price*$service->quantity;
         }
 
          $reservation->total_tax = (($reservation->total + $extra)*$reservation->invoice->tax)/100;
+
          $hotel = HotelDetail::first();
         $paid_services = PaidService::all();
+
+
+        $reservation->total_plus_tax = $reservation->total + $reservation->total_tax + $extra;
       return view('backend.admin.check_in.invoice',compact('reservation','hotel','extra'));
     }
 

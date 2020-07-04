@@ -110,7 +110,7 @@
 <input type="hidden" name="check_out" value="{{$guest->check_out}}">
 
 
-<button class="btn btn-success btn-lg btn-block mt-3" type="submit">Next</button>
+<button class="btn btn-success mt-3" type="submit">Next</button>
 </form>
 {{-- <select-rooms-details room-types="{{$roomTypes}}" taxes="{{$taxes}}">
 @if (count($roomType->rooms) > 0)

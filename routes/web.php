@@ -69,6 +69,10 @@ Route::resource('/admin/hotel/expenses_category', 'ExpenseCategoryController');
 // reports
 Route::get('/admin/hotel/reports', 'ReportController@index')->name('reports.index');
 
+// House Keeping
+
+Route::resource('/admin/hotel/housekeeping', 'HouseKeepingController');
+
 Route::delete('/admin/hotel/reservation/reservation_room/{room}', 'RerservationRoomController@destroy')->name('reservation.room.delete');
 Route::post('/admin/hotel/reservation/reservation_room/add', 'RerservationRoomController@store')->name('reservation.room.store');
 

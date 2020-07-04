@@ -110,7 +110,8 @@
                                 <img src="{{ asset('backend/assets/img/brand/blue.png') }}" class="img-fluid"
                                     style="max-height: 40px">
                                 <br><br>
-                                <small class="pull-right">Booking ID: {{$reservation->uid}}</small>
+                                <small class="pull-right">Booking ID: {{$reservation->uid}}</small><br>
+                                <small class="pull-right">Invoice No: {{$reservation->invoice->invoice_no}}</small>
                             </h2>
                             <hr>
                         </div>
@@ -160,8 +161,9 @@
                                         <th><b>Payment Status </b></th>
                                         <th>:</th>
                                         <td>
-                                            @if(($reservation->total_plus_tax - $reservation->total_paid) <= 0) <span
-                                                class="badge badge-success">Paid</span>
+                                            @if((($reservation->total_plus_tax + $extra + $reservation->total_tax) -
+                                            $reservation->total_paid) <= 0) <span class="badge badge-success">
+                                                Paid</span>
                                                 @else
                                                 <span class="badge badge-info">Due</span>
                                                 @endif
@@ -269,7 +271,8 @@
                                     <tbody>
                                         <tr>
                                             <td colspan="3" align=""><b>Payable Amount</b></td>
-                                            <td class="text-right"><b>{{$reservation->total_plus_tax + $extra}}
+                                            <td class="text-right">
+                                                <b>{{$reservation->total_plus_tax + $extra +  $reservation->total_tax }}
                                                     Rupee</b>
                                             </td>
                                         </tr>
@@ -310,7 +313,8 @@
                                         <tr>
                                             <td colspan="4" align=""><b>Due</b></td>
                                             <td class="text-right">
-                                                <b>{{$reservation->total_plus_tax - $reservation->total_paid}} Rupee</b>
+                                                <b>{{($reservation->total_plus_tax + $extra +  $reservation->total_tax) - $reservation->total_paid}}
+                                                    Rupee</b>
                                             </td>
                                         </tr>
                                     </tbody>

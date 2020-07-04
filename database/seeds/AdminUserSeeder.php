@@ -13,11 +13,19 @@ class AdminUserSeeder extends Seeder
     public function run()
     {
         User::create([
+            'name' => 'Hotelstack',
+            'email' => 'hotelstack@vawebsites.in',
+            'password' => bcrypt('hotelstack123'),
+            'usertype' => 'admin'
+        ]);
+
+        User::create([
             'name' => 'Harshith',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
             'usertype' => 'admin'
         ]);
+
         User::create([
             'name' => 'Likith',
             'email' => 'user@gmail.com',

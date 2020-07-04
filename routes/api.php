@@ -18,10 +18,3 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/guests', function() {
-
-    $guest = [
-        "name" => "Harshith"
-];
-    return $guest;
-});

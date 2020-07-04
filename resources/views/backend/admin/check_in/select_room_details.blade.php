@@ -102,7 +102,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                             </div>
-                            <input value="{{ old('check_in') }}" name="check_in" class="form-control datepicker"
+                            <input value="{{ date('d/m/Y') }}" name="check_in" class="form-control datepicker"
                                 placeholder="Select date" type="text" required autocomplete="off">
                         </div>
                     </div>

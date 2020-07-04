@@ -22,8 +22,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $home = Home::first();
-        return view('frontend.home', compact('home'));
+        // $home = Home::first();
+        // return view('frontend.home', compact('home'))
+        return redirect()->route('login');
     }
 
     /**

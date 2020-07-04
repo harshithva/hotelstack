@@ -6,6 +6,7 @@ use App\User;
 use App\Mail\ReservationMail;
 
 use App\Reservation;
+use App\Payment;
 use App\Home;
 use App\Tax;
 use App\RoomType;
@@ -291,20 +292,20 @@ class CheckInController extends Controller
       $home = Home::first();
       $hotel = HotelDetail::first();
       $reservation = Reservation::findOrFail($id);
+      $reservation->payment;
       $paid_services = PaidService::all();
     
       $payment_list = $reservation->payment;
-      $reservation->total_paid = 0;
-      foreach ($payment_list as $payment) {
-        $reservation->total_paid += $payment->amount;
-      }
-      $extra = 0;
-      // dd($reservation->service);
-      foreach ($reservation->service as $service) {
+      // $reservation->total_paid = 0;
+      // foreach ($payment_list as $payment) {
+      //   $reservation->total_paid += $payment->amount;
+      // }
 
+
+      $extra = 0;
+      foreach ($reservation->service as $service) {
         $extra += $service->paid_service->price*$service->quantity;
       }
-
      
       $dateCheckin = $reservation->check_in;
       $dateCheckout = $reservation->check_out;
@@ -351,8 +352,9 @@ class CheckInController extends Controller
             }
      
      
+            $paid= Payment::where('reservation_id',$id)->sum('amount');
      
-      return view("backend.admin.check_in.show",compact("home", "reservation","hotel","paid_services","extra","rooms"));
+      return view("backend.admin.check_in.show",compact("home", "reservation","hotel","paid_services","extra","rooms","paid"));
     }
 
     /**

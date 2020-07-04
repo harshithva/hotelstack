@@ -7,6 +7,7 @@ use App\Mail\ReservationMail;
 
 use App\Reservation;
 use App\Home;
+use App\Payment;
 use App\Tax;
 use App\RoomType;
 use App\PaidService;
@@ -387,8 +388,8 @@ class ReservationController extends Controller
             
             
               }
-     
-      return view("backend.admin.reservations.show",compact("home", "reservation","hotel","paid_services","extra","rooms"));
+              $paid= Payment::where('reservation_id',$reservation->id)->sum('amount');
+      return view("backend.admin.reservations.show",compact("home", "reservation","hotel","paid_services","extra","rooms",'paid'));
     }
 
     /**
@@ -399,7 +400,52 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //
+      $guests = User::all();
+
+
+      $dateCheckin = $reservation->check_in;
+      $dateCheckout = $reservation->check_out;
+      $reservations = Reservation::where('active', 1)
+      ->where(function($query) use ($dateCheckin, $dateCheckout){
+                  $query->where([
+                      ['check_in', '<=', $dateCheckin],
+                      ['check_out', '>=', $dateCheckin]
+                  ])
+                  ->orWhere([
+                      ['check_in', '<', $dateCheckout],
+                      ['check_out', '>=', $dateCheckout]
+                  ])
+                  ->orWhere([
+                      ['check_in', '>=', $dateCheckin],
+                      ['check_out', '<', $dateCheckout]
+                  ]);
+              })
+            ->orderBy('check_in')
+            ->get();
+           
+            $bookedRooms = [];
+            foreach($reservations as $reservation)
+            {
+              $bookedRooms = ReservationRoom::where('reservation_id', $reservation->id)->get();
+            }
+
+            if(empty($bookedRooms)){
+              $roomTypes = RoomType::with('rooms')->get();
+            }else {
+              $availableRooms = [];
+              foreach($bookedRooms as $bookedRoom)
+              {
+                $reservedRoom = $bookedRoom->pluck('room_id')->toArray();
+               
+                // Room::where('room_type_id',$room_type)->whereNotIn('id', $reservedRooms)->get();
+                $availableRooms = Room::whereNotIn('id', $reservedRoom)->pluck('id')->toArray();
+               
+              }
+                $rooms = Room::whereIn('id', $availableRooms)->get();
+          
+          
+            }
+      return view("backend.admin.reservations.edit",compact("reservation","guests","rooms"));
     }
 
     /**
@@ -411,7 +457,21 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+     
+      $reservation->user_id = $request->user_id;
+      $reservation->adults = $request->adults;
+      $reservation->kids = $request->kids;
+      $reservation->check_in = Carbon::createFromFormat('d/m/Y', $request->check_in);
+      $reservation->check_out = Carbon::createFromFormat('d/m/Y', $request->check_out);
+      $reservation->checked_in = $request->checked_in;
+      $reservation->checked_out = $request->checked_out;
+      $reservation->total = $request->total;
+      // $reservation->total_tax = $request->total_tax;
+      // $reservation->total_plus_tax = $request->total_plus_tax;
+      $reservation->save();
+
+      Session::flash('reservation_update', "Updated");
+      return redirect()->back();
     }
 
     /**

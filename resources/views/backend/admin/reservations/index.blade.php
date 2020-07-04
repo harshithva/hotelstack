@@ -137,8 +137,8 @@
 
 
             <td>
-              <a href="{{ route('reservations.edit', $reservation->id) }}">
-                <i class="fas fa-edit"></i>&nbsp;Edit
+              {{-- <a href="{{ route('reservations.edit', $reservation->id) }}">
+              <i class="fas fa-edit"></i>&nbsp;Edit
               </a>
               <br>
 
@@ -149,7 +149,7 @@
                   <i class="fas fa-trash-alt"></i>&nbsp; <button class="text-danger" type="submit"
                     style="background:none!important;border:none;padding:0!important;">Cancel</button>
                 </span>
-              </form>
+              </form> --}}
 
               <a href="{{ route('reservations.show', $reservation->id) }}">
                 <i class="fas fa-bookmark"></i>&nbsp;View
