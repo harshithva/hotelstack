@@ -9,7 +9,7 @@ Hotelstack is a Complete Hotel Room Booking system comes with a unique, gorgeous
 
 ## Technologies used
 + Laravel
-+ Vue
++ Vuejs
 + Bootstrap
 + php
 + Javascript
