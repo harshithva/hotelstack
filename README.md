@@ -13,7 +13,7 @@ Hotelstack is a Complete Hotel Room Booking system comes with a unique, gorgeous
 + Bootstrap
 + php
 + Javascript
-
++ jquery
 
 ![](https://i.ibb.co/xqFk0kd/1.jpg)
 ![](https://i.ibb.co/brG6vF8/2.jpg)
