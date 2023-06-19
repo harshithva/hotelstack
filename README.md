@@ -2,12 +2,6 @@
 
 Hotelstack is a Complete Hotel Room Booking system comes with a unique, gorgeous, Cross Browser optimized Website. Its not only a Hotel Website, Its a complete reservation system. Unique Looks, Easy to room reservation, Gallery, Announcement, Promotion Video, Virtual tours – All you need are included
 
-## Demo
-+ URL: https://hotelstack.vawebsites.in
-+ Email: hotelstack@vawebsites.in
-+ Password: hotelstack123
-+ 
-
 ## Technologies used
 + Laravel
 + Vuejs
