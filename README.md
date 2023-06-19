@@ -6,6 +6,7 @@ Hotelstack is a Complete Hotel Room Booking system comes with a unique, gorgeous
 + URL: https://hotelstack.vawebsites.in
 + Email: hotelstack@vawebsites.in
 + Password: hotelstack123
++ 
 
 ## Technologies used
 + Laravel
